@@ -21,7 +21,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void save(User user) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert into User (Password, E-Mail, Premium, Admin, Date, FirstName, LastName) values (?,?,?,?,?,?,?)";
+			String insert = "insert into \"User\" (\"Password\", \"E-Mail\", \"Premium\", \"Admin\", \"Date\", \"FirstName\", \"LastName\", \"Image\") values (?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, user.getPassword ());
 			statement.setString(2, user.getEmail());
@@ -31,6 +31,7 @@ public class UserDAOJDBC implements UserDAO {
 			statement.setDate(5, new java.sql.Date(secs));
 			statement.setString(6, user.getFirstName());
 			statement.setString(7, user.getLastName());
+			statement.setString(8, user.getPathToImage());
 			statement.executeUpdate();
 			AddressDAOJDBC address = new AddressDAOJDBC(dataSource);
 			address.save(user.getAddress());
@@ -53,12 +54,12 @@ public class UserDAOJDBC implements UserDAO {
 		User user = null;
 		try { 
 			PreparedStatement statement;
-			String query = "select * from User WHERE E-Mail = ?";
+			String query = "select * from \"User\" WHERE \"E-Mail\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, name);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				user = new User(result.getString("FirstName"), result.getString("LastName"), result.getString("E-Mail"), null, null, result.getBoolean("Premium"), result.getBoolean("Admin"), result.getDate("Date"));
+				user = new User(result.getString("FirstName"), result.getString("LastName"), result.getString("E-Mail"), null, null, result.getBoolean("Premium"), result.getBoolean("Admin"), result.getDate("Date"), result.getString("Image"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -79,11 +80,11 @@ public class UserDAOJDBC implements UserDAO {
 		try {
 			User user;
 			PreparedStatement statement;
-			String query = "select * from User";
+			String query = "select * from \"User\"";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				user = new User(result.getString("FirstName"), result.getString("LastName"), result.getString("E-Mail"), null, null, result.getBoolean("Premium"), result.getBoolean("Admin"), result.getDate("Date"));
+				user = new User(result.getString("FirstName"), result.getString("LastName"), result.getString("E-Mail"), null, null, result.getBoolean("Premium"), result.getBoolean("Admin"), result.getDate("Date"), result.getString("Image"));
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -102,7 +103,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void update(User user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update User SET E-Mail = ?, Premium = ?, Admin = ?, Date = ?, FirstName = ?, LastName = ? WHERE E-Mail = ?";
+			String update = "update \"User\" SET \"E-Mail\" = ?, \"Premium\" = ?, \"Admin\" = ?, \"Date\" = ?, \"FirstName\" = ?, \"LastName\" = ?, \"Image\" = ? WHERE \"E-Mail\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, user.getEmail());
 			statement.setBoolean(2, user.isPremium());
@@ -111,7 +112,8 @@ public class UserDAOJDBC implements UserDAO {
 			statement.setDate(4, new java.sql.Date(secs));
 			statement.setString(5, user.getFirstName());
 			statement.setString(6, user.getLastName());
-			statement.setString(7, user.getEmail());
+			statement.setString(7, user.getPathToImage());
+			statement.setString(8, user.getEmail());
 			statement.executeUpdate();
 			AddressDAOJDBC address = new AddressDAOJDBC(dataSource);
 			address.update(user.getAddress());
@@ -132,7 +134,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void delete(User user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM User WHERE E-Mail = ?";
+			String delete = "delete FROM \"User\" WHERE \"E-Mail\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, user.getEmail());
 			statement.executeUpdate();
@@ -155,7 +157,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void setPassword(User user, String password) {
 		Connection connection = this.dataSource.getConnection();
 		try { 
-			String update = "update User SET Password = ?, E-Mail = ?, Premium = ?, Admin = ?, Date = ?, FirstName = ?, LastName = ? WHERE E-Mail = ?";
+			String update = "update \"User\" SET \"Password\" = ?, \"E-Mail\" = ?, \"Premium\" = ?, \"Admin\" = ?, \"Date\" = ?, \"FirstName\" = ?, \"LastName\" = ? WHERE \"E-Mail\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, user.getPassword ());
 			statement.setString(2, user.getEmail());

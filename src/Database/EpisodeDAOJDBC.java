@@ -22,7 +22,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void save(Episode episode) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert into Episode(Path, TVSerie, episode, season) values (?,?,?,?)";
+			String insert = "insert into \"Episode\" (\"Path\", \"TVSerie\", \"episode\", \"season\") values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, episode.getPath());
 			statement.setInt(2, episode.getTVSerieID());
@@ -46,7 +46,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 		Episode realepisode = null;
 		try {
 			PreparedStatement statement;
-			String query = "select * from Episode where TVSerie = ? AND episode = ? AND season = ?";
+			String query = "select * from \"Episode\" where \"TVSerie\" = ? AND \"episode\" = ? AND \"season\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, IDSerie);
 			statement.setInt(2, episode);
@@ -74,7 +74,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 		try {
 			Episode episode = null;
 			PreparedStatement statement;
-			String query = "select * from Episode where TVSerie = ?";
+			String query = "select * from Episode where \"TVSerie\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, IDSerie);
 			ResultSet result = statement.executeQuery();
@@ -98,7 +98,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void update(Episode episode) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update Episode SET Path = ?, TVSerie = ?, episode = ?, season = ? WHERE TVSerie = ?, episode = ?, season = ?";
+			String update = "update \"Episode\" SET Path = ?, \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ? WHERE \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, episode.getPath());
 			statement.setInt(2, episode.getTVSerieID());
@@ -123,11 +123,30 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void delete(Episode episode) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM Episode WHERE TVSerie = ?, episode = ?, season = ?";
+			String delete = "delete FROM \"Episode\" WHERE \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, episode.getTVSerieID());
 			statement.setInt(2, episode.getEpisode());
 			statement.setInt(3, episode.getSeason());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public void deleteAllOfTVSerie(int code) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM \"Episode\" WHERE \"TVSerie\" = ?";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setInt(1, code);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

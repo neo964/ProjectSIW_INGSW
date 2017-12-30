@@ -8,4 +8,22 @@ public class MultimediaInCart {
 		this.multimedia = multimedia;
 		this.quantity = quantity;
 	}
+
+	public Multimedia getMultimedia() {
+		return multimedia;
+	}
+
+	public void setMultimedia(Multimedia multimedia) {
+		this.multimedia = multimedia;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	
 }

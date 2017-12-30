@@ -1,12 +1,17 @@
 package Database;
 
+import Model.User;
+import persistenceDAO.ActorInMultimediaDAO;
 import persistenceDAO.AddressDAO;
+import persistenceDAO.CartDAO;
 import persistenceDAO.EpisodeDAO;
 import persistenceDAO.FilmDAO;
+import persistenceDAO.FriendshipDAO;
 import persistenceDAO.PaymentMethodDAO;
 import persistenceDAO.RankingDAO;
 import persistenceDAO.TVSerieDAO;
 import persistenceDAO.UserDAO;
+import persistenceDAO.UserReference;
 
 public class PostgresDAOFactory extends DAOFactory{
 
@@ -14,7 +19,7 @@ public class PostgresDAOFactory extends DAOFactory{
 	
 	static {
 		try {
-			//Class.forName("org.postgresql.Driver").newInstance();
+			Class.forName("org.postgresql.Driver").newInstance();
 			data = new DataSource("jdbc:postgresql://localhost:5432/PandaFlix", "postgres", "Dobrowitz");
 		} 
 		catch (Exception e) {
@@ -61,5 +66,25 @@ public class PostgresDAOFactory extends DAOFactory{
 	@Override
 	public UtilDAO getUtilDAO() {
 		return new UtilDAO(data);
+	}
+
+	@Override
+	public ActorInMultimediaDAO getActorInMultimedia() {
+		return new ActorInMultimediaDAOJDBC(data);
+	}
+
+	@Override
+	public CartDAO getCartDao() {
+		return new CartDAOJDBC(data);
+	}
+
+	@Override
+	public FriendshipDAO getFriendsip() {
+		return new FriendshipDAOJDBC(data);
+	}
+
+	@Override
+	public UserReference getUserRefernce(User user) {
+		return new UserReference(data, user);
 	}
 }

@@ -26,9 +26,9 @@ public class RankingDAOJDBC implements RankingDAO {
 		try {
 			String insert = null;
 			if (ranking.getMultimedia() instanceof Film)
-				insert = "insert into RankingFilm (Rank, User, Film) values (?,?,?)";
+				insert = "insert into \"RankingFilm\" (\"Rank\", \"User\", \"Film\") values (?,?,?)";
 			else
-				insert = "insert into RankingTVSerie (Rank, User, TVSerie) values (?,?,?)";
+				insert = "insert into \"RankingTVSerie\" (\"Rank\", \"User\", \"TVSerie\") values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, ranking.getRank());
 			statement.setString(2, ranking.getUser());
@@ -57,11 +57,11 @@ public class RankingDAOJDBC implements RankingDAO {
 			Multimedia multimediatmp;
 			
 			if (multimedia instanceof Film) {
-				query = "select * from RankingFilm where User = ? AND Film = ?";
+				query = "select * from \"RankingFilm\" where \"User\" = ? AND \"Film\" = ?";
 				filmDAO = new FilmDAOJDBC(dataSource);
 			}
 			else {
-				query = "select * from RankingTVSerie where User = ? AND TVSerie = ?";
+				query = "select * from \"RankingTVSerie\" where \"User\" = ? AND \"TVSerie\" = ?";
 				serieDAO = new TVSerieDAOJDBC(dataSource);
 			}
 			statement = connection.prepareStatement(query);
@@ -88,6 +88,7 @@ public class RankingDAOJDBC implements RankingDAO {
 		return ranking;
 	}
 	
+	@Override
 	public float findRanking (Multimedia multimedia) {
 		Connection connection = this.dataSource.getConnection();
 		int number = 0;
@@ -96,9 +97,9 @@ public class RankingDAOJDBC implements RankingDAO {
 			PreparedStatement statement;
 			String query = null;
 			if (multimedia instanceof Film)
-				query = "select * from RankingFilm where User = ? AND Film = ?";
+				query = "select * from \"RankingFilm\" where \"User\" = ? AND \"Film\" = ?";
 			else
-				query = "select * from RankingTVSerie where User = ? AND TVSerie = ?";
+				query = "select * from \"RankingTVSerie\" where \"User\" = ? AND \"TVSerie\" = ?";
 			
 			statement = connection.prepareStatement(query);
 			statement.setInt(3, multimedia.getId());
@@ -126,7 +127,7 @@ public class RankingDAOJDBC implements RankingDAO {
 		try {
 			Ranking ranking = null;
 			PreparedStatement statement;
-			String query = "select * from Ranking";
+			String query = "select * from \"Ranking\"";
 			FilmDAOJDBC filmDAO = new FilmDAOJDBC(dataSource);
 			Multimedia multimediatmp = null;
 			
@@ -143,7 +144,7 @@ public class RankingDAOJDBC implements RankingDAO {
 		try {
 			Ranking ranking = null;
 			PreparedStatement statement;
-			String query = "select * from RankingTVSerie";
+			String query = "select * from \"RankingTVSerie\"";
 			TVSerieDAOJDBC serieDAO = new TVSerieDAOJDBC(dataSource);
 			Multimedia multimediatmp = null;
 			statement = connection.prepareStatement(query);
@@ -171,9 +172,9 @@ public class RankingDAOJDBC implements RankingDAO {
 		try {
 			String update = null;
 			if (ranking.getMultimedia() instanceof Film)
-				update = "update RankingFilm SET Rank = ?, User = ?, Film = ? WHERE User = ?, Film = ?";
+				update = "update \"RankingFilm\" SET \"Rank\" = ?, \"User\" = ?, \"Film\" = ? WHERE \"User\" = ?, \"Film\" = ?";
 			else
-				update = "update RankingTVSerie SET Rank = ?, User = ?, TVSerie = ? WHERE User = ?, TVSerie = ?";
+				update = "update \"RankingTVSerie\" SET \"Rank\" = ?, \"User\" = ?, \"TVSerie\" = ? WHERE \"User\" = ?, \"TVSerie\" = ?";
 				
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setInt(1, ranking.getRank());
@@ -199,9 +200,9 @@ public class RankingDAOJDBC implements RankingDAO {
 		try {
 			String delete = null;
 			if (ranking.getMultimedia() instanceof Film)
-				delete = "delete FROM RankingFilm WHERE User = ?, Film = ?";
+				delete = "delete FROM \"RankingFilm\" WHERE \"User\" = ?, \"Film\" = ?";
 			else
-				delete = "delete FROM RankingTVSerie WHERE User = ?, TVSerie = ?";
+				delete = "delete FROM \"RankingTVSerie\" WHERE \"User\" = ?, \"TVSerie\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, ranking.getUser());
 			statement.setInt(2, ranking.getMultimedia().getId());

@@ -23,5 +23,22 @@ public class Cart {
 	public void removeAll () {
 		cart.clear();
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<MultimediaInCart> getCart() {
+		return cart;
+	}
+
+	public void setCart(List<MultimediaInCart> cart) {
+		this.cart = cart;
+	}
+	
 	
 }

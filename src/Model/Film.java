@@ -4,9 +4,16 @@ public class Film extends Multimedia{
 	String videoOnDemand;
 	double price;
 	
+	public Film() {}
+	
 	public Film(Poster poster, Trailer trailer, double price) {
 		super(poster, trailer);
 		this.price = price;
+	}
+	
+	public Film (Film film) {
+		super(film.poster, film.trailer);
+		this.price = film.price;
 	}
 	
 	public Film(Poster poster, Trailer trailer, double price, String videoOnDemand) {

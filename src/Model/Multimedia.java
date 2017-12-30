@@ -5,6 +5,8 @@ public abstract class Multimedia {
 	Poster poster;
 	Trailer trailer;
 	
+	public Multimedia() {}
+	
 	Multimedia (Poster poster, Trailer trailer){
 		this.poster = poster;
 		this.trailer = trailer;

@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Model.Actor;
-import Model.Address;
-import persistenceDAO.ActorInMultimedia;
+import persistenceDAO.ActorInMultimediaDAO;
 
-public class ActorInMultimediaDAOJDBC implements ActorInMultimedia{
+public class ActorInMultimediaDAOJDBC implements ActorInMultimediaDAO{
 private DataSource dataSource;
 	
 	public ActorInMultimediaDAOJDBC(DataSource dataSource) {
@@ -23,9 +22,9 @@ private DataSource dataSource;
 		try {
 			String insert;
 			if (actor.isFilm())
-				insert = "insert into ActorInFilm(Actor, FilmID) values (?,?)";
+				insert = "insert into \"ActorInFilm\" (\"Actor\", \"FilmID\") values (?,?)";
 			else
-				insert = "insert into ActorInTVSerie(Actor, TVSerieID) values (?,?)";
+				insert = "insert into \"ActorInTVSerie\" (\"Actor\", \"TVSerieID\") values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, actor.getActor());
 			statement.setInt(2, actor.getIdmultimedia());
@@ -49,9 +48,9 @@ private DataSource dataSource;
 			PreparedStatement statement;
 			String query;
 			if (film)
-				query = "select * from ActorInFilm where Actor = ? AND FilmID = ?";
+				query = "select * from \"ActorInFilm\" where \"Actor\" = ? AND \"FilmID\" = ?";
 			else
-				query = "select * from ActorInTVSerie where Actor = ? AND TVSerieID = ?";
+				query = "select * from \"ActorInTVSerie\" where \"Actor\" = ? AND \"TVSerieID\" = ?";
 			
 			statement = connection.prepareStatement(query);
 			statement.setString(1, name);
@@ -84,9 +83,9 @@ private DataSource dataSource;
 			PreparedStatement statement;
 			String query;
 			if (film)
-				query = "select * from ActorInFilm where FilmID = ?";
+				query = "select * from \"ActorInFilm\" where \"FilmID\" = ?";
 			else
-				query = "select * from ActorInTVSerie where TVSerieID = ?";
+				query = "select * from \"ActorInTVSerie\" where \"TVSerieID\" = ?";
 			
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
@@ -119,11 +118,13 @@ private DataSource dataSource;
 			PreparedStatement statement;
 			String query;
 			if (film)
-				query = "select * from ActorInFilm where FilmID = ?";
+				query = "select * from \"ActorInFilm\" where \"FilmID\" = ?";
 			else
-				query = "select * from ActorInTVSerie where TVSerieID = ?";
+				query = "select * from \"ActorInTVSerie\" where \"TVSerieID\" = ?";
 			
 			statement = connection.prepareStatement(query);
+			statement.setInt(1, idmultimedia);
+			
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				if (film)
@@ -151,9 +152,9 @@ private DataSource dataSource;
 		try {
 			String update;
 			if (actor.isFilm())
-				update = "update Actor SET Actor = ?, FilmID = ? WHERE Actor = ? AND FilmID = ?";
+				update = "update \"ActorInFilm\" SET \"Actor\" = ?, \"FilmID\" = ? WHERE \"Actor\" = ? AND \"FilmID\" = ?";
 			else
-				update = "update Actor SET Actor = ?, TVSerieID = ? WHERE Actor = ? AND TVSerieID = ?";
+				update = "update \"ActorInTVSerie\" SET \"Actor\" = ?, \"TVSerieID\" = ? WHERE \"Actor\" = ? AND \"TVSerieID\" = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, actor.getActor());
@@ -176,9 +177,9 @@ private DataSource dataSource;
 		try {
 			String delete;
 			if (actor.isFilm())
-				delete = "delete FROM ActorInFilm WHERE Actor = ? AND FilmID = ?";
+				delete = "delete FROM \"ActorInFilm\" WHERE \"Actor\" = ? AND \"FilmID\" = ?";
 			else
-				delete = "delete FROM ActorInTVSerie WHERE Actor = ? AND TVSerieID = ?";
+				delete = "delete FROM \"ActorInTVSerie\" WHERE \"Actor\" = ? AND \"TVSerieID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, actor.getActor());
 			statement.setInt(2, actor.getIdmultimedia());
@@ -200,9 +201,9 @@ private DataSource dataSource;
 		try {
 			String delete;
 			if (film)
-				delete = "delete FROM ActorInFilm WHERE FilmID = ?";
+				delete = "delete FROM \"ActorInFilm\" WHERE \"FilmID\" = ?";
 			else
-				delete = "delete FROM ActorInTVSerie WHERE TVSerieID = ?";
+				delete = "delete FROM \"ActorInTVSerie\" WHERE \"TVSerieID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, idmultimedia);
 			statement.executeUpdate();

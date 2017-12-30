@@ -11,6 +11,8 @@ public abstract class Poster {
 	private int year;
 	private List<String> Actors;
 	
+	public Poster(){}
+	
 	Poster (String Title, String Category, String Director, int year, List<String> actors, String Plot, String Image){
 		this.Title = Title;
 		this.Category = Category;

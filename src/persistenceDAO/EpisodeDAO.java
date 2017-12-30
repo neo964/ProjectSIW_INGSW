@@ -11,5 +11,5 @@ public interface EpisodeDAO {
 	public List<Episode> findAll(int IDSerie);       
 	public void update(Episode episode); //Update
 	public void delete(Episode episode); //Delete
-
+	public void deleteAllOfTVSerie (int code);
 }

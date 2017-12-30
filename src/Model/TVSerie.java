@@ -31,12 +31,60 @@ public class TVSerie extends Multimedia{
 				season.add(video);
 		}
 	}
+	
+	public LinkedList<Episode> getSeason (int x){
+		int i = 1;
+		LinkedList<Episode> season = new LinkedList<>();
+		for (Iterator<LinkedList<Episode>> iterator = episodes.iterator(); iterator.hasNext(); i++) {
+			LinkedList<Episode> seasontmp = iterator.next();
+			if (i == x) {
+				for (Iterator<Episode> iteratorEp = seasontmp.iterator(); iterator.hasNext();) {
+					Episode ep = iteratorEp.next();
+					season.add(ep);
+				}
+				break;
+			}
+			i++;
+		}
+		return season;
+	}
+	
+	public LinkedList<Episode> getAllEpisode (){
+		LinkedList<Episode> allepisode = new LinkedList<>();
+		for (Iterator<LinkedList<Episode>> iterator = episodes.iterator(); iterator.hasNext();) {
+			LinkedList<Episode>	seasontmp = iterator.next();
+				for (Iterator<Episode> iteratorEp = seasontmp.iterator(); iterator.hasNext();) {
+						allepisode.add(iteratorEp.next());
+			}
+		}
+		return allepisode;
+	}
+	
+	public Episode getEpisode (int season, int episode) {
+		int i = 1;
+		Episode epi = null;
+		for (Iterator<LinkedList<Episode>> iterator = episodes.iterator(); iterator.hasNext(); i++) {
+			if (i == season) {
+				LinkedList<Episode> seasontmp = iterator.next();
+				int j = 1;
+				for (Iterator<Episode> iteratorEp = seasontmp.iterator(); iterator.hasNext(); j++) {
+					if (j == episode) {
+						epi = iteratorEp.next();
+						break;
+					}
+				}
+				break;
+			}
+			i++;
+		}
+		return epi;
+	}
 
-	public List<LinkedList<Episode>> getVideoOnDemand() {
+	public List<LinkedList<Episode>> getAllSeasons() {
 		return episodes;
 	}
 
-	public void setVideoOnDemand(List<LinkedList<Episode>> videoOnDemand) {
+	public void setAllSeasons(List<LinkedList<Episode>> videoOnDemand) {
 		this.episodes = videoOnDemand;
 	}
 
@@ -46,14 +94,6 @@ public class TVSerie extends Multimedia{
 
 	public void setTvPoster(TVSeriePoster tvPoster) {
 		this.tvPoster = tvPoster;
-	}
-
-	public List<LinkedList<Episode>> getEpisodes() {
-		return episodes;
-	}
-
-	public void setEpisodes(List<LinkedList<Episode>> episodes) {
-		this.episodes = episodes;
 	}
 
 	public double getPrice() {

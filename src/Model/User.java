@@ -13,10 +13,9 @@ public class User {
 	private Date dateOfBirth;
 	private boolean premium;
 	private boolean admin;
+	private String pathToImage;
 	
-	public User () {}
-	
-	public User (String FirstName, String LastName, String email, Address address, PaymentMethod paymentMethod, boolean premium, boolean admin, Date birth) {
+	public User (String FirstName, String LastName, String email, Address address, PaymentMethod paymentMethod, boolean premium, boolean admin, Date birth, String pathToImage) {
 		this.FirstName = FirstName;
 		this.LastName = LastName;
 		this.email = email;
@@ -25,9 +24,10 @@ public class User {
 		this.premium = premium;
 		this.admin = admin;
 		this.dateOfBirth = birth;
+		this.pathToImage = pathToImage;
 	}
 	
-	public User (String FirstName, String LastName, String email, Address address, PaymentMethod paymentMethod, boolean premium, boolean admin, Date birth, String Password) {
+	public User (String FirstName, String LastName, String email, Address address, PaymentMethod paymentMethod, boolean premium, boolean admin, Date birth, String pathToImage, String Password) {
 		this.FirstName = FirstName;
 		this.LastName = LastName;
 		this.email = email;
@@ -36,6 +36,7 @@ public class User {
 		this.premium = premium;
 		this.admin = admin;
 		this.dateOfBirth = birth;
+		this.pathToImage = pathToImage;
 		this.Password = Password;
 	}
 
@@ -111,15 +112,18 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	@Override
 	public int hashCode () {
 		return this.email.hashCode();
 	}
 	
+	@Override
 	public boolean equals (Object user) {
 		User tmpuser = (User) user;
 		return this.getEmail().equals(tmpuser.getEmail());
 	}
 	
+	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -128,4 +132,14 @@ public class User {
 						sdf.format(this.getDateOfBirth()) + ", " +
 							this.getPaymentMethod() + "]";
 	}
+
+	public String getPathToImage() {
+		return pathToImage;
+	}
+
+	public void setPathToImage(String pathToImage) {
+		this.pathToImage = pathToImage;
+	}
+	
+	
 }

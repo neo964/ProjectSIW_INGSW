@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 import Model.Actor;
@@ -27,7 +26,7 @@ public class FilmDAOJDBC implements FilmDAO {
 	public void save(Film film) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert into Film(ID, Title, Category, Year, Director, Trailer, VideoOnDemand, Plot, Price, Image) values (?,?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into \"Film\"(\"ID\", \"Title\", \"Category\", \"Year\", \"Director\", \"Trailer\", \"VideoOnDemand\", \"Plot\", \"Price\", \"Image\") values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, film.getId());
 			statement.setString(2, film.getPoster().getTitle());
@@ -61,7 +60,7 @@ public class FilmDAOJDBC implements FilmDAO {
 		try {
 			List<String> actorsFilmString = actors.findAllNameActors(codice, true);
 			PreparedStatement statement;
-			String query = "select * from Film where ID = ?";
+			String query = "select * from \"Film\" where \"ID\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, codice);
 			ResultSet result = statement.executeQuery();
@@ -87,7 +86,7 @@ public class FilmDAOJDBC implements FilmDAO {
 		try {
 			Film film;
 			PreparedStatement statement;
-			String query = "select * from Film";
+			String query = "select * from \"Film\"";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
@@ -114,7 +113,7 @@ public class FilmDAOJDBC implements FilmDAO {
 		try {
 			Film film;
 			PreparedStatement statement;
-			String query = "select * from Film where Title LIKE %?%";
+			String query = "select * from \"Film\" where \"Title\" LIKE ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, name);
 			ResultSet result = statement.executeQuery();
@@ -142,7 +141,7 @@ public class FilmDAOJDBC implements FilmDAO {
 		try {
 			Film film;
 			PreparedStatement statement;
-			String query = "select * from Film where Category LIKE %?%";
+			String query = "select * from \"Film\" where \"Category\" LIKE %?%";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, category);
 			ResultSet result = statement.executeQuery();
@@ -167,7 +166,7 @@ public class FilmDAOJDBC implements FilmDAO {
 	public void update(Film film) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update Film SET ID = ?, Title = ?, Category = ?, Year = ?, Director = ?, Trailer = ?, VideoOnDemand = ?, Image = ? WHERE ID = ?";
+			String update = "update \"Film\" SET \"ID\" = ?, \"Title\" = ?, \"Category\" = ?, \"Year\" = ?, \"Director\" = ?, \"Trailer\" = ?, \"VideoOnDemand\" = ?, \"Image\" = ? WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setInt(1, film.getId());
 			statement.setString(2, film.getPoster().getTitle());
@@ -199,7 +198,7 @@ public class FilmDAOJDBC implements FilmDAO {
 	public void delete(Film film) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM Film WHERE ID = ?";
+			String delete = "delete FROM \"Film\" WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, film.getId());
 			statement.executeUpdate();
@@ -213,6 +212,7 @@ public class FilmDAOJDBC implements FilmDAO {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+		
 	}
 
 }

@@ -1,9 +1,27 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-	<head>
+<%@page import="Model.User"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %> 
+
+<head>
+<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+<%
+String user = (String) session.getAttribute("user");
+if (user == null)
+	response.sendRedirect("loginpage.html");
+
+curSession.setUser(user);
+curSession.setFirstName((String)session.getAttribute("firstName"));
+curSession.setLastName((String)session.getAttribute("lastName"));
+curSession.setImage((String)session.getAttribute("image"));
+
+boolean control = (boolean)session.getAttribute("admin");
+curSession.setAdmin(control);
+
+control = (boolean)session.getAttribute("premium");
+curSession.setPremium(control);
+%>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Magazine &mdash; Free Fully Responsive HTML5 Bootstrap Template by FREEHTML5.co</title>
@@ -156,4 +174,3 @@
 
 	</body>
 </html>
-

@@ -1,18 +1,35 @@
+<%@page import="Model.User"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %> 
+<head>
 
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<!-- titolo -->
-	<head>
-	<meta charset="utf-8">
+	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+<%
+String user = (String) session.getAttribute("user");
+if (user == null)
+	response.sendRedirect("loginpage.html");
+
+curSession.setUser(user);
+curSession.setFirstName((String)session.getAttribute("firstName"));
+curSession.setLastName((String)session.getAttribute("lastName"));
+curSession.setImage((String)session.getAttribute("image"));
+
+boolean control = (boolean)session.getAttribute("admin");
+curSession.setAdmin(control);
+
+control = (boolean)session.getAttribute("premium");
+curSession.setPremium(control);
+%>
+
+
+ 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PANDAFLIX &mdash; Pastore-Perri</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO"free html5, free template, free bootstrap, html5, css3, mobile first, responsive"  />
-	<meta name="keywords" content="/>
-	<meta name="author" content="Pastore-Perri" />
+	<meta name="keywords" content=/>
+	<meta name="author" content="Pastore-Perri">
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
@@ -41,11 +58,11 @@
 		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="-bio">
 			<figure>
-				<img src="images/person1.jpg" alt="Free HTML5 Bootstrap Template" class="img-responsive">
+				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
 			<h3 class="heading">MyProfile</h3>
-			<h2>Utente</h2>
-			<p>Commento dell'utente. </p>
+			<h2>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</h2>
+			<p> Hi, I'm in. </p>
 			
 		</div>
 	<!-- Profilo utente -->
@@ -54,18 +71,22 @@
 				<h3 class="heading">Categories</h3>
 				<ul>
 					<li><a href="#">Subscribe</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">News</a></li>
-					<li><a href="#">Film</a></li>
-					<li><a href="#">TVSeries</a></li>
-					<li><a href="#">MyFavourite</a></li>
+					<li><a href="aboutUs.html">About Us</a></li>
+					<li><a href="news.html">News</a></li>
+					<li><a href="/Project/film">Film</a></li>
+					<li><a href="/Project/tvserie">TVSeries</a></li>
+					<li><a href="/Project/myFavourite">MyFavourite</a></li>
+					<% if (curSession.isAdmin()) { %>
+					<li><a href="/Project/addFilm">AddNewFilm</a></li>
+					<li><a href="/Project/addTVSerie">AddNewTVSerie</a></li>
+					<%} %>
 				</ul>
 			</div>
 			<div class="-box">
 				<h3 class="heading">Search</h3>
-				<form action="#">
+				<form action="/Project/search" method="get">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Type a keyword">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 					</div>
 				</form>
 			</div>
@@ -80,7 +101,7 @@
 				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.html">PANDAFLIX <sup>TM</sup></a></h1>
+					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
 				</div>
 
 			</div>
@@ -147,4 +168,6 @@
 
 	</body>
 </html>
+
+
 

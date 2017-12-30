@@ -24,21 +24,21 @@
         <div id="signup">   
           <h1>Sign Up for Free</h1>
           
-          <form action="/" method="post">
+          <form action="/Project/SignUp" method="post">
           
           <div class="top-row">
             <div class="field-wrap">
               <label>
                 First Name<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" />
+              <input name="firstname" type="text" required autocomplete="off" />
             </div>
         
             <div class="field-wrap">
               <label>
                 Last Name<span class="req">*</span>
               </label>
-              <input type="text"required autocomplete="off"/>
+              <input name="lastname" type="text"required autocomplete="off"/>
             </div>
           </div>
 
@@ -46,35 +46,42 @@
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"/>
+            <input name="emailreg" type="email"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Set A Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input name="passwordreg" type="password"required autocomplete="off"/>
           </div>
             
-            <div class="field-wrap">
+          <div class="field-wrap">
             <label>
-              Address<span class="req">*</span>
+              Street<span class="req">*</span>
             </label>
-            <input type="addres"required autocomplete="off"/>
+            <input name="street" type="addres"required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Country<span class="req">*</span>
+            </label>
+            <input name="country" type="country"required autocomplete="off"/>
           </div>
          
-             <div class="field-wrap">
+          <div class="field-wrap">
             <label>
               Card Number<span class="req">*</span>
             </label>
-            <input type="cardnumber"required autocomplete="off"/>
+            <input name="card" type="cardnumber"required autocomplete="off"/>
           </div>
-            
-             <div class="field-wrap">
+          
+          <div class="field-wrap">
             <label>
               Card CVC<span class="req">*</span>
             </label>
-            <input type="cardcvc"required autocomplete="off"/>
+            <input name="cvc" type="cardcvc"required autocomplete="off"/>
           </div>
             
           <button type="submit" class="button button-block"/>Get Started</button>
@@ -86,26 +93,25 @@
         <div id="login">   
           <h1>Welcome Back!</h1>
           
-          <form action="/" method="post">
+          <form action="/Project/checkLogin" method="post">
           
              <div class="field-wrap">
             <label>
-              Email Address<span class="req">*</span>
+              Email Address <span class="req">*</span>
             </label>
-            <input type="email"/>
+            <input name="email" type="email"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input name="password" type="password"required autocomplete="off"/>
           </div>
           
           <p class="forgot"><a href="#">Forgot Password?</a></p>
           
           <button class="button button-block"/>Log In</button>
-          <href index.html> </href>
           
           
           </form>

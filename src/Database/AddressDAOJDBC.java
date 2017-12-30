@@ -18,7 +18,7 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void save(Address address) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert into Address(Street, Country, ZipCode, District, User) values (?,?,?,?,?)";
+			String insert = "insert into \"Address\" (\"Street\", \"Country\", \"ZipCode\", \"District\", \"User\") values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, address.getStreet());
 			statement.setString(2, address.getCountry());
@@ -43,7 +43,7 @@ public class AddressDAOJDBC implements AddressDAO {
 		Address address = null;
 		try {
 			PreparedStatement statement;
-			String query = "select * from Address where Street = ? AND ZipCode = ? AND User = ?";
+			String query = "select * from \"Address\" where \"Street\" = ? AND \"ZipCode\" = ? AND \"User\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, street);
 			statement.setInt(2, zipcode);
@@ -71,7 +71,7 @@ public class AddressDAOJDBC implements AddressDAO {
 		try {
 			Address address;
 			PreparedStatement statement;
-			String query = "select * from Address";
+			String query = "select * from \"Address\"";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
@@ -97,7 +97,7 @@ public class AddressDAOJDBC implements AddressDAO {
 		try {
 			Address address;
 			PreparedStatement statement;
-			String query = "select * from Address where User = ?";
+			String query = "select * from \"Address\" where \"User\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, user);
 			ResultSet result = statement.executeQuery();
@@ -122,7 +122,7 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void update(Address address) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update Address SET Street = ?, Country = ?, ZipCode = ?, District = ?, User = ? WHERE Street = ? AND ZipCode = ? AND User = ?";
+			String update = "update \"Address\" SET \"Street\" = ?, \"Country\" = ?, \"ZipCode\" = ?, \"District\" = ?, \"User\" = ? WHERE \"Street\" = ? AND \"ZipCode\" = ? AND \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, address.getStreet());
 			statement.setString(2, address.getCountry());
@@ -148,7 +148,7 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void delete(Address address) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM Address WHERE Street = ? AND ZipCode = ? AND User = ?";
+			String delete = "delete FROM \"Address\" WHERE \"Street\" = ? AND \"ZipCode\" = ? AND \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, address.getStreet());
 			statement.setInt(2, address.getZipcode());
@@ -169,7 +169,7 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void deleteAllOfUser(String user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM Address WHERE User = ?";
+			String delete = "delete FROM \"Address\" WHERE \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, user);
 			statement.executeUpdate();

@@ -2,7 +2,9 @@ package persistenceDAO;
 
 import java.util.List;
 
-public interface Friendship {
+import Model.Friendship;
+
+public interface FriendshipDAO {
 	public void save(Friendship friendship);  // Create
 	public Friendship findByPrimaryKey(String friend1, String friend2);     // Retrieve
 	public List<Friendship> findAllMyFriend(String user);       

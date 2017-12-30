@@ -21,7 +21,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 	public void save(PaymentMethod paymentMethod) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert into PaymentMethod(CardNumber, User, Code, ExpirationDate) values (?,?,?,?)";
+			String insert = "insert into \"PaymentMethod\" (\"CardNumber\", \"User\", \"Code\", \"ExpirationDate\") values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, paymentMethod.getCardNumber());
 			statement.setString(2, paymentMethod.getUser ());
@@ -46,7 +46,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 		PaymentMethod paymentMethod = null;
 		try {
 			PreparedStatement statement;
-			String query = "select * from PaymentMethod where CardNumber = ? AND User = ?";
+			String query = "select * from \"PaymentMethod\" where \"CardNumber\" = ? AND \"User\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, CardNumber);
 			statement.setString(2, User);
@@ -73,7 +73,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 		try {
 			PaymentMethod paymentMethod = null;
 			PreparedStatement statement;
-			String query = "select * from PaymentMethod";
+			String query = "select * from \"PaymentMethod\"";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
@@ -101,7 +101,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 		try {
 			PaymentMethod paymentMethod = null;
 			PreparedStatement statement;
-			String query = "select * from PaymentMethod where User = ?";
+			String query = "select * from \"PaymentMethod\" where \"User\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, user);
 			ResultSet result = statement.executeQuery();
@@ -126,7 +126,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String update = "update PaymentMethod SET CardNumber = ?, User = ?, Code = ?, ExpirationDate = ? WHERE CardNumber = ? AND User = ?";
+			String update = "update \"PaymentMethod\" SET \"CardNumber\" = ?, \"User\" = ?, \"Code\" = ?, \"ExpirationDate\" = ? WHERE \"CardNumber\" = ? AND \"User\" = ?";
 			statement = connection.prepareStatement(update);
 			statement.setString(1, paymentMethod.getCardNumber());
 			statement.setString(2, paymentMethod.getUser());
@@ -152,7 +152,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 	public void delete(PaymentMethod paymentMethod) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM PaymentMethod WHERE CardNumber = ? AND User = ?";
+			String delete = "delete FROM \"PaymentMethod\" WHERE \"CardNumber\" = ? AND \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, paymentMethod.getCardNumber());
 			statement.setString(2, paymentMethod.getUser());
@@ -172,7 +172,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 	public void deleteAllOfUser(String user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM PaymentMethod WHERE User = ?";
+			String delete = "delete FROM \"PaymentMethod\" WHERE \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, user);
 			statement.executeUpdate();

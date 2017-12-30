@@ -4,7 +4,7 @@ import java.util.List;
 
 import Model.Actor;
 
-public interface ActorInMultimedia {
+public interface ActorInMultimediaDAO {
 	public void save(Actor actor);  // Create
 	public Actor findByPrimaryKey(String name, int idmultimedia, boolean film);     // Retrieve
 	public List<Actor> findAll(int idmultimedia, boolean film);     

@@ -1,8 +1,11 @@
 package controller;
 
+import java.awt.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +22,16 @@ public class GiveMeMultimedia extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		FilmDAO filmDao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
-		PrintWriter out = resp.getWriter();
-		out.println("<table border=\"1\">");
+		LinkedList <Film> films = (LinkedList<Film>) filmDao.findByName(req.getParameter("keyword"));
+		req.getSession().setAttribute("films", films);
+		req.setAttribute("films", films);
+		req.getRequestDispatcher("research.jsp").forward(req, resp);
+		/*for (Film film : films) {
+			req.se
+		}*/
+		
+		
+		/*out.println("<table border=\"1\">");
 		out.println("<tr>");
 		out.println("<th>ID</th>");
 		out.println("<th>Title</th>");
@@ -56,13 +67,13 @@ public class GiveMeMultimedia extends HttpServlet {
 			out.println(film.getPrice());
 			out.println("</td>");;
 			out.println("<td>");
-			out.println(film.getTrailer());
+			out.println(film.getTrailer().getPath());
 			out.println("</td>");;
 			out.println("<td>");
 			out.println(film.getVideoOnDemand());
 			out.println("</td>");
 			out.println("</tr>");
 		}
-		out.println("</table>");
+		out.println("</table>");*/
 	}
 }

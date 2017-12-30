@@ -15,32 +15,49 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>IscriviStudenteServlet</servlet-name>
-		<servlet-class>controller.IscriviStudente</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>IscriviStudenteServlet</servlet-name>
-		<url-pattern>/iscriviStudente</url-pattern>
-	</servlet-mapping>
+        <servlet-name>GiveMeMultimediaServlet</servlet-name>
+        <servlet-class>controller.GiveMeMultimedia</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GiveMeMultimediaServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>  
+  
+    <servlet>
+        <servlet-name>CheckLoginServlet</servlet-name>
+        <servlet-class>controller.CheckLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckLoginServlet</servlet-name>
+        <url-pattern>/checkLogin</url-pattern>
+    </servlet-mapping> 
 
-	<servlet>
-		<servlet-name>PrendiStudenti</servlet-name>
-		<servlet-class>controller.DammiStudenti</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>PrendiStudenti</servlet-name>
-		<url-pattern>/tuttiStudenti</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>GestioneLogin</servlet-name>
-		<servlet-class>controller.Login</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>GestioneLogin</servlet-name>
-		<url-pattern>/login</url-pattern>
-	</servlet-mapping>
+    <servlet>
+        <servlet-name>AddFilmServlet</servlet-name>
+        <servlet-class>controller.AddFilm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddFilmServlet</servlet-name>
+        <url-pattern>/addNewFilm</url-pattern>
+    </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>controller.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>SignUpServlet</servlet-name>
+        <servlet-class>controller.SignUp</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignUpServlet</servlet-name>
+        <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping> 
 
 
 </web-app>
