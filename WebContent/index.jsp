@@ -49,7 +49,6 @@ else{
 
 	<link rel="stylesheet" href="css/style.css">
 
-
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -75,15 +74,15 @@ else{
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="#">Subscribe</a></li>
+					<li><a href="/Project/Subscribe">Subscribe</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
 					<li><a href="/Project/search" name = "giveNews" value = "news">News</a></li></form>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="/Project/myFavourite">MyFavourite</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="/Project/addFilm">AddNewFilm</a></li>
-					<li><a href="/Project/addTVSerie">AddNewTVSerie</a></li>
+					<li><a href="posterFilm.html">AddNewFilm</a></li>
+					<li><a href="posterTVSerie.html">AddNewTVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>

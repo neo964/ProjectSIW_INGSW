@@ -22,13 +22,37 @@ public class FilmDAOJDBC implements FilmDAO {
 		actors = new ActorInMultimediaDAOJDBC(dataSource);
 	}
 	
+	private int findMax () {
+		Connection connection = dataSource.getConnection();
+		int i = -1;
+		try {
+			String query = "select MAX(\"ID\") as maxx from \"Film\"";
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				i = result.getInt("maxx");
+				System.out.println(i);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return i;
+	}
+	
 	@Override
 	public void save(Film film) {
 		Connection connection = dataSource.getConnection();
 		try {
 			String insert = "insert into \"Film\"(\"ID\", \"Title\", \"Category\", \"Year\", \"Director\", \"Trailer\", \"VideoOnDemand\", \"Plot\", \"Price\", \"Image\") values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setInt(1, film.getId());
+			System.out.println("MAx");
+			statement.setInt(1, findMax()+1);
 			statement.setString(2, film.getPoster().getTitle());
 			statement.setString(3, film.getPoster().getCategory());
 			statement.setInt(4, film.getPoster().getYear());

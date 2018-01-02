@@ -123,7 +123,7 @@ if (multimedia instanceof Film){
 			<figure>
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
+			<h3 class="heading"><a href="">MyProfile</a></h3>
 			<h3>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</h3>
 			<p> Hi, I'm in. </p>
 			
@@ -133,21 +133,27 @@ if (multimedia instanceof Film){
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="/Project/subscribe">Subscribe</a></li>
+					<li><a href="/Project/Subscribe">Subscribe</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search">News</a></li></form>
+					<li><a href="/Project/search" name = "giveNews" value = "news">News</a></li></form>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="/Project/myFavourite">MyFavourite</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="/Project/addFilm">AddNewFilm</a></li>
-					<li><a href="/Project/addTVSerie">AddNewTVSerie</a></li>
+					<li><a href="posterFilm.html">AddNewFilm</a></li>
+					<li><a href="posterTVSerie.html">AddNewTVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
 			<div class="-box">
-				<h3 class="heading">Search</h3>
+				<h3 class="heading">Search Film</h3>
 				<form action="/Project/search" method="get">
+					<div class="form-group">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+					</div>
+				</form>
+				<h3 class="heading">Search TVSerie</h3>
+				<form action="/Project/searchTV" method="get">
 					<div class="form-group">
 						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 					</div>
@@ -279,13 +285,11 @@ if (multimedia instanceof Film){
 			%>
 			
 			<h1><jsp:getProperty name="episode" property="season"/></h1>
-          
-          <form action="">
-          
-             <div class="field-wrap">
-            <label>
-             <a href = " "><jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </a>
-            </label>
+			<form class="field-wrap" action="/Project/videoOnDemand" method="get" id="episode">
+            <div class="field-wrap">
+          <div> <h4>
+          <button type = "submit" name="episode" value = "ep" form="episode"><jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </button>
+           </h4></div>
           </div>
           </form>
           <%}%>

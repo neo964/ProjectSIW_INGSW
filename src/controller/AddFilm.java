@@ -17,16 +17,10 @@ import Model.FilmPoster;
 public class AddFilm extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("AddFilm.jsp");
-		dispatcher.forward(req, resp);
-	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idstr = req.getParameter("ID");
+		//String idstr = req.getParameter("ID");
 		String title = req.getParameter("Title");
 		String category = req.getParameter("Category");
 		String yearstr = req.getParameter("Year");
@@ -37,7 +31,7 @@ public class AddFilm extends HttpServlet {
 		String pricestr = req.getParameter("Price");
 		String image = req.getParameter("Image");
 		String[] actorstr = req.getParameterValues("Actors");
-		int id = Integer.parseInt(idstr);
+		//int id = Integer.parseInt(idstr);
 		int year = Integer.parseInt(yearstr);
 		double price = Double.parseDouble(pricestr);
 		List<String> actors= new LinkedList<String> ();
@@ -45,12 +39,13 @@ public class AddFilm extends HttpServlet {
 			actors.add(string);
 		}
 		try {
-			Film film = new Film(id, new FilmPoster(title, category, director, year, actors, Plot, image), new Trailer (trailer), price, videoOnDemand);
+			Film film = new Film(-1, new FilmPoster(title, category, director, year, actors, Plot, image), new Trailer (trailer), price, videoOnDemand);
 			FilmDAO filmdao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
+
+			System.out.println("Qui");
 			filmdao.save(film);
-			
-			req.setAttribute("Film", film);
-			RequestDispatcher dispatcher = req.getRequestDispatcher("AddFilm.jsp");
+			System.out.println("EnD");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/Project/home");
 			dispatcher.forward(req, resp);
 			
 		}catch (Exception e) {

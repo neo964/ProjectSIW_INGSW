@@ -113,5 +113,32 @@
         <url-pattern>/myFavourite</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>SubscribeServlet</servlet-name>
+        <servlet-class>controller.Subscribe</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SubscribeServlet</servlet-name>
+        <url-pattern>/Subscribe</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controller.GoToCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/goToCart</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>MyProfileServlet</servlet-name>
+        <servlet-class>controller.MyProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyProfileServlet</servlet-name>
+        <url-pattern>/myProfile</url-pattern>
+    </servlet-mapping> 
+
 
 </web-app>
