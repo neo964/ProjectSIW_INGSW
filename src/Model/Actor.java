@@ -5,6 +5,8 @@ public class Actor {
 	int idmultimedia;
 	boolean film;
 	
+	public Actor () {}
+	
 	public Actor (String actor, int id, boolean film){
 		this.actor = actor;
 		this.idmultimedia = id;

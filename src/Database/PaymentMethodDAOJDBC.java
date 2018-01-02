@@ -51,7 +51,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 			statement.setString(1, CardNumber);
 			statement.setString(2, User);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				paymentMethod = new PaymentMethod(result.getString("CardNumber"), result.getString("User"), result.getInt("Code"), result.getDate("ExpirationDate"));
 			}
 		} catch (SQLException e) {
@@ -76,7 +76,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 			String query = "select * from \"PaymentMethod\"";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				paymentMethod = new PaymentMethod(result.getString("CardNumber"), result.getString("User"), result.getInt("Code"), result.getDate("ExpirationDate"));
 				paymentMethods.add(paymentMethod);
 			}
@@ -105,7 +105,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 			statement = connection.prepareStatement(query);
 			statement.setString(1, user);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				paymentMethod = new PaymentMethod(result.getString("CardNumber"), result.getString("User"), result.getInt("Code"), result.getDate("ExpirationDate"));
 				paymentMethods.add(paymentMethod);
 			}

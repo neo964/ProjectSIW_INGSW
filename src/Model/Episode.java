@@ -6,6 +6,8 @@ public class Episode {
 	private int season;
 	private int episode;
 	
+	public Episode() {}
+	
 	public Episode(String Path, int id, int season,int episode) {
 		this.Path = Path;
 		this.TVSerieID = id;

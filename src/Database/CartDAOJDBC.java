@@ -68,7 +68,7 @@ public class CartDAOJDBC implements CartDAO {
 			statement = connection.prepareStatement(query);
 			statement.setString(1, name);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				Multimedia multimedia;
 				if (result.getInt("FilmID") != -1) {
 					FilmDAO filmdao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();

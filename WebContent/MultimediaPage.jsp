@@ -1,10 +1,27 @@
-<%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
+<%@page import="Model.Episode"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="Model.seasonindex"%>
+<%@page import="Model.User"%>
+<%@page import="Model.Film"%>
+<%@page import="Model.Multimedia"%>
+<%@page import="Model.TVSerie"%>
+<%@page import="Model.Actor"%>
+<%@page import="java.util.Iterator"%>
+
 
 <head>
+<jsp:useBean id="film" class="Model.Film" scope="page"/>
+<jsp:useBean id="tvserie" class="Model.TVSerie" scope="page"/>
 <jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+<jsp:useBean id="poster" class="Model.FilmPoster" scope="page"/>
+<jsp:useBean id="actor" class="Model.Actor" scope="page"/>
+<jsp:useBean id="TVposter" class="Model.TVSeriePoster" scope="page"/>
+<jsp:useBean id="index" class="Model.seasonindex" scope="page"/>
+<jsp:useBean id="episode" class="Model.Episode" scope="page"/>
+
 <%
 String user = (String) session.getAttribute("user");
 if (user == null)
@@ -17,9 +34,44 @@ curSession.setImage((String)session.getAttribute("image"));
 
 boolean control = (boolean)session.getAttribute("admin");
 curSession.setAdmin(control);
-
 control = (boolean)session.getAttribute("premium");
 curSession.setPremium(control);
+
+Multimedia multimedia = (Multimedia) request.getAttribute("YourMultimedia");
+Film filmtmp = null;
+TVSerie tvserietmp = null;
+
+if (multimedia instanceof Film){
+	filmtmp = (Film) multimedia;
+	film.setId(filmtmp.getId());
+	film.setPrice(filmtmp.getPrice());
+	film.setTrailer(filmtmp.getTrailer());
+	film.setVideoOnDemand(filmtmp.getVideoOnDemand());
+	poster.setActors(filmtmp.getPoster().getActors());
+	poster.setCategory(filmtmp.getPoster().getCategory());
+	poster.setDirector(filmtmp.getPoster().getDirector());
+	poster.setImage(filmtmp.getPoster().getImage());
+	poster.setPlot(filmtmp.getPoster().getPlot());
+	poster.setTitle(filmtmp.getPoster().getTitle());
+	poster.setYear(filmtmp.getPoster().getYear());
+} else {
+	tvserietmp = (TVSerie) multimedia;
+	
+	tvserie.setId(tvserietmp.getId());
+	tvserie.setPrice(tvserietmp.getPrice());
+	tvserie.setTrailer(tvserietmp.getTrailer());
+	tvserie.setAllSeasons(tvserietmp.getAllSeasons());
+	TVposter.setActors(tvserietmp.getPoster().getActors());
+	TVposter.setCategory(tvserietmp.getPoster().getCategory());
+	TVposter.setDirector(tvserietmp.getPoster().getDirector());
+	TVposter.setImage(tvserietmp.getPoster().getImage());
+	TVposter.setPlot(tvserietmp.getPoster().getPlot());
+	TVposter.setTitle(tvserietmp.getPoster().getTitle());
+	TVposter.setYear(tvserietmp.getPoster().getYear());
+	TVposter.setCompleted(tvserietmp.getTvPoster().isCompleted());
+	TVposter.setSeasons(tvserietmp.getTvPoster().getSeasons());
+}
+
 %>
 
 	<meta charset="utf-8">
@@ -65,83 +117,75 @@ curSession.setPremium(control);
 	</head>
 	<body>
 	
-<div id="-offcanvas">
+	<div id="-offcanvas">
 		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="-bio">
 			<figure>
-				<img src="images/io.jpeg" alt="Free HTML5 Bootstrap Template" class="img-responsive">
+				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading">My Profile</h3>
-			<h2>Utente</h2>
-			<p>Commento dell'utente</p>
+			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
+			<h3>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</h3>
+			<p> Hi, I'm in. </p>
 			
 		</div>
-
+	<!-- Profilo utente -->
 		<div class="-menu">
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="#">Subscribe</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">News</a></li>
-					<li><a href="#">Film</a></li>
-					<li><a href="#">TVSeries</a></li>
-					<li><a href="#">MyFavourite</a></li>
+					<li><a href="/Project/subscribe">Subscribe</a></li>
+					<li><a href="aboutUs.html">About Us</a></li>
+					<li><a href="/Project/search">News</a></li></form>
+					<li><a href="/Project/film">Film</a></li>
+					<li><a href="/Project/tvserie">TVSeries</a></li>
+					<li><a href="/Project/myFavourite">MyFavourite</a></li>
+					<% if (curSession.isAdmin()) { %>
+					<li><a href="/Project/addFilm">AddNewFilm</a></li>
+					<li><a href="/Project/addTVSerie">AddNewTVSerie</a></li>
+					<%} %>
 				</ul>
 			</div>
 			<div class="-box">
 				<h3 class="heading">Search</h3>
-				<form action="#">
+				<form action="/Project/search" method="get">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Type a keyword">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	
-	<header id="-header">
-		
-		<div class="container-fluid">
 
-			<div class="row">
-				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
-				<ul class="-social">
-					<li><a href="#"><i class="icon-twitter"></i></a></li>
-					<li><a href="#"><i class="icon-facebook"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-				</ul>
-				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.html">Titolo Del Contenuto</a></h1>
-				</div>
+<% if (multimedia instanceof Film) {%>
 
-			</div>
-		
-		</div>
-
-	</header>
-	<a href="#" class="-post-prev"><span><i class="icon-chevron-left"></i> Prev</span></a>
-	<a href="#" class="-post-next"><span>Next <i class="icon-chevron-right"></i></span></a>
-	<!-- END #-header -->
 	<div class="container-fluid">
 		<div class="row -post-entry single-entry">
 			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 				<figure class="animate-box">
-					<img src="images/single_1.jpg" alt="Image" class="img-responsive">
+					<img src=<jsp:getProperty name="poster" property="image"/> alt="Image" class="img-responsive">
 				</figure>
-				<span class="-meta animate-box"><a href="single.html">Titolo Film</a></span>
+				<span class="-meta animate-box"><a href="#"><jsp:getProperty name="poster" property="title"/></a></span>
 				<h2 class="-article-title animate-box"><a href="single.html"></a></h2>
-				<span class="-meta -date animate-box">Quando è stato caricato</span>
 				
 				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
 					<div class="row">
 						<div class="col-lg-8 cp-r animate-box">
-							<p>Descrizione.</p>
+							<p>Title: <jsp:getProperty name="poster" property="title"/></p>
+							<p>Category: <jsp:getProperty name="poster" property="category"/></p>
+							<p>Director: <jsp:getProperty name="poster" property="director"/></p>
+							<p>Year: <jsp:getProperty name="poster" property="year"/></p>
+							<p>Plot: <jsp:getProperty name="poster" property="plot"/></p>
+							<p>Price: <jsp:getProperty name="film" property="price"/></p>
 						</div>
 						<div class="col-lg-4 animate-box">
 							<div class="-highlight right">
 								<h4>Cast</h4>
-								<p>Descrzione cast</p>
+								<% for (String actortmp: poster.getActors()){ 
+									actor.setActor(actortmp);
+								%>
+								<p><jsp:getProperty name="actor" property="actor"/></p>
+								
+								<%} %>
 							</div>
 						</div>
 					</div>
@@ -155,11 +199,122 @@ curSession.setPremium(control);
 					</div>
 	
 	</div>
+	<%} %>
+	
+<% if (multimedia instanceof TVSerie) {%>
+
+	<div class="container-fluid">
+		<div class="row -post-entry single-entry">
+			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+				<figure class="animate-box">
+					<img src=<jsp:getProperty name="TVposter" property="image"/> alt="Image" class="img-responsive">
+				</figure>
+				<span class="-meta animate-box"><a href="#"><jsp:getProperty name="TVposter" property="title"/></a></span>
+				<h2 class="-article-title animate-box"><a href="single.html"></a></h2>
+				
+				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+					<div class="row">
+						<div class="col-lg-8 cp-r animate-box">
+							<p>Title: <jsp:getProperty name="TVposter" property="title"/></p>
+							<p>Category: <jsp:getProperty name="TVposter" property="category"/></p>
+							<p>Director: <jsp:getProperty name="TVposter" property="director"/></p>
+							<p>Year: <jsp:getProperty name="TVposter" property="year"/></p>
+							<p>Plot: <jsp:getProperty name="TVposter" property="plot"/></p>
+							<p>Seasons: <jsp:getProperty name="TVposter" property="seasons"/></p>
+							<p>Completed: <jsp:getProperty name="TVposter" property="completed"/></p>
+							<p>Price <jsp:getProperty name="tvserie" property="price"/></p>
+						</div>
+						<div class="col-lg-4 animate-box">
+							<div class="-highlight right">
+								<h4>Cast</h4>
+								<% for (String actortmp: TVposter.getActors()){ 
+									actor.setActor(actortmp);
+								%>
+								<p><jsp:getProperty name="actor" property="actor"/></p>
+								
+								<%} %>
+							</div>
+						</div>
+					</div>
+
+					<div class="row rp-b">
+						<div class="col-md-12 animate-box">
+							<blockquote>
+								<p></p>
+							</blockquote>
+						</div>
+					</div>
+				
+		<ul class="tab-group">
+	       <% for (index.setIndex(0); index.getIndex() < TVposter.getSeasons(); index.setIndex(index.getIndex()+1)) {
+	       		if (index.getIndex() == 0){
+	       %>	
+	        <li class="tab active"><a href="#<jsp:getProperty property="index" name="index"/>"><jsp:getProperty property="index" name="index"/></a></li>
+	        <% }else{ %>
+	        <li class="tab"><a href="#<jsp:getProperty property="index" name="index"/>"><jsp:getProperty property="index" name="index"/></a></li>
+	     	<%}} %>
+     	</ul>
+     	
+     	 
+     	 <div class="tab-content">
+     	 <% for (index.setIndex(0); index.getIndex() < TVposter.getSeasons(); index.setIndex(index.getIndex()+1)) {
+
+ 			System.out.println (index.getIndex());
+	       %>
+        <div id=<jsp:getProperty property="index" name="index"/>>   
+          <h1><jsp:getProperty property="index" name="index"/></h1>
+          <div class="top-row">
+            <div class="field-wrap">
+     			<div class="container-fluid">
+		<div class="row -post-entry">
+			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+				
+		<% 
+		LinkedList<Episode> episodes = tvserietmp.getSeason(index.getIndex()+1);
+
+		for (Iterator<Episode> iterator = episodes.iterator(); iterator.hasNext();) {
+			Episode episodetmp = (Episode) iterator.next();
+			episode.setEpisode(episodetmp.getEpisode());
+			episode.setSeason(episodetmp.getSeason());
+			%>
+			
+			<h1><jsp:getProperty name="episode" property="season"/></h1>
+          
+          <form action="">
+          
+             <div class="field-wrap">
+            <label>
+             <a href = " "><jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </a>
+            </label>
+          </div>
+          </form>
+          <%}%>
+			</article>
+			
+			
+			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+			
+			</div>
+            </div>
+            
+			</div>
+            </div>
+            
+        <%} %>
+        </div>
+	
+	</div>
+	<%} %>
 
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
 
 	</footer>
+	
+	
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script  src="js/loginpage.js"></script>
 	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>

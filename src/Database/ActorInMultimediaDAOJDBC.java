@@ -131,7 +131,6 @@ private DataSource dataSource;
 					actor = new String (result.getString("Actor"));
 				else
 					actor = new String (result.getString("Actor"));
-			
 				actors.add(actor);
 			}
 		} catch (SQLException e) {

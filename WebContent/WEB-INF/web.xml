@@ -22,6 +22,15 @@
         <servlet-name>GiveMeMultimediaServlet</servlet-name>
         <url-pattern>/search</url-pattern>
     </servlet-mapping>  
+
+	<servlet>
+        <servlet-name>GiveMeTVSerieServlet</servlet-name>
+        <servlet-class>controller.GiveMeTVSerie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GiveMeTVSerieServlet</servlet-name>
+        <url-pattern>/searchTV</url-pattern>
+    </servlet-mapping> 
   
     <servlet>
         <servlet-name>CheckLoginServlet</servlet-name>
@@ -42,6 +51,15 @@
     </servlet-mapping> 
 
     <servlet>
+        <servlet-name>AddTVSerieServlet</servlet-name>
+        <servlet-class>controller.AddTVSerie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddTVSerieServlet</servlet-name>
+        <url-pattern>/addNewTVSerie</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>controller.Home</servlet-class>
     </servlet>
@@ -57,6 +75,42 @@
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>PageServlet</servlet-name>
+        <servlet-class>controller.GiveMePage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PageServlet</servlet-name>
+        <url-pattern>/GiveMePage</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>FilmServlet</servlet-name>
+        <servlet-class>controller.AllFilm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmServlet</servlet-name>
+        <url-pattern>/film</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>TVSerieServlet</servlet-name>
+        <servlet-class>controller.AllTVSerie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TVSerieServlet</servlet-name>
+        <url-pattern>/tvserie</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>FavouriteServlet</servlet-name>
+        <servlet-class>controller.GiveMeFavourite</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FavouriteServlet</servlet-name>
+        <url-pattern>/myFavourite</url-pattern>
     </servlet-mapping> 
 
 

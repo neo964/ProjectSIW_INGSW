@@ -1,25 +1,31 @@
+<%@page import="java.util.LinkedList"%>
 <%@page import="Model.User"%>
+<%@page import="Model.Film"%>
+<%@page import="Model.Poster"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
 <head>
 
-	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+<jsp:useBean id="film" class="Model.Film" scope="page"/>
+<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+<jsp:useBean id="poster" class="Model.FilmPoster" scope="page"/>
+
 <%
 String user = (String) session.getAttribute("user");
-System.out.print(user);
+int length = 0;
+boolean control = false;
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
-	System.out.print(user);
+	length = (int)session.getAttribute("size");
+	
 	curSession.setUser(user);
 	curSession.setFirstName((String)session.getAttribute("firstName"));
 	curSession.setLastName((String)session.getAttribute("lastName"));
 	curSession.setImage((String)session.getAttribute("image"));
 	
-	boolean control = (boolean)session.getAttribute("admin");
-	if (control)
-		System.out.print("SIII");
+	control = (boolean)session.getAttribute("admin");
 	curSession.setAdmin(control);
 	
 	control = (boolean)session.getAttribute("premium");
@@ -27,14 +33,14 @@ else{
 }
 %>
 
-
- 	<meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PANDAFLIX &mdash; Pastore-Perri</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO"free html5, free template, free bootstrap, html5, css3, mobile first, responsive"  />
-	<meta name="keywords" content=/>
-	<meta name="author" content="Pastore-Perri">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="Pastore-Perri" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
@@ -65,7 +71,7 @@ else{
 			<figure>
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading"><a href="">MyProfile</a></h3>
+			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
 			<h3>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</h3>
 			<p> Hi, I'm in. </p>
 			
@@ -75,9 +81,9 @@ else{
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="#">Subscribe</a></li>
+					<li><a href="/Project/subscribe">Subscribe</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search" name = "giveNews" value = "news">News</a></li></form>
+					<li><a href="/Project/search">News</a></li></form>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="/Project/myFavourite">MyFavourite</a></li>
@@ -88,14 +94,8 @@ else{
 				</ul>
 			</div>
 			<div class="-box">
-				<h3 class="heading">Search Film</h3>
+				<h3 class="heading">Search</h3>
 				<form action="/Project/search" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-					</div>
-				</form>
-				<h3 class="heading">Search TVSerie</h3>
-				<form action="/Project/searchTV" method="get">
 					<div class="form-group">
 						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 					</div>
@@ -103,6 +103,7 @@ else{
 			</div>
 		</div>
 	</div>
+
 	<!-- END #-offcanvas -->
 	<header id="-header">
 		
@@ -112,7 +113,7 @@ else{
 				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
+					<h1 id="-logo"><a href="index.html">NEWS</a></h1>
 				</div>
 
 			</div>
@@ -122,43 +123,42 @@ else{
 	</header>
 	<!-- END #-header -->
 	<div class="container-fluid">
-	<form action="/Project/search" method="get">
 		<div class="row -post-entry">
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="giveNews" type="image" value="news" class="img-responsive" alt="Image" src="images/news.png">
+					<a href="single.html"><img src="images/azione.jpg" alt="Image" class="img-responsive"></a>
 				</figure>
-					<span class="-meta"><a href="/Project/search" value = "news" name = "giveNews">News</a></span>
-					<h2 class="-article-title"><a href="single.html">Look at what we have chosen for you</a></h2>
-					<span class="-meta -date">Last update, now</span>
+				<span class="-meta"><a href="single.html">Contenuto 1</a></span>
+				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
+				<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveNews" type="image" value="film" class="img-responsive" alt="Image" src="images/film.jpg">
+					<a href="single.html"><img src="images/pic_2.jpg" alt="Image" class="img-responsive"></a>
 				</figure>
-					<span class="-meta"><a href="single.html">Film</a></span>
-					<h2 class="-article-title"><a href="single.html">Do you want a movie?</a></h2>
-					<span class="-meta -date">Last update, now</span>
+				<span class="-meta"><a href="single.html">Contenuto 2</a></span>
+				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
+				<span class="-meta -date">Last update, now</span>
 			</article>
 			<div class="clearfix visible-xs-block"></div>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveNews" type="image" value="tvserie" class="img-responsive" alt="Image" src="images/serie.jpg">
+					<a href="single.html"><img src="images/pic_3.jpg" alt="Image" class="img-responsive"></a>
 				</figure>
-				<span class="-meta"><a href="single.html">TVSeries</a></span>
-				<h2 class="-article-title"><a href="single.html">Or do you want a tv serie?</a></h2>
+				<span class="-meta"><a href="single.html">Contenuto 3</a></span>
+				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
 				<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveNews" type="image" value="friend" class="img-responsive" alt="Image" src="images/amici.jpg">
+					<a href="single.html"><img src="images/pic_4.jpg" alt="Image" class="img-responsive"></a>
 				</figure>
-				<span class="-meta"><a href="single.html">Friends</a></span>
-				<h2 class="-article-title"><a href="single.html">Expand and explore your network</a></h2>
+				<span class="-meta"><a href="single.html">Contenuto 4</a></span>
+				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
 				<span class="-meta -date">Last update, now</span>
 			</article>
 			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-		</form>
+			
 	</div>
 
 	<footer id="-footer">
@@ -180,6 +180,3 @@ else{
 
 	</body>
 </html>
-
-
-

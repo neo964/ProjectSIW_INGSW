@@ -68,7 +68,7 @@ public class RankingDAOJDBC implements RankingDAO {
 			statement.setString(1, User);
 			statement.setInt(2, multimedia.getId());
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				if (multimedia instanceof Film) 
 					multimediatmp = filmDAO.findByPrimaryKey(result.getInt("Film"));
 				else 
@@ -104,7 +104,7 @@ public class RankingDAOJDBC implements RankingDAO {
 			statement = connection.prepareStatement(query);
 			statement.setInt(3, multimedia.getId());
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				number++;
 				voto += result.getInt("Rank");
 			}
@@ -133,7 +133,7 @@ public class RankingDAOJDBC implements RankingDAO {
 			
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				multimediatmp =  filmDAO.findByPrimaryKey(result.getInt("Film"));
 				ranking = new Ranking(multimediatmp, result.getString("User"),result.getInt("Rank"));
 				rankings.add(ranking);
@@ -149,7 +149,7 @@ public class RankingDAOJDBC implements RankingDAO {
 			Multimedia multimediatmp = null;
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				multimediatmp = serieDAO.findByPrimaryKey(result.getInt("TVSerie"));
 				ranking = new Ranking(multimediatmp, result.getString("User"),result.getInt("Rank"));
 				rankings.add(ranking);

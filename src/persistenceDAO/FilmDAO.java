@@ -10,6 +10,7 @@ public interface FilmDAO {
 	public List<Film> findAll();       
 	public List<Film> findByName (String name);
 	public List<Film> findByCategory (String category);
+	public List<Film> findByYear (int year);
 	public void update(Film film); //Update
 	public void delete(Film film); //Delete	
 }

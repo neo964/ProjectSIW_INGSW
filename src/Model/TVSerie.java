@@ -9,14 +9,27 @@ public class TVSerie extends Multimedia{
 	TVSeriePoster tvPoster;
 	double price;
 	
-	public TVSerie(Poster poster, Trailer trailer, double price) {
+	public TVSerie() {}
+	
+	public TVSerie(int id, Poster poster, Trailer trailer, double price) {
 		super(poster, trailer);
 		tvPoster = (TVSeriePoster) poster;
 		episodes = new LinkedList<LinkedList<Episode>>();
 		this.price = price;
+		this.setId(id);
 		
-		for (int i = 0; i < this.tvPoster.getSeasons(); i++)
+		for (int i = 0; i < this.tvPoster.getSeasons(); i++) {
 			episodes.add(new LinkedList<Episode>());
+			
+		}
+		
+		for (LinkedList<Episode> linkedList : episodes) {
+			for (Episode episode : linkedList) {
+				System.out.println("EPisodio");
+			}
+			System.out.println("Stagione");
+		}
+		
 	}
 	
 	public void addNewSeason (){
@@ -25,7 +38,7 @@ public class TVSerie extends Multimedia{
 	
 	public void addNewEpisode (Episode video, int nseason) {
 		int i = 1;
-		for (Iterator iterator = episodes.iterator(); iterator.hasNext(); i++) {
+		for (Iterator<LinkedList<Episode>> iterator = episodes.iterator(); iterator.hasNext(); i++) {
 			LinkedList<Episode> season = (LinkedList<Episode>) iterator.next();
 			if (i == nseason)
 				season.add(video);
@@ -35,16 +48,15 @@ public class TVSerie extends Multimedia{
 	public LinkedList<Episode> getSeason (int x){
 		int i = 1;
 		LinkedList<Episode> season = new LinkedList<>();
-		for (Iterator<LinkedList<Episode>> iterator = episodes.iterator(); iterator.hasNext(); i++) {
-			LinkedList<Episode> seasontmp = iterator.next();
-			if (i == x) {
-				for (Iterator<Episode> iteratorEp = seasontmp.iterator(); iterator.hasNext();) {
-					Episode ep = iteratorEp.next();
-					season.add(ep);
+		for (Iterator iterator = episodes.iterator(); iterator.hasNext();) {
+			LinkedList<Episode> linkedList = (LinkedList<Episode>) iterator.next();
+			for (Iterator iterator2 = linkedList.iterator(); iterator2.hasNext();) {
+				Episode episode = (Episode) iterator2.next();
+				if (episode.getSeason() == x) {
+					season.add(episode);
+					System.out.println("Aggiunto");
 				}
-				break;
 			}
-			i++;
 		}
 		return season;
 	}

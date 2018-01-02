@@ -49,7 +49,7 @@ public class AddressDAOJDBC implements AddressDAO {
 			statement.setInt(2, zipcode);
 			statement.setString(3, username);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				address = new Address(result.getString("Street"), result.getString("Country"), result.getString("District"), result.getString("User"), result.getInt("ZipCode"));
 			}
 		} catch (SQLException e) {

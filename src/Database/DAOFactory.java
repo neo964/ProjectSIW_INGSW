@@ -5,6 +5,7 @@ import persistenceDAO.ActorInMultimediaDAO;
 import persistenceDAO.AddressDAO;
 import persistenceDAO.CartDAO;
 import persistenceDAO.EpisodeDAO;
+import persistenceDAO.FavouriteDAO;
 import persistenceDAO.FilmDAO;
 import persistenceDAO.FriendshipDAO;
 import persistenceDAO.PaymentMethodDAO;
@@ -36,6 +37,8 @@ public abstract class DAOFactory {
 	public abstract RankingDAO getRankingDAO();
 	
 	public abstract TVSerieDAO getTVSerieDAO();
+	
+	public abstract FavouriteDAO getFavouriteDAO();
 
 	public abstract UserDAO getUserDAO();
 	

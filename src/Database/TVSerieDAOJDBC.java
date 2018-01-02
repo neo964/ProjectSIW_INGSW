@@ -30,7 +30,7 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 	public void save(TVSerie tvSerie) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert into \"TVSerie\" (\"ID\", \"Title\", \"Category\", \"Director\", \"Year\", \"Completed\", \"Season\", \"Trailer\", \"Plot\", \"Price\", \"Image\") values (?,?,?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into \"TVSerie\" (\"ID\", \"Title\", \"Category\", \"Director\", \"Year\", \"Completed\", \"Seasons\", \"Trailer\", \"Plot\", \"Price\", \"Image\") values (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, tvSerie.getId());
 			statement.setString(2, tvSerie.getPoster().getTitle());
@@ -73,11 +73,11 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, code);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				List<String> actorsTVSerieString = actors.findAllNameActors(code, false);
 				LinkedList<Episode> episodeTVSerie = (LinkedList<Episode>) episodes.findAll(code);
-				tvSerie = new TVSerie (new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Season")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
-				for (int i = 0; i < result.getInt("Season"); i++) {
+				tvSerie = new TVSerie (result.getInt("ID"), new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Seasons")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
+				for (int i = 0; i < result.getInt("Seasons"); i++) {
 					tvSerie.addNewSeason();
 				}
 				for (Episode episode : episodeTVSerie) {
@@ -109,8 +109,8 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 			while (result.next()) {
 				List<String> actorsTVSerieString = actors.findAllNameActors(result.getInt("ID"), false);
 				LinkedList<Episode> episodeTVSerie = (LinkedList<Episode>) episodes.findAll(result.getInt("ID"));
-				tvSerie = new TVSerie (new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Season")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
-				for (int i = 0; i < result.getInt("Season"); i++) {
+				tvSerie = new TVSerie (result.getInt("ID"), new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Seasons")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
+				for (int i = 0; i < result.getInt("Seasons"); i++) {
 					tvSerie.addNewSeason();
 				}
 				for (Episode episode : episodeTVSerie) {
@@ -137,15 +137,14 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 		try {
 			TVSerie tvserie;
 			PreparedStatement statement;
-			String query = "select * from \"TVSerie\" where \"Title\" LIKE %?%";
+			String query = "select * from \"TVSerie\" where \"Title\" LIKE '%" + name + "%'";
 			statement = connection.prepareStatement(query);
-			statement.setString(1, name);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				List<String> actorsTVSerieString = actors.findAllNameActors(result.getInt("ID"), false);
 				LinkedList<Episode> episodeTVSerie = (LinkedList<Episode>) episodes.findAll(result.getInt("ID"));
-				tvserie = new TVSerie (new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Season")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
-				for (int i = 0; i < result.getInt("Season"); i++) {
+				tvserie = new TVSerie (result.getInt("ID"), new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Seasons")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
+				for (int i = 0; i < result.getInt("Seasons"); i++) {
 					tvserie.addNewSeason();
 				}
 				for (Episode episode : episodeTVSerie) {
@@ -172,15 +171,49 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 		try {
 			TVSerie tvserie;
 			PreparedStatement statement;
-			String query = "select * from \"TVSerie\" where \"Category\" LIKE %?%";
+			String query = "select * from \"TVSerie\" where \"Category\" LIKE '%" + category + "%'";
 			statement = connection.prepareStatement(query);
-			statement.setString(1, category);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				List<String> actorsTVSerieString = actors.findAllNameActors(result.getInt("ID"), false);
 				LinkedList<Episode> episodeTVSerie = (LinkedList<Episode>) episodes.findAll(result.getInt("ID"));
-				tvserie = new TVSerie (new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Season")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
-				for (int i = 0; i < result.getInt("Season"); i++) {
+				tvserie = new TVSerie (result.getInt("ID"), new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Seasons")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
+				for (int i = 0; i < result.getInt("Seasons"); i++) {
+					tvserie.addNewSeason();
+				}
+				for (Episode episode : episodeTVSerie) {
+					tvserie.addNewEpisode(episode, episode.getSeason());
+				}
+				tvseries.add(tvserie);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return tvseries;
+	}
+	
+	@Override
+	public List<TVSerie> findByYear (int year){
+		Connection connection = this.dataSource.getConnection();
+		List<TVSerie> tvseries = new java.util.LinkedList<>();
+		try {
+			TVSerie tvserie;
+			PreparedStatement statement;
+			String query = "select * from \"TVSerie\" where \"Year\" = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, year);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				List<String> actorsTVSerieString = actors.findAllNameActors(result.getInt("ID"), false);
+				LinkedList<Episode> episodeTVSerie = (LinkedList<Episode>) episodes.findAll(result.getInt("ID"));
+				tvserie = new TVSerie (result.getInt("ID"), new TVSeriePoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsTVSerieString, result.getString("Plot"), result.getString("Image"), result.getBoolean("Completed"), result.getInt("Seasons")), new Trailer (result.getString("Trailer")), result.getDouble("Price"));
+				for (int i = 0; i < result.getInt("Seasons"); i++) {
 					tvserie.addNewSeason();
 				}
 				for (Episode episode : episodeTVSerie) {

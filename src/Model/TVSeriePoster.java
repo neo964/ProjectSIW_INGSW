@@ -6,6 +6,8 @@ public class TVSeriePoster extends Poster{
 	private boolean completed;
 	private int seasons;
 	
+	public TVSeriePoster() {}
+	
 	public TVSeriePoster(String Title, String Category, String Director, int year, List<String> actors, String Plot, String Image, boolean completed, int seasons) {
 		super(Title, Category, Director, year, actors, Plot, Image);
 		this.completed = completed;

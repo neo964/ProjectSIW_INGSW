@@ -58,7 +58,7 @@ public class UserDAOJDBC implements UserDAO {
 			statement = connection.prepareStatement(query);
 			statement.setString(1, name);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				user = new User(result.getString("FirstName"), result.getString("LastName"), result.getString("E-Mail"), null, null, result.getBoolean("Premium"), result.getBoolean("Admin"), result.getDate("Date"), result.getString("Image"));
 			}
 		} catch (SQLException e) {
@@ -83,7 +83,7 @@ public class UserDAOJDBC implements UserDAO {
 			String query = "select * from \"User\"";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				user = new User(result.getString("FirstName"), result.getString("LastName"), result.getString("E-Mail"), null, null, result.getBoolean("Premium"), result.getBoolean("Admin"), result.getDate("Date"), result.getString("Image"));
 				users.add(user);
 			}

@@ -74,13 +74,14 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 		try {
 			Episode episode = null;
 			PreparedStatement statement;
-			String query = "select * from Episode where \"TVSerie\" = ?";
+			String query = "select * from \"Episode\" where \"TVSerie\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, IDSerie);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				episode = new Episode (result.getString("Path"), result.getInt("TVSerie"), result.getInt("season"), result.getInt("episode"));
 				episodes.add(episode);
+				System.out.println(result.getInt("episode") + "  " + IDSerie);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -98,7 +99,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void update(Episode episode) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update \"Episode\" SET Path = ?, \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ? WHERE \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ?";
+			String update = "update \"Episode\" SET \"Path\" = ?, \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ? WHERE \"TVSerie\" = ? AND \"episode\" = ? AND \"season\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, episode.getPath());
 			statement.setInt(2, episode.getTVSerieID());
@@ -123,7 +124,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void delete(Episode episode) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM \"Episode\" WHERE \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ?";
+			String delete = "delete FROM \"Episode\" WHERE \"TVSerie\" = ? AND \"episode\" = ? AND \"season\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, episode.getTVSerieID());
 			statement.setInt(2, episode.getEpisode());

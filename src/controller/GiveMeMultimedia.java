@@ -3,6 +3,7 @@ package controller;
 import java.awt.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.LinkedList;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import Database.DatabaseManager;
 import Model.Film;
+import Model.TVSerie;
 import persistenceDAO.FilmDAO;
+import persistenceDAO.TVSerieDAO;
 
 public class GiveMeMultimedia extends HttpServlet {
 
@@ -22,58 +25,93 @@ public class GiveMeMultimedia extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		FilmDAO filmDao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
-		LinkedList <Film> films = (LinkedList<Film>) filmDao.findByName(req.getParameter("keyword"));
-		req.getSession().setAttribute("films", films);
-		req.setAttribute("films", films);
-		req.getRequestDispatcher("research.jsp").forward(req, resp);
-		/*for (Film film : films) {
-			req.se
-		}*/
+		TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
 		
+		System.out.println(req.getParameter("keyword"));
+		System.out.println(req.getParameter("giveCategory"));
+		System.out.println(req.getParameter("giveNews"));
 		
-		/*out.println("<table border=\"1\">");
-		out.println("<tr>");
-		out.println("<th>ID</th>");
-		out.println("<th>Title</th>");
-		out.println("<th>Category</th>");
-		out.println("<th>Year</th>");
-		out.println("<th>Director</th>");
-		out.println("<th>Plot</th>");
-		out.println("<th>Price</th>");
-		out.println("<th>Trailer</th>");
-		out.println("<th>Streaming</th>");
-		out.println("</tr>");
-		for (Film film : filmDao.findAll()){
-			out.println("<tr>");
-			out.println("<td>");
-			out.println(film.getId());
-			out.println("</td>");
-			out.println("<td>");
-			out.println(film.getPoster().getTitle());
-			out.println("</td>");
-			out.println("<td>");
-			out.println(film.getPoster().getCategory());
-			out.println("</td>");
-			out.println("<td>");
-			out.println(film.getPoster().getYear());
-			out.println("</td>");
-			out.println("<td>");
-			out.println(film.getPoster().getDirector());
-			out.println("</td>");;
-			out.println("<td>");
-			out.println(film.getPoster().getPlot());
-			out.println("</td>");;
-			out.println("<td>");
-			out.println(film.getPrice());
-			out.println("</td>");;
-			out.println("<td>");
-			out.println(film.getTrailer().getPath());
-			out.println("</td>");;
-			out.println("<td>");
-			out.println(film.getVideoOnDemand());
-			out.println("</td>");
-			out.println("</tr>");
+		if (req.getParameter("keyword") != null) {
+			LinkedList <Film> films = (LinkedList<Film>) filmDao.findByName(req.getParameter("keyword"));
+			LinkedList <TVSerie> tvseries = (LinkedList<TVSerie>) tvseriedao.findByName(req.getParameter("keyword"));
+			req.getSession().setAttribute("size", films.size() + tvseries.size());
+			int i = 0;
+			for (Film film2 : films) {
+				System.out.println(film2.getPoster().getImage());
+				req.setAttribute("film" + i, film2);
+				i++;
+			}
+			req.getRequestDispatcher("research.jsp").forward(req, resp);
 		}
-		out.println("</table>");*/
+		else if (req.getParameter("giveCategory") != null){
+			String category = req.getParameter("giveCategory");
+			if (category.charAt(0) == 'T') {
+				String categorytv = category.substring(1, category.length());
+				LinkedList <TVSerie> tvserie = (LinkedList<TVSerie>) tvseriedao.findByCategory(categorytv);
+				req.getSession().setAttribute("size", tvserie.size());
+				req.getSession().setAttribute("type", false);
+				int i = 0;
+				for (TVSerie tvserietmp : tvserie) {
+					System.out.println(tvserietmp.getPoster().getImage());
+					req.setAttribute("film" + i, tvserietmp);
+					i++;
+				}
+				req.getRequestDispatcher("research.jsp").forward(req, resp);
+			} else {
+				LinkedList <Film> films = (LinkedList<Film>) filmDao.findByCategory(category);
+				req.getSession().setAttribute("size", films.size());
+				int i = 0;
+				for (Film film2 : films) {
+					System.out.println(film2.getPoster().getImage());
+					req.setAttribute("film" + i, film2);
+					i++;
+				}
+				req.getRequestDispatcher("research.jsp").forward(req, resp);
+			}
+		} else { //else { if (req.getParameter("giveNews") != null){
+			String what = req.getParameter("giveNews");
+			if (what == null || what.equals("news")) {
+				Date date = new Date(System.currentTimeMillis());
+				String datestr = date.toString();
+				String yearstr = datestr.substring(datestr.length()-4, datestr.length());
+				int year = Integer.parseInt(yearstr);
+				LinkedList <Film> films = (LinkedList<Film>) filmDao.findByYear(year);
+				req.getSession().setAttribute("size", films.size());
+				int i = 0;
+				for (Film film2 : films) {
+					System.out.println(film2.getPoster().getImage());
+					req.setAttribute("film" + i, film2);
+					i++;
+				} 
+					req.getRequestDispatcher("research.jsp").forward(req, resp);
+			}else if (what.equals("film")) {
+				System.out.println("film");
+				req.setAttribute("isFilm", true);
+				req.getRequestDispatcher("categorypage.jsp").forward(req, resp);
+			} else if (what.equals("tvserie")) {
+				System.out.println("tv");
+				req.setAttribute("isFilm", false);
+				req.getRequestDispatcher("tvcategorypage.jsp").forward(req, resp);
+			} else if (what.equals("friend")) {
+				System.out.println("friend");
+				req.getRequestDispatcher("friend.jsp").forward(req, resp);
+			} else {/*
+				Date date = new Date(System.currentTimeMillis());
+				String datestr = date.toString();
+				String yearstr = datestr.substring(datestr.length()-4, datestr.length());
+				int year = Integer.parseInt(yearstr);
+				LinkedList <Film> films = (LinkedList<Film>) filmDao.findByYear(year);
+				req.getSession().setAttribute("size", films.size());
+				int i = 0;
+				for (Film film2 : films) {
+					System.out.println(film2.getPoster().getImage());
+					req.setAttribute("film" + i, film2);
+					i++;
+					req.getRequestDispatcher("research.jsp").forward(req, resp);*/
+				}
+			
+		}
+		System.out.println("Here");
+		
 	}
 }

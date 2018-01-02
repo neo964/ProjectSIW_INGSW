@@ -14,12 +14,14 @@ public class Film extends Multimedia{
 	public Film (Film film) {
 		super(film.poster, film.trailer);
 		this.price = film.price;
+		this.setId(film.getId());
 	}
 	
-	public Film(Poster poster, Trailer trailer, double price, String videoOnDemand) {
+	public Film(int id, Poster poster, Trailer trailer, double price, String videoOnDemand) {
 		super(poster, trailer);
 		this.videoOnDemand = videoOnDemand;
 		this.price = price;
+		this.setId(id);
 	}
 
 	public String getVideoOnDemand() {

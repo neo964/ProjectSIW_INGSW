@@ -64,8 +64,8 @@ public class FilmDAOJDBC implements FilmDAO {
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, codice);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
-				film = new Film(new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
+			while (result.next()) {
+				film = new Film(result.getInt("ID"), new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -91,7 +91,7 @@ public class FilmDAOJDBC implements FilmDAO {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				List<String> actorsFilmString = actors.findAllNameActors(result.getInt("ID"), true);
-				film = new Film(new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
+				film = new Film(result.getInt("ID"), new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
 				films.add(film);
 			}
 		} catch (SQLException e) {
@@ -113,13 +113,12 @@ public class FilmDAOJDBC implements FilmDAO {
 		try {
 			Film film;
 			PreparedStatement statement;
-			String query = "select * from \"Film\" where \"Title\" LIKE ?";
+			String query = "select * from \"Film\" where \"Title\" LIKE '%" + name + "%'";
 			statement = connection.prepareStatement(query);
-			statement.setString(1, name);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				List<String> actorsFilmString = actors.findAllNameActors(result.getInt("ID"), true);
-				film = new Film(new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
+				film = new Film(result.getInt("ID"), new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
 				films.add(film);
 			}
 		} catch (SQLException e) {
@@ -141,13 +140,12 @@ public class FilmDAOJDBC implements FilmDAO {
 		try {
 			Film film;
 			PreparedStatement statement;
-			String query = "select * from \"Film\" where \"Category\" LIKE %?%";
+			String query = "select * from \"Film\" where \"Category\" LIKE '%" + category + "%'";
 			statement = connection.prepareStatement(query);
-			statement.setString(1, category);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				List<String> actorsFilmString = actors.findAllNameActors(result.getInt("ID"), true);
-				film = new Film(new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
+				film = new Film(result.getInt("ID"), new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
 				films.add(film);
 			}
 		} catch (SQLException e) {
@@ -162,6 +160,34 @@ public class FilmDAOJDBC implements FilmDAO {
 		return films;
 	}
 
+	@Override
+	public List<Film> findByYear(int year) {
+		Connection connection = this.dataSource.getConnection();
+		List<Film> films = new java.util.LinkedList<Film>();
+		try {
+			Film film;
+			PreparedStatement statement;
+			String query = "select * from \"Film\" where \"Year\" = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, year);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				List<String> actorsFilmString = actors.findAllNameActors(result.getInt("ID"), true);
+				film = new Film(result.getInt("ID"), new FilmPoster (result.getString("Title"), result.getString("Category"), result.getString("Director"), result.getInt("Year"), actorsFilmString, result.getString("Plot"), result.getString("Image")), new Trailer (result.getString("Trailer")), result.getDouble("Price") ,result.getString("VideoOnDemand"));
+				films.add(film);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return films;
+	}
+	
 	@Override
 	public void update(Film film) {
 		Connection connection = this.dataSource.getConnection();

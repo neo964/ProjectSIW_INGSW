@@ -10,6 +10,7 @@ public interface TVSerieDAO {
 	public List<TVSerie> findAll();       
 	public List<TVSerie> findByName (String name);
 	public List<TVSerie> findByCategory (String category);
+	public List<TVSerie> findByYear (int year);
 	public void update(TVSerie tvSerie); //Update
 	public void delete(TVSerie tvSerie); //Delete
 

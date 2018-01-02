@@ -5,6 +5,7 @@ import persistenceDAO.ActorInMultimediaDAO;
 import persistenceDAO.AddressDAO;
 import persistenceDAO.CartDAO;
 import persistenceDAO.EpisodeDAO;
+import persistenceDAO.FavouriteDAO;
 import persistenceDAO.FilmDAO;
 import persistenceDAO.FriendshipDAO;
 import persistenceDAO.PaymentMethodDAO;
@@ -86,5 +87,10 @@ public class PostgresDAOFactory extends DAOFactory{
 	@Override
 	public UserReference getUserRefernce(User user) {
 		return new UserReference(data, user);
+	}
+
+	@Override
+	public FavouriteDAO getFavouriteDAO() {
+		return new FavouriteDAOJDBC (data);
 	}
 }

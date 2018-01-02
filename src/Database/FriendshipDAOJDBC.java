@@ -48,7 +48,7 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 			statement.setString (1, friend1);
 			statement.setString (2, friend2);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				friendship = new Friendship(result.getString("User1"), result.getString("User2"));
 			}
 		} catch (SQLException e) {
@@ -74,7 +74,7 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 			statement.setString (1, user);
 			statement.setString (2, user);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
+			while (result.next()) {
 				friendships.add(new Friendship (result.getString("User1"), result.getString("User2")));
 			}
 		} catch (SQLException e) {

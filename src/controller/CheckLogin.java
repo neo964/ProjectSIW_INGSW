@@ -16,19 +16,23 @@ public class CheckLogin extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		System.out.println("LOGGGG");
 		UserDAO userdao = DatabaseManager.getInstance().getDaoFactory().getUserDAO();
 		String username = req.getParameter("email");
 		String password = req.getParameter("password");
 	    User user = userdao.findByPrimaryKey(username);
 	    if (user == null) {
+	    	System.out.println("Errore");
 	    	reportError(req, resp);
 	    }
+	    System.out.print(user.getEmail());
 	    System.out.println(password);
 	    UserReference userref = DatabaseManager.getInstance().getDaoFactory().getUserRefernce(user);
 	    String realpass = userref.getPassword();
 	    System.out.println(realpass);
 	    System.out.println("Control");
+	    if (user.isAdmin())
+	    	System.out.println(user.getEmail());
 
 	    if (realpass.equals(password)) {
 	        req.getSession().setAttribute("user", user.getEmail()); // Login user.
