@@ -49,6 +49,7 @@ public class FilmDAOJDBC implements FilmDAO {
 	public void save(Film film) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"Film\"(\"ID\", \"Title\", \"Category\", \"Year\", \"Director\", \"Trailer\", \"VideoOnDemand\", \"Plot\", \"Price\", \"Image\") values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			System.out.println("MAx");
@@ -63,6 +64,8 @@ public class FilmDAOJDBC implements FilmDAO {
 			statement.setDouble(9, film.getPrice());
 			statement.setString(10, film.getPoster().getImage());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 			for (String actor: film.getPoster().getActors()) {
 				actors.save(new Actor(actor, film.getId(), true));
 			}

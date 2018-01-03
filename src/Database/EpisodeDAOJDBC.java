@@ -22,6 +22,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void save(Episode episode) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"Episode\" (\"Path\", \"TVSerie\", \"episode\", \"season\") values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, episode.getPath());
@@ -29,6 +30,8 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 			statement.setInt(3, episode.getEpisode());
 			statement.setInt(4, episode.getSeason());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

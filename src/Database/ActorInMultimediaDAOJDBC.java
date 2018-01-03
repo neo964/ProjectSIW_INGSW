@@ -20,6 +20,7 @@ private DataSource dataSource;
 	public void save (Actor actor) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert;
 			if (actor.isFilm())
 				insert = "insert into \"ActorInFilm\" (\"Actor\", \"FilmID\") values (?,?)";
@@ -29,6 +30,8 @@ private DataSource dataSource;
 			statement.setString(1, actor.getActor());
 			statement.setInt(2, actor.getIdmultimedia());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

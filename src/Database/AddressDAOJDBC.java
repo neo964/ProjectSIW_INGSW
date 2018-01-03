@@ -18,6 +18,7 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void save(Address address) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"Address\" (\"Street\", \"Country\", \"ZipCode\", \"District\", \"User\") values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, address.getStreet());
@@ -26,6 +27,8 @@ public class AddressDAOJDBC implements AddressDAO {
 			statement.setString(4, address.getDistrict());
 			statement.setString(5, address.getUser());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

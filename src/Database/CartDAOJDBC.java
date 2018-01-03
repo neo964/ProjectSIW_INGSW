@@ -28,6 +28,7 @@ public class CartDAOJDBC implements CartDAO {
 	public void save(Cart cart) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"Cart\" (\"User\", \"FilmID\", \"Quantity\", \"TVSerieID\") values (?,?,?,?)";
 			List<MultimediaInCart> cartmp = cart.getCart();
 			PreparedStatement statement = connection.prepareStatement(insert);
@@ -42,6 +43,8 @@ public class CartDAOJDBC implements CartDAO {
 				}
 				statement.setInt(3, multimediaInCart.getQuantity());
 				statement.executeUpdate();
+				connection.commit();
+				connection.setAutoCommit(false);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

@@ -21,6 +21,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 	public void save(PaymentMethod paymentMethod) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"PaymentMethod\" (\"CardNumber\", \"User\", \"Code\", \"ExpirationDate\") values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, paymentMethod.getCardNumber());
@@ -29,6 +30,8 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 			long secs = paymentMethod.getExpirationDate().getTime();
 			statement.setDate(4, new java.sql.Date(secs));
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

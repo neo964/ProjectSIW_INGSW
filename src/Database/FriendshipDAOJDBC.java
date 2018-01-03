@@ -21,11 +21,14 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 	public void save(Friendship friendship) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"Friendship\"(\"User1\", \"User2\") values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, friendship.getUser1());
 			statement.setString(2, friendship.getUser2());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

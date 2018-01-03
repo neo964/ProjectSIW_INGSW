@@ -30,6 +30,7 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 	public void save(TVSerie tvSerie) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"TVSerie\" (\"ID\", \"Title\", \"Category\", \"Director\", \"Year\", \"Completed\", \"Seasons\", \"Trailer\", \"Plot\", \"Price\", \"Image\") values (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, tvSerie.getId());
@@ -44,6 +45,8 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 			statement.setDouble(10, tvSerie.getPrice());
 			statement.setString(11, tvSerie.getPoster().getImage());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 			for (String actor : tvSerie.getPoster().getActors()) {
 				actors.save(new Actor(actor, tvSerie.getId(), false));
 			}

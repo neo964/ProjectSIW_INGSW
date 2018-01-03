@@ -21,6 +21,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void save(User user) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"User\" (\"Password\", \"E-Mail\", \"Premium\", \"Admin\", \"Date\", \"FirstName\", \"LastName\", \"Image\") values (?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, user.getPassword ());
@@ -33,6 +34,8 @@ public class UserDAOJDBC implements UserDAO {
 			statement.setString(7, user.getLastName());
 			statement.setString(8, user.getPathToImage());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 			AddressDAOJDBC address = new AddressDAOJDBC(dataSource);
 			address.save(user.getAddress());
 			PaymentMethodDAOJDBC payment = new PaymentMethodDAOJDBC(dataSource);

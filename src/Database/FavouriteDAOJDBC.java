@@ -22,6 +22,7 @@ public class FavouriteDAOJDBC implements FavouriteDAO{
 	public void save(Favourite favourite) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = "insert into \"Favourite\" (\"User\", \"IDMultimedia\", \"isFilm\", \"IDSerie\") values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, favourite.getUser());
@@ -34,6 +35,8 @@ public class FavouriteDAOJDBC implements FavouriteDAO{
 			}
 			statement.setBoolean(3, favourite.isFilm());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

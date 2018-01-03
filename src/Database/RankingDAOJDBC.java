@@ -24,6 +24,7 @@ public class RankingDAOJDBC implements RankingDAO {
 	public void save(Ranking ranking) {
 		Connection connection = dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String insert = null;
 			if (ranking.getMultimedia() instanceof Film)
 				insert = "insert into \"RankingFilm\" (\"Rank\", \"User\", \"Film\") values (?,?,?)";
@@ -34,6 +35,8 @@ public class RankingDAOJDBC implements RankingDAO {
 			statement.setString(2, ranking.getUser());
 			statement.setInt(3, ranking.getMultimedia().getId());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
