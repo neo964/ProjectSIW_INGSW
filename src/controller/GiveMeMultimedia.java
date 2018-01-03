@@ -27,10 +27,6 @@ public class GiveMeMultimedia extends HttpServlet {
 		FilmDAO filmDao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
 		TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
 		
-		System.out.println(req.getParameter("keyword"));
-		System.out.println(req.getParameter("giveCategory"));
-		System.out.println(req.getParameter("giveNews"));
-		
 		if (req.getParameter("keyword") != null) {
 			LinkedList <Film> films = (LinkedList<Film>) filmDao.findByName(req.getParameter("keyword"));
 			LinkedList <TVSerie> tvseries = (LinkedList<TVSerie>) tvseriedao.findByName(req.getParameter("keyword"));
@@ -89,11 +85,9 @@ public class GiveMeMultimedia extends HttpServlet {
 				req.setAttribute("isFilm", true);
 				req.getRequestDispatcher("categorypage.jsp").forward(req, resp);
 			} else if (what.equals("tvserie")) {
-				System.out.println("tv");
 				req.setAttribute("isFilm", false);
 				req.getRequestDispatcher("tvcategorypage.jsp").forward(req, resp);
 			} else if (what.equals("friend")) {
-				System.out.println("friend");
 				req.getRequestDispatcher("friend.jsp").forward(req, resp);
 			} else {/*
 				Date date = new Date(System.currentTimeMillis());

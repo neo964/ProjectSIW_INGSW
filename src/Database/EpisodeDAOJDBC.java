@@ -84,7 +84,6 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 			while (result.next()) {
 				episode = new Episode (result.getString("Path"), result.getInt("TVSerie"), result.getInt("season"), result.getInt("episode"));
 				episodes.add(episode);
-				System.out.println(result.getInt("episode") + "  " + IDSerie);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

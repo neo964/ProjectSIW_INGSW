@@ -141,7 +141,7 @@ trailer.setPath(multimedia.getTrailer().getPath());
 				<ul>
 					<li><a href="/Project/subscribe">Subscribe</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search">News</a></li></form>
+					<li><a href="/Project/search">News</a></li>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="/Project/myFavourite">MyFavourite</a></li>
@@ -171,7 +171,6 @@ trailer.setPath(multimedia.getTrailer().getPath());
 					<img src=<jsp:getProperty name="poster" property="image"/> alt="Image" class="img-responsive">
 				</figure>
 				<span class="-meta animate-box"><a href="#"><jsp:getProperty name="poster" property="title"/></a></span>
-				<h2 class="-article-title animate-box"><a href="single.html"></a></h2>
 				
 				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
 					<div class="row">
@@ -240,6 +239,9 @@ trailer.setPath(multimedia.getTrailer().getPath());
 					</div>
 	
 	</div>
+	</article>
+	</div>
+	</div>
 	<%} %>
 	
 <% if (multimedia instanceof TVSerie) {%>
@@ -298,7 +300,7 @@ trailer.setPath(multimedia.getTrailer().getPath());
 					<div class="top-row">
 					<form action="/Project/goToCart" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" type="" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
+          					<button class="button" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
           				</div> 
           			</form>
 					<div class="row rp-b">

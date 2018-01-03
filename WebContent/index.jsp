@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
 <head>
-
 	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
 <%
 String user = (String) session.getAttribute("user");

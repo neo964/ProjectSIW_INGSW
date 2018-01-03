@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -41,7 +40,6 @@ public class SignUp extends HttpServlet {
 		UserDAO userdao = DatabaseManager.getInstance().getDaoFactory().getUserDAO();
 		User user = new User(fname, lname, username, new Address(street, country, district, username, Integer.parseInt(cap)), new PaymentMethod(card, username, Integer.parseInt(cvc), new Date (Long.parseLong(expiration))), false, false, new Date (Long.parseLong(birth)), password);
 		userdao.save(user);
-		
 		req.getSession().setAttribute("user", user); // Login user.
         resp.sendRedirect("index.jsp"); // Redirect to home page.
     
