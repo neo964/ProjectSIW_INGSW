@@ -140,5 +140,14 @@
         <url-pattern>/myProfile</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>WatchItServlet</servlet-name>
+        <servlet-class>controller.WatchIt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WatchItServlet</servlet-name>
+        <url-pattern>/watchIt</url-pattern>
+    </servlet-mapping> 
+
 
 </web-app>

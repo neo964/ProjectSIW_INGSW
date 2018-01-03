@@ -181,7 +181,6 @@ trailer.setPath(multimedia.getTrailer().getPath());
 							<p>Director: <jsp:getProperty name="poster" property="director"/></p>
 							<p>Year: <jsp:getProperty name="poster" property="year"/></p>
 							<p>Plot: <jsp:getProperty name="poster" property="plot"/></p>
-							<p>Price: <jsp:getProperty name="film" property="price"/></p>
 						</div>
 						<div class="col-lg-4 animate-box">
 							<div class="-highlight right">
@@ -192,20 +191,39 @@ trailer.setPath(multimedia.getTrailer().getPath());
 								<p><jsp:getProperty name="actor" property="actor"/></p>
 								
 								<%} %>
+								</div>
+								</div>
+								
+								<div class="col-lg-4 animate-box">
+							<div class="-highlight right">
+								<h4>Trailer</h4>
+								<iframe width="560" height="315" 
+									src= <jsp:getProperty name="trailer" property="path"/>
+									frameborder="0" 
+									gesture="media" 
+									allow="encrypted-media" 
+									allowfullscreen>
+								</iframe>
+							</div>
+						</div>
+					<div class="col-lg-4 animate-box">
+						<div class="-highlight right">
+							<h4>Price</h4>
+							<p><jsp:getProperty name="film" property="price"/></p>
+						</div>
+					</div>
 								
 					<div class="top-row">
-					<form action="/Project/addToCart" method = "get">
+					<form action="/Project/goToCart" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" type=submit name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
+          					<button class="button" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
           				</div> 
           			</form>
-          			<form action="/Project/watchIt" method = "get">
-          				<div class="field-wrap">
-							<% if (curSession.isPremium()){ %>
-          						<button class="button" type=submit name = "watch" value = <jsp:getProperty name="tvserie" property="id"/> >Watch It!</button> 
-          					<%}else{ %>
-          						<button disabled=”disabled” class="button" type=submit>Watch It!</button> 
-          					<%} %>
+          			
+					<div class="top-row">
+					<form action="watchIt" method = "get">
+						 <div class="field-wrap">
+          					<button class="button" name = "path" value = <jsp:getProperty name="film" property="videoOnDemand"/>>Watch It!</button> 
           				</div> 
           			</form>
 								
@@ -261,9 +279,13 @@ trailer.setPath(multimedia.getTrailer().getPath());
 						<div class="col-lg-4 animate-box">
 							<div class="-highlight right">
 								<h4>Trailer</h4>
-								<form action=<jsp:getProperty name="trailer" property="path"/> name="trailer" id="trailer">
-									<p><button form="trailer" formaction=<jsp:getProperty name="trailer" property="path"/> formmethod="get">Go To Trailer</button></p>
-								</form>
+								<iframe width="560" height="315" 
+									src= <jsp:getProperty name="trailer" property="path"/>
+									frameborder="0" 
+									gesture="media" 
+									allow="encrypted-media" 
+									allowfullscreen>
+								</iframe>
 							</div>
 						</div>
 					<div class="col-lg-4 animate-box">
@@ -321,16 +343,19 @@ trailer.setPath(multimedia.getTrailer().getPath());
 			Episode episodetmp = (Episode) iterator.next();
 			episode.setEpisode(episodetmp.getEpisode());
 			episode.setSeason(episodetmp.getSeason());
+			episode.setPath(episodetmp.getPath());
+			episode.setTVSerieID(episodetmp.getTVSerieID());
 			%>
 			
-          <form action="">
-          
-             <div class="field-wrap">
-
-            <h4> <a href = " "><jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </a></h4>
-
-          </div>
-          </form>
+			<div class="top-row">
+				<form action="watchIt" method = "get">
+					 <div class="field-wrap">
+          				<button name = "path" value = <jsp:getProperty name="episode" property="path"/>> <jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </button> 
+          			</div> 
+          		</form>
+          	</div>
+			
+         
           <%}%>
 			</article>
 			

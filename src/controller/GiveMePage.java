@@ -23,24 +23,18 @@ public class GiveMePage extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		boolean film = (boolean) req.getSession().getAttribute("isFilm");
-		int i = 0;
-		System.out.println(film);
-		
-		FilmDAO filmDao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
-		TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
 		int id = 0;
 		String str = req.getParameter("giveMultimedia");
 		id = Integer.parseInt(str);
-		
-		System.out.println(id);
 		Multimedia multimedia = null;
 		if (film) {
+			FilmDAO filmDao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
 			multimedia = filmDao.findByPrimaryKey(id);
-			System.out.println("film");
 		}
-		else
+		else {
+			TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
 			multimedia = tvseriedao.findByPrimaryKey(id);
-		
+		}
 		req.setAttribute("YourMultimedia", multimedia);
 		req.getRequestDispatcher("MultimediaPage.jsp").forward(req, resp);
 	}
