@@ -1,6 +1,22 @@
 package controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.PasswordAuthentication;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -25,14 +41,9 @@ public class CheckLogin extends HttpServlet{
 	    	System.out.println("Errore");
 	    	reportError(req, resp);
 	    }
-	    System.out.print(user.getEmail());
-	    System.out.println(password);
 	    UserReference userref = DatabaseManager.getInstance().getDaoFactory().getUserRefernce(user);
 	    String realpass = userref.getPassword();
 	    System.out.println(realpass);
-	    System.out.println("Control");
-	    if (user.isAdmin())
-	    	System.out.println(user.getEmail());
 
 	    if (realpass.equals(password)) {
 	        req.getSession().setAttribute("user", user.getEmail()); // Login user.
@@ -46,6 +57,7 @@ public class CheckLogin extends HttpServlet{
 	    	reportError(req, resp);
 	    }
 	}
+	
 	
 	private void reportError (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//req.setAttribute("message", "Unknown username/password. Please retry."); // Store error message in request scope.
