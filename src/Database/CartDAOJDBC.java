@@ -43,9 +43,9 @@ public class CartDAOJDBC implements CartDAO {
 				}
 				statement.setInt(3, multimediaInCart.getQuantity());
 				statement.executeUpdate();
-				connection.commit();
-				connection.setAutoCommit(false);
 			}
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

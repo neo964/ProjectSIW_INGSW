@@ -21,6 +21,7 @@ prefix="c" %>
 <jsp:useBean id="TVposter" class="Model.TVSeriePoster" scope="page"/>
 <jsp:useBean id="index" class="Model.seasonindex" scope="page"/>
 <jsp:useBean id="episode" class="Model.Episode" scope="page"/>
+<jsp:useBean id="trailer" class="Model.Trailer" scope="page"/>
 
 <%
 String user = (String) session.getAttribute("user");
@@ -40,6 +41,7 @@ curSession.setPremium(control);
 Multimedia multimedia = (Multimedia) request.getAttribute("YourMultimedia");
 Film filmtmp = null;
 TVSerie tvserietmp = null;
+String isfilm = null;
 
 if (multimedia instanceof Film){
 	filmtmp = (Film) multimedia;
@@ -54,6 +56,7 @@ if (multimedia instanceof Film){
 	poster.setPlot(filmtmp.getPoster().getPlot());
 	poster.setTitle(filmtmp.getPoster().getTitle());
 	poster.setYear(filmtmp.getPoster().getYear());
+	//session.setAttribute("isFilm", true);
 } else {
 	tvserietmp = (TVSerie) multimedia;
 	
@@ -70,7 +73,10 @@ if (multimedia instanceof Film){
 	TVposter.setYear(tvserietmp.getPoster().getYear());
 	TVposter.setCompleted(tvserietmp.getTvPoster().isCompleted());
 	TVposter.setSeasons(tvserietmp.getTvPoster().getSeasons());
+	//session.setAttribute("isFilm", false);
 }
+request.setAttribute("multimedia", multimedia.getId());
+trailer.setPath(multimedia.getTrailer().getPath());
 
 %>
 
@@ -123,7 +129,7 @@ if (multimedia instanceof Film){
 			<figure>
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading"><a href="">MyProfile</a></h3>
+			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
 			<h3>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</h3>
 			<p> Hi, I'm in. </p>
 			
@@ -133,27 +139,21 @@ if (multimedia instanceof Film){
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="/Project/Subscribe">Subscribe</a></li>
+					<li><a href="/Project/subscribe">Subscribe</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search" name = "giveNews" value = "news">News</a></li></form>
+					<li><a href="/Project/search">News</a></li></form>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="/Project/myFavourite">MyFavourite</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="posterFilm.html">AddNewFilm</a></li>
-					<li><a href="posterTVSerie.html">AddNewTVSerie</a></li>
+					<li><a href="/Project/addFilm">AddNewFilm</a></li>
+					<li><a href="/Project/addTVSerie">AddNewTVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
 			<div class="-box">
-				<h3 class="heading">Search Film</h3>
+				<h3 class="heading">Search</h3>
 				<form action="/Project/search" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-					</div>
-				</form>
-				<h3 class="heading">Search TVSerie</h3>
-				<form action="/Project/searchTV" method="get">
 					<div class="form-group">
 						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 					</div>
@@ -192,6 +192,23 @@ if (multimedia instanceof Film){
 								<p><jsp:getProperty name="actor" property="actor"/></p>
 								
 								<%} %>
+								
+					<div class="top-row">
+					<form action="/Project/addToCart" method = "get">
+						 <div class="field-wrap">
+          					<button class="button" type=submit name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
+          				</div> 
+          			</form>
+          			<form action="/Project/watchIt" method = "get">
+          				<div class="field-wrap">
+							<% if (curSession.isPremium()){ %>
+          						<button class="button" type=submit name = "watch" value = <jsp:getProperty name="tvserie" property="id"/> >Watch It!</button> 
+          					<%}else{ %>
+          						<button disabled=”disabled” class="button" type=submit>Watch It!</button> 
+          					<%} %>
+          				</div> 
+          			</form>
+								
 							</div>
 						</div>
 					</div>
@@ -228,7 +245,6 @@ if (multimedia instanceof Film){
 							<p>Plot: <jsp:getProperty name="TVposter" property="plot"/></p>
 							<p>Seasons: <jsp:getProperty name="TVposter" property="seasons"/></p>
 							<p>Completed: <jsp:getProperty name="TVposter" property="completed"/></p>
-							<p>Price <jsp:getProperty name="tvserie" property="price"/></p>
 						</div>
 						<div class="col-lg-4 animate-box">
 							<div class="-highlight right">
@@ -241,8 +257,28 @@ if (multimedia instanceof Film){
 								<%} %>
 							</div>
 						</div>
+						<!-- Spazio per il link -->
+						<div class="col-lg-4 animate-box">
+							<div class="-highlight right">
+								<h4>Trailer</h4>
+								<form action=<jsp:getProperty name="trailer" property="path"/> name="trailer" id="trailer">
+									<p><button form="trailer" formaction=<jsp:getProperty name="trailer" property="path"/> formmethod="get">Go To Trailer</button></p>
+								</form>
+							</div>
+						</div>
+					<div class="col-lg-4 animate-box">
+						<div class="-highlight right">
+							<h4>Price</h4>
+							<p><jsp:getProperty name="tvserie" property="price"/></p>
+						</div>
 					</div>
-
+					
+					<div class="top-row">
+					<form action="/Project/goToCart" method = "get">
+						 <div class="field-wrap">
+          					<button class="button" type="" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
+          				</div> 
+          			</form>
 					<div class="row rp-b">
 						<div class="col-md-12 animate-box">
 							<blockquote>
@@ -251,7 +287,7 @@ if (multimedia instanceof Film){
 						</div>
 					</div>
 				
-		<ul class="tab-group">
+		<!-- <ul class="tab-group">
 	       <% for (index.setIndex(0); index.getIndex() < TVposter.getSeasons(); index.setIndex(index.getIndex()+1)) {
 	       		if (index.getIndex() == 0){
 	       %>	
@@ -262,21 +298,24 @@ if (multimedia instanceof Film){
      	</ul>
      	
      	 
-     	 <div class="tab-content">
-     	 <% for (index.setIndex(0); index.getIndex() < TVposter.getSeasons(); index.setIndex(index.getIndex()+1)) {
+     	 <div class="tab-content"> -->
+     	 <% 
+     	 if (curSession.isAdmin()){
+     	 for (index.setIndex(1); index.getIndex() < TVposter.getSeasons()+1; index.setIndex(index.getIndex()+1)) {
 
  			System.out.println (index.getIndex());
 	       %>
         <div id=<jsp:getProperty property="index" name="index"/>>   
-          <h1><jsp:getProperty property="index" name="index"/></h1>
+			<h2><jsp:getProperty name="index" property="index"/></h2>
           <div class="top-row">
             <div class="field-wrap">
      			<div class="container-fluid">
 		<div class="row -post-entry">
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+          
 				
 		<% 
-		LinkedList<Episode> episodes = tvserietmp.getSeason(index.getIndex()+1);
+		LinkedList<Episode> episodes = tvserietmp.getSeason(index.getIndex());
 
 		for (Iterator<Episode> iterator = episodes.iterator(); iterator.hasNext();) {
 			Episode episodetmp = (Episode) iterator.next();
@@ -284,12 +323,12 @@ if (multimedia instanceof Film){
 			episode.setSeason(episodetmp.getSeason());
 			%>
 			
-			<h1><jsp:getProperty name="episode" property="season"/></h1>
-			<form class="field-wrap" action="/Project/videoOnDemand" method="get" id="episode">
-            <div class="field-wrap">
-          <div> <h4>
-          <button type = "submit" name="episode" value = "ep" form="episode"><jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </button>
-           </h4></div>
+          <form action="">
+          
+             <div class="field-wrap">
+
+            <h4> <a href = " "><jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </a></h4>
+
           </div>
           </form>
           <%}%>
@@ -308,7 +347,7 @@ if (multimedia instanceof Film){
         </div>
 	
 	</div>
-	<%} %>
+	<%} }%>
 
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
