@@ -23,6 +23,17 @@ public class GoToCart extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String idstr = (String) req.getParameter("multimedia"); 
+		if (idstr == null) {
+			String username = (String) req.getSession().getAttribute("user");
+			CartDAO cartdao = DatabaseManager.getInstance().getDaoFactory().getCartDao();
+			Cart cart = cartdao.findByPrimaryKey(username);
+			
+			req.setAttribute("cart", cart);
+			RequestDispatcher dispacher = req.getRequestDispatcher("checkout.jsp");
+			dispacher.forward(req, resp);
+			return;
+		}
+		
 		int id = Integer.parseInt(idstr);
 		/*System.out.println(req.getSession().getAttribute("isfilm") + "String");
 		String isFilmstr = (String) req.getSession().getAttribute("isfilm");
@@ -51,16 +62,4 @@ public class GoToCart extends HttpServlet{
 		req.setAttribute("YourMultimedia", multimedia);
 		req.getRequestDispatcher("MultimediaPage.jsp").forward(req, resp);
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = (String) req.getSession().getAttribute("user");
-		CartDAO cartdao = DatabaseManager.getInstance().getDaoFactory().getCartDao();
-		Cart cart = cartdao.findByPrimaryKey(username);
-		
-		req.setAttribute("cart", cart);
-		RequestDispatcher dispacher = req.getRequestDispatcher("checkout.jsp");
-		dispacher.forward(req, resp);
-	}
-
 }

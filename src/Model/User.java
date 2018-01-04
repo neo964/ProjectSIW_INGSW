@@ -57,7 +57,8 @@ public class User {
 	}
 
 	public String getPassword() {
-		return Password;
+		System.out.println(this.Password);
+		return this.Password;
 	}
 
 	public void setPassword(String password) {

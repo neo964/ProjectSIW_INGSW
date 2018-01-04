@@ -6,54 +6,37 @@ prefix="c" %>
 	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
 <%
 String user = (String) session.getAttribute("user");
-System.out.print(user);
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
-	System.out.print(user);
+	System.out.println(user);
 	curSession.setUser(user);
-	curSession.setFirstName((String)session.getAttribute("firstName"));
-	curSession.setLastName((String)session.getAttribute("lastName"));
-	curSession.setImage((String)session.getAttribute("image"));
+	curSession.setFirstName((String) session.getAttribute("firstName"));
+	curSession.setLastName((String) session.getAttribute("lastName"));
+	curSession.setImage((String) session.getAttribute("image"));
 	
-	boolean control = (boolean)session.getAttribute("admin");
-	if (control)
-		System.out.print("SIII");
+	boolean control = ((boolean) session.getAttribute("admin"));
 	curSession.setAdmin(control);
 	
-	control = (boolean)session.getAttribute("premium");
+	control = ((boolean) session.getAttribute("premium"));
 	curSession.setPremium(control);
 }
 %>
-
 
  	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PANDAFLIX &mdash; Pastore-Perri</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO"free html5, free template, free bootstrap, html5, css3, mobile first, responsive"  />
-	<meta name="keywords" content=/>
 	<meta name="author" content="Pastore-Perri">
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
-	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
-	<!-- Animate -->
 	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon -->
 	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-
 	<link rel="stylesheet" href="css/style.css">
-
-	<!-- Modernizr JS -->
+	
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 
 	</head>
 	<body>
@@ -63,9 +46,11 @@ else{
 			<figure>
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading"><a href="">MyProfile</a></h3>
-			<h3>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</h3>
-			<p> Hi, I'm in. </p>
+			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
+			<p>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</p>
+			<p> I'm in. </p>
+			
+			<a href="/Project/signOut">Log Out</a>
 			
 		</div>
 	<!-- Profilo utente -->
@@ -75,13 +60,14 @@ else{
 				<ul>
 					<li><a href="/Project/Subscribe">Subscribe</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search" name = "giveNews" value = "news">News</a></li></form>
+					<li><a href="/Project/search">News</a></li></form>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="/Project/myFavourite">MyFavourite</a></li>
+					<li><a href="/Project/myFavourite">My Favourite</a></li>
+					<li><a href="/Project/goToCart">Cart</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="posterFilm.html">AddNewFilm</a></li>
-					<li><a href="posterTVSerie.html">AddNewTVSerie</a></li>
+					<li><a href="posterFilm.html">Add New Film</a></li>
+					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
@@ -92,6 +78,7 @@ else{
 						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 					</div>
 				</form>
+				
 				<h3 class="heading">Search TVSerie</h3>
 				<form action="/Project/searchTV" method="get">
 					<div class="form-group">

@@ -149,5 +149,22 @@
         <url-pattern>/watchIt</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>SignOutServlet</servlet-name>
+        <servlet-class>controller.SignOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOutServlet</servlet-name>
+        <url-pattern>/signOut</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>RestoreServlet</servlet-name>
+        <servlet-class>controller.RestorePassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RestoreServlet</servlet-name>
+        <url-pattern>/restore</url-pattern>
+    </servlet-mapping> 
 
 </web-app>

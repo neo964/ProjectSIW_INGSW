@@ -32,7 +32,6 @@ public class CheckLogin extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("LOGGGG");
 		UserDAO userdao = DatabaseManager.getInstance().getDaoFactory().getUserDAO();
 		String username = req.getParameter("email");
 		String password = req.getParameter("password");
@@ -46,6 +45,7 @@ public class CheckLogin extends HttpServlet{
 	    System.out.println(realpass);
 
 	    if (realpass.equals(password)) {
+	    	//req.getSession().setAttribute("user", user);
 	        req.getSession().setAttribute("user", user.getEmail()); // Login user.
 	        req.getSession().setAttribute("admin", user.isAdmin());
 	        req.getSession().setAttribute("premium", user.isPremium());

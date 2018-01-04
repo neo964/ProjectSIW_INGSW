@@ -82,47 +82,21 @@ trailer.setPath(multimedia.getTrailer().getPath());
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Magazine &mdash; Free Fully Responsive HTML5 Bootstrap Template by FREEHTML5.co</title>
+	<title>PANDAFLIX &mdash; Content</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FREEHTML5.CO" />
+	<meta name="author" content="Pastore-Perri">
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
-	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
-	<!-- Animate -->
 	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon -->
 	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-
 	<link rel="stylesheet" href="css/style.css">
 
-
-	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 
 	</head>
 	<body>
-	
 	<div id="-offcanvas">
 		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="-bio">
@@ -130,8 +104,10 @@ trailer.setPath(multimedia.getTrailer().getPath());
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
 			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
-			<h3>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</h3>
-			<p> Hi, I'm in. </p>
+			<p>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</p>
+			<p> I'm in. </p>
+			
+			<a href="/Project/signOut">Log Out</a>
 			
 		</div>
 	<!-- Profilo utente -->
@@ -139,21 +115,29 @@ trailer.setPath(multimedia.getTrailer().getPath());
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="/Project/subscribe">Subscribe</a></li>
+					<li><a href="/Project/Subscribe">Subscribe</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search">News</a></li>
+					<li><a href="/Project/search">News</a></li></form>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="/Project/myFavourite">MyFavourite</a></li>
+					<li><a href="/Project/myFavourite">My Favourite</a></li>
+					<li><a href="/Project/goToCart">Cart</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="/Project/addFilm">AddNewFilm</a></li>
-					<li><a href="/Project/addTVSerie">AddNewTVSerie</a></li>
+					<li><a href="posterFilm.html">Add New Film</a></li>
+					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
 			<div class="-box">
-				<h3 class="heading">Search</h3>
+				<h3 class="heading">Search Film</h3>
 				<form action="/Project/search" method="get">
+					<div class="form-group">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+					</div>
+				</form>
+				
+				<h3 class="heading">Search TVSerie</h3>
+				<form action="/Project/searchTV" method="get">
 					<div class="form-group">
 						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 					</div>
@@ -161,6 +145,23 @@ trailer.setPath(multimedia.getTrailer().getPath());
 			</div>
 		</div>
 	</div>
+	
+	<header id="-header">
+		
+		<div class="container-fluid">
+
+			<div class="row">
+				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
+				<!-- logo -->
+				<div class="col-lg-12 col-md-12 text-center">
+					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
+				</div>
+
+			</div>
+		
+		</div>
+
+	</header>
 
 <% if (multimedia instanceof Film) {%>
 
@@ -218,24 +219,33 @@ trailer.setPath(multimedia.getTrailer().getPath());
           					<button class="button" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
           				</div> 
           			</form>
+          			</div>
           			
+          			<div class="top-row">
+					<form action="/Project/myFavourite" method = "get">
+						 <div class="field-wrap">
+          					<button class="button" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
+          				</div> 
+          			</form>
+          			</div>
+          			
+          			<div class="top-row">
+					<form action="/Project/suggestTo" method = "get">
+						 <div class="field-wrap">
+          					<button class="button" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Suggest It!</button> 
+          				</div> 
+          			</form>
+          			</div>
+          			
+          			<%if (curSession.isAdmin()){ %>
 					<div class="top-row">
 					<form action="watchIt" method = "get">
 						 <div class="field-wrap">
           					<button class="button" name = "path" value = <jsp:getProperty name="film" property="videoOnDemand"/>>Watch It!</button> 
           				</div> 
           			</form>
-								
-							</div>
-						</div>
-					</div>
-
-					<div class="row rp-b">
-						<div class="col-md-12 animate-box">
-							<blockquote>
-								<p></p>
-							</blockquote>
-						</div>
+          			</div>
+          			<%} %>
 					</div>
 	
 	</div>
@@ -303,6 +313,16 @@ trailer.setPath(multimedia.getTrailer().getPath());
           					<button class="button" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
           				</div> 
           			</form>
+          			</div>
+          			
+          			<div class="top-row">
+					<form action="/Project/myFavourite" method = "get">
+						 <div class="field-wrap">
+          					<button class="button" name = "favourite" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Favourites!</button> 
+          				</div> 
+          			</form>
+          			</div>
+          			
 					<div class="row rp-b">
 						<div class="col-md-12 animate-box">
 							<blockquote>
@@ -375,6 +395,11 @@ trailer.setPath(multimedia.getTrailer().getPath());
 	
 	</div>
 	<%} }%>
+	</div>
+	</div>
+	</article>
+	</div>
+	</div>
 
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
