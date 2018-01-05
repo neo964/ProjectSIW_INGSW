@@ -13,5 +13,4 @@ public class SuggestTo extends HttpServlet {
 		String username = (String) req.getSession().getAttribute("user");
 		
 	}
-
 }
