@@ -22,7 +22,7 @@ public class AllFilm extends HttpServlet {
 		FilmDAO filmDao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
 
 		LinkedList <Film> films = (LinkedList<Film>) filmDao.findAll();
-		req.getSession().setAttribute("size", films.size());
+		req.setAttribute("size", films.size());
 		int i = 0;
 		for (Film film2 : films) {
 			System.out.println(film2.getPoster().getImage());

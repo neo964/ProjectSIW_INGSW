@@ -29,29 +29,27 @@ public class GiveMeTVSerie extends HttpServlet {
 		
 		if (req.getParameter("keyword") != null) {
 			LinkedList <TVSerie> tvseries = (LinkedList<TVSerie>) tvseriedao.findByName(req.getParameter("keyword"));
-			req.getSession().setAttribute("size", tvseries.size());
+			req.setAttribute("size", tvseries.size());
 			int i = 0;
 			for (TVSerie tvserietmp : tvseries) {
 				System.out.println(tvserietmp.getPoster().getImage());
 				req.setAttribute("film" + i, tvserietmp);
 				i++;
 			}
-			req.setAttribute("isFilm", false);
+			req.getSession().setAttribute("isFilm", false);
 			req.getRequestDispatcher("research.jsp").forward(req, resp);
 		}
 		else if (req.getParameter("giveCategory") != null){
 			String categorytv = req.getParameter("giveCategory");
 			LinkedList <TVSerie> tvserie = (LinkedList<TVSerie>) tvseriedao.findByCategory(categorytv);
-			req.getSession().setAttribute("size", tvserie.size());
-			req.getSession().setAttribute("type", false);
+			req.setAttribute("size", tvserie.size());
 			int i = 0;
 			for (TVSerie tvserietmp : tvserie) {
 				System.out.println(tvserietmp.getPoster().getImage());
 				req.setAttribute("film" + i, tvserietmp);
 				i++;
 			}
-			req.setAttribute("isFilm", false);
-			System.out.println(req.getAttribute("isFilm"));
+			req.getSession().setAttribute("isFilm", false);
 			req.getRequestDispatcher("research.jsp").forward(req, resp);
 		} else { //else { if (req.getParameter("giveNews") != null){
 			Date date = new Date(System.currentTimeMillis());
@@ -59,14 +57,14 @@ public class GiveMeTVSerie extends HttpServlet {
 			String yearstr = datestr.substring(datestr.length()-4, datestr.length());
 			int year = Integer.parseInt(yearstr);
 			LinkedList <TVSerie> tvseries = (LinkedList<TVSerie>) tvseriedao.findByYear(year);
-			req.getSession().setAttribute("size", tvseries.size());
+			req.setAttribute("size", tvseries.size());
 			int i = 0;
 			for (TVSerie tvserie : tvseries) {
 				System.out.println(tvserie.getPoster().getImage());
 				req.setAttribute("film" + i, tvserie);
 				i++;
 			}
-			req.setAttribute("isFilm", false);
+			req.getSession().setAttribute("isFilm", false);
 			req.getRequestDispatcher("research.jsp").forward(req, resp);
 		}
 		System.out.println("Here");

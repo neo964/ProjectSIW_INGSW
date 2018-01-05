@@ -5,20 +5,20 @@ prefix="c" %>
 <head>
 	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
 <%
-String user = (String) session.getAttribute("user");
+User user = (User) session.getAttribute("user");
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
 	System.out.println(user);
-	curSession.setUser(user);
-	curSession.setFirstName((String) session.getAttribute("firstName"));
-	curSession.setLastName((String) session.getAttribute("lastName"));
-	curSession.setImage((String) session.getAttribute("image"));
+	curSession.setUser(user.getEmail());
+	curSession.setFirstName(user.getFirstName());
+	curSession.setLastName(user.getLastName());
+	curSession.setImage(user.getPathToImage());
 	
-	boolean control = ((boolean) session.getAttribute("admin"));
+	boolean control = (user.isAdmin());
 	curSession.setAdmin(control);
 	
-	control = ((boolean) session.getAttribute("premium"));
+	control = (user.isPremium());
 	curSession.setPremium(control);
 }
 %>
@@ -46,7 +46,7 @@ else{
 			<figure>
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
+			<h3 class="heading"><a href="myprofile.jsp">MyProfile</a></h3>
 			<p>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</p>
 			<p> I'm in. </p>
 			

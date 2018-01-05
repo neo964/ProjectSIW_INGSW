@@ -21,13 +21,14 @@ public class AllTVSerie extends HttpServlet {
 		TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
 
 		LinkedList <TVSerie> tvserie = (LinkedList<TVSerie>) tvseriedao.findAll();
-		req.getSession().setAttribute("size", tvserie.size());
+		req.setAttribute("size", tvserie.size());
 		int i = 0;
 		for (TVSerie tvserietmp : tvserie) {
 			System.out.println(tvserietmp.getPoster().getImage());
 			req.setAttribute("film" + i, tvserietmp);
 			i++;
 		}
+		req.getSession().setAttribute("isFilm", true);
 		req.getRequestDispatcher("research.jsp").forward(req, resp);
 	}
 }

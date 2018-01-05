@@ -45,13 +45,7 @@ public class CheckLogin extends HttpServlet{
 	    System.out.println(realpass);
 
 	    if (realpass.equals(password)) {
-	    	//req.getSession().setAttribute("user", user);
-	        req.getSession().setAttribute("user", user.getEmail()); // Login user.
-	        req.getSession().setAttribute("admin", user.isAdmin());
-	        req.getSession().setAttribute("premium", user.isPremium());
-	        req.getSession().setAttribute("image", user.getPathToImage());
-	        req.getSession().setAttribute("firstName", user.getFirstName());
-	        req.getSession().setAttribute("lastName", user.getLastName());
+	    	req.getSession().setAttribute("user", user);
 	        resp.sendRedirect("index.jsp"); // Redirect to home page.
 	    } else {
 	    	reportError(req, resp);

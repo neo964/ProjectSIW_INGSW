@@ -24,19 +24,22 @@ prefix="c" %>
 <jsp:useBean id="trailer" class="Model.Trailer" scope="page"/>
 
 <%
-String user = (String) session.getAttribute("user");
+User user = (User) session.getAttribute("user");
 if (user == null)
 	response.sendRedirect("loginpage.html");
-
-curSession.setUser(user);
-curSession.setFirstName((String)session.getAttribute("firstName"));
-curSession.setLastName((String)session.getAttribute("lastName"));
-curSession.setImage((String)session.getAttribute("image"));
-
-boolean control = (boolean)session.getAttribute("admin");
-curSession.setAdmin(control);
-control = (boolean)session.getAttribute("premium");
-curSession.setPremium(control);
+else{
+	System.out.println(user);
+	curSession.setUser(user.getEmail());
+	curSession.setFirstName(user.getFirstName());
+	curSession.setLastName(user.getLastName());
+	curSession.setImage(user.getPathToImage());
+	
+	boolean control = (user.isAdmin());
+	curSession.setAdmin(control);
+	
+	control = (user.isPremium());
+	curSession.setPremium(control);
+}
 
 Multimedia multimedia = (Multimedia) request.getAttribute("YourMultimedia");
 Film filmtmp = null;

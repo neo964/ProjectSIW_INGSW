@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import = "Model.User" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
 <jsp:useBean id="trailer" class="Model.Trailer" scope="page"/>
@@ -9,22 +10,23 @@ prefix="c" %>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Pastore-Perri">
 <%
-String user = (String) session.getAttribute("user");
+User user = (User) session.getAttribute("user");
 if (user == null)
 	response.sendRedirect("loginpage.html");
-
-curSession.setUser(user);
-curSession.setFirstName((String)session.getAttribute("firstName"));
-curSession.setLastName((String)session.getAttribute("lastName"));
-curSession.setImage((String)session.getAttribute("image"));
-
-boolean control = (boolean)session.getAttribute("admin");
-curSession.setAdmin(control);
-control = (boolean)session.getAttribute("premium");
-curSession.setPremium(control);
-System.out.println (request.getParameter("path"));
+else{
+	System.out.println(user);
+	curSession.setUser(user.getEmail());
+	curSession.setFirstName(user.getFirstName());
+	curSession.setLastName(user.getLastName());
+	curSession.setImage(user.getPathToImage());
+	
+	boolean control = (user.isAdmin());
+	curSession.setAdmin(control);
+	
+	control = (user.isPremium());
+	curSession.setPremium(control);
+}
 trailer.setPath(request.getParameter("path"));
-System.out.println (trailer.getPath());
 %>
 
   <link href="http://vjs.zencdn.net/6.4.0/video-js.css" rel="stylesheet">

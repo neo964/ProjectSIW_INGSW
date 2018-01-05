@@ -1,22 +1,15 @@
-<%@page import="java.util.LinkedList"%>
 <%@page import="Model.User"%>
-<%@page import="Model.Film"%>
-<%@page import="Model.Poster"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
 <head>
-
-<jsp:useBean id="film" class="Model.Film" scope="page"/>
-<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
-<jsp:useBean id="poster" class="Model.FilmPoster" scope="page"/>
-
+	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
 <%
 User user = (User) session.getAttribute("user");
+System.out.println (user);
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
-	System.out.println(user);
 	curSession.setUser(user.getEmail());
 	curSession.setFirstName(user.getFirstName());
 	curSession.setLastName(user.getLastName());
@@ -28,23 +21,21 @@ else{
 	control = (user.isPremium());
 	curSession.setPremium(control);
 }
-	int length = (int)request.getAttribute("size");
 %>
 
-<head>
-	<meta charset="utf-8">
+ 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PANDAFLIX &mdash; News</title>
+	<title>PANDAFLIX &mdash; Pastore-Perri</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Pastore-Perri">
-	
+
 	<link rel="shortcut icon" href="favicon.ico">
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
-
+	
 	<script src="js/modernizr-2.6.2.min.js"></script>
 
 	</head>
@@ -98,8 +89,7 @@ else{
 		</div>
 	</div>
 
-	<!-- END #-offcanvas -->
-	<header id="-header">
+<header id="-header">
 		
 		<div class="container-fluid">
 
@@ -107,8 +97,12 @@ else{
 				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2>News</h2>
+					<h1 id="-logo"><a href="index.html">PANDAFLIX <sup>TM</sup></a></h1>
+					<h2 id="-logo"><a href="index.html"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
+					<figure>
+						<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
+					</figure>
+			
 				</div>
 
 			</div>
@@ -118,46 +112,45 @@ else{
 	</header>
 	<!-- END #-header -->
 	<div class="container-fluid">
+	<form action="/Project/ActionProfile" method="get">
 		<div class="row -post-entry">
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>	<!-- qui è il tag di cambio pagina -->
-					<a href="single.html"><img src="images/azione.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 1</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
+			<figure>	<!-- qui è il tag di cambio pagina -->
+					<input name="actionprofile" type="image" value="subscribe" class="img-responsive" alt="Image" src="images/news.png">
+			</figure>
+				<span class="-meta"><a href="/Project/Subscribe"></a></span>
+				<h2 class="-article-title"><a href="/Project/Subscribe">Subscribe</a></h2>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="single.html"><img src="images/pic_2.jpg" alt="Image" class="img-responsive"></a>
+					<input name="actionprofile" type="image" value="cart" class="img-responsive" alt="Image" src="images/film.jpg">
 				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 2</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
+				<span class="-meta"><a href="/Project/myProfile"></a></span>
+				<h2 class="-article-title"><a href="Project/myProfile">Cart</a></h2>
 			</article>
 			<div class="clearfix visible-xs-block"></div>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="single.html"><img src="images/pic_3.jpg" alt="Image" class="img-responsive"></a>
+					<input name="actionprofile" type="image" value="settings" class="img-responsive" alt="Image" src="images/film.jpg">
 				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 3</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
+				<span class="-meta"><a href="/Project/settings"></a></span>
+				<h2 class="-article-title"><a href="Project/settings">Settings</a></h2>
 			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+		
+		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="single.html"><img src="images/pic_4.jpg" alt="Image" class="img-responsive"></a>
+					<input name="actionprofile" type="image" value="favourite" class="img-responsive" alt="Image" src="images/film.jpg">
 				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 4</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
+				<span class="-meta"><a href="aftermyFavourite.html"></a></span>
+				<h2 class="-article-title"><a href="aftermyFavourite.html">My Favourite</a></h2>
 			</article>
+		
 			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-			
+			</form>
 	</div>
 
 	<footer id="-footer">
-		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
+		<p><small>&copy;2017 ingegneria del software e siw project <br><a>Designed by Andrea Pastore & Mario Perri</a> </small></p>
 	</footer>
 
 
@@ -175,3 +168,4 @@ else{
 
 	</body>
 </html>
+

@@ -15,9 +15,8 @@ public class CartHandler extends HttpServlet{
 	protected void doGet(javax.servlet.http.HttpServletRequest req, javax.servlet.http.HttpServletResponse resp) throws javax.servlet.ServletException ,java.io.IOException {
 		Multimedia multimedia= (Multimedia)req.getAttribute("multimediaincart");
 		CartDAO cartdao = DatabaseManager.getInstance().getDaoFactory().getCartDao();
-		UserDAO userdao = DatabaseManager.getInstance().getDaoFactory().getUserDAO();
 		
-		Cart cart = new Cart (userdao.findByPrimaryKey((String)req.getSession().getAttribute("user")));
+		Cart cart = new Cart ((User)req.getSession().getAttribute("user"));
 		cart.addToCart(new MultimediaInCart(multimedia, 1));
 		cartdao.save(cart);
 	}

@@ -30,40 +30,28 @@ public class GiveMeMultimedia extends HttpServlet {
 		if (req.getParameter("keyword") != null) {
 			LinkedList <Film> films = (LinkedList<Film>) filmDao.findByName(req.getParameter("keyword"));
 			LinkedList <TVSerie> tvseries = (LinkedList<TVSerie>) tvseriedao.findByName(req.getParameter("keyword"));
-			req.getSession().setAttribute("size", films.size() + tvseries.size());
+			req.setAttribute("size", films.size() + tvseries.size());
 			int i = 0;
 			for (Film film2 : films) {
 				System.out.println(film2.getPoster().getImage());
 				req.setAttribute("film" + i, film2);
 				i++;
 			}
+			req.getSession().setAttribute("isFilm", true);
 			req.getRequestDispatcher("research.jsp").forward(req, resp);
 		}
 		else if (req.getParameter("giveCategory") != null){
 			String category = req.getParameter("giveCategory");
-			if (category.charAt(0) == 'T') {
-				String categorytv = category.substring(1, category.length());
-				LinkedList <TVSerie> tvserie = (LinkedList<TVSerie>) tvseriedao.findByCategory(categorytv);
-				req.getSession().setAttribute("size", tvserie.size());
-				req.getSession().setAttribute("type", false);
-				int i = 0;
-				for (TVSerie tvserietmp : tvserie) {
-					System.out.println(tvserietmp.getPoster().getImage());
-					req.setAttribute("film" + i, tvserietmp);
-					i++;
-				}
-				req.getRequestDispatcher("research.jsp").forward(req, resp);
-			} else {
 				LinkedList <Film> films = (LinkedList<Film>) filmDao.findByCategory(category);
-				req.getSession().setAttribute("size", films.size());
+				req.setAttribute("size", films.size());
 				int i = 0;
 				for (Film film2 : films) {
 					System.out.println(film2.getPoster().getImage());
 					req.setAttribute("film" + i, film2);
 					i++;
 				}
+				req.getSession().setAttribute("isFilm", true);
 				req.getRequestDispatcher("research.jsp").forward(req, resp);
-			}
 		} else { //else { if (req.getParameter("giveNews") != null){
 			String what = req.getParameter("giveNews");
 			if (what == null || what.equals("news")) {
@@ -72,37 +60,25 @@ public class GiveMeMultimedia extends HttpServlet {
 				String yearstr = datestr.substring(datestr.length()-4, datestr.length());
 				int year = Integer.parseInt(yearstr);
 				LinkedList <Film> films = (LinkedList<Film>) filmDao.findByYear(year);
-				req.getSession().setAttribute("size", films.size());
+				req.setAttribute("size", films.size());
 				int i = 0;
 				for (Film film2 : films) {
 					System.out.println(film2.getPoster().getImage());
 					req.setAttribute("film" + i, film2);
 					i++;
 				} 
-					req.getRequestDispatcher("research.jsp").forward(req, resp);
+				req.getSession().setAttribute("isFilm", true);
+				req.getRequestDispatcher("research.jsp").forward(req, resp);
 			}else if (what.equals("film")) {
 				System.out.println("film");
-				req.setAttribute("isFilm", true);
+				req.getSession().setAttribute("isFilm", true);
 				req.getRequestDispatcher("categorypage.jsp").forward(req, resp);
 			} else if (what.equals("tvserie")) {
-				req.setAttribute("isFilm", false);
+				req.getSession().setAttribute("isFilm", false);
 				req.getRequestDispatcher("tvcategorypage.jsp").forward(req, resp);
 			} else if (what.equals("friend")) {
 				req.getRequestDispatcher("friend.jsp").forward(req, resp);
-			} else {/*
-				Date date = new Date(System.currentTimeMillis());
-				String datestr = date.toString();
-				String yearstr = datestr.substring(datestr.length()-4, datestr.length());
-				int year = Integer.parseInt(yearstr);
-				LinkedList <Film> films = (LinkedList<Film>) filmDao.findByYear(year);
-				req.getSession().setAttribute("size", films.size());
-				int i = 0;
-				for (Film film2 : films) {
-					System.out.println(film2.getPoster().getImage());
-					req.setAttribute("film" + i, film2);
-					i++;
-					req.getRequestDispatcher("research.jsp").forward(req, resp);*/
-				}
+			}
 			
 		}
 		System.out.println("Here");

@@ -1,15 +1,9 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="Model.User"%>
-<%@page import="Model.Film"%>
-<%@page import="Model.Poster"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
-<head>
-
-<jsp:useBean id="film" class="Model.Film" scope="page"/>
 <jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
-<jsp:useBean id="poster" class="Model.FilmPoster" scope="page"/>
 
 <%
 User user = (User) session.getAttribute("user");
@@ -28,7 +22,6 @@ else{
 	control = (user.isPremium());
 	curSession.setPremium(control);
 }
-	int length = (int)request.getAttribute("size");
 %>
 
 <head>
@@ -107,8 +100,11 @@ else{
 				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2>News</h2>
+					<h1 id="-logo"><a href="index.html">PANDAFLIX <sup>TM</sup></a></h1>
+					<h2 id="-logo"><a href="index.html">Become Premium</a></h2>
+					<figure>
+					<a><img src="images/offerte.jpg" alt="Image"></a>
+				</figure>
 				</div>
 
 			</div>
@@ -117,61 +113,53 @@ else{
 
 	</header>
 	<!-- END #-header -->
-	<div class="container-fluid">
-		<div class="row -post-entry">
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>	<!-- qui è il tag di cambio pagina -->
-					<a href="single.html"><img src="images/azione.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 1</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="images/pic_2.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 2</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="images/pic_3.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 3</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="images/pic_4.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="-meta"><a href="single.html">Contenuto 4</a></span>
-				<h2 class="-article-title"><a href="single.html">Descrizione contenuto</a></h2>
-				<span class="-meta -date">Last update, now</span>
-			</article>
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-			
-	</div>
+          
+           <form action="/" method="post">
+          
+          <div class="top-row">
+          
+            <div class="field-wrap">  
+            <h4>Street</h4>
+              <input type="text" required autocomplete="off" />
+              
+        
+             <div class="field-wrap">
+            <h4>Country</h4>
+              <input type="text" required autocomplete="off" />
+            </div>
+            
+             <div class="field-wrap">
+            <h4>District</h4>
+              <input type="text" required autocomplete="off" />
+            </div>
+            
+             <div class="field-wrap">
+            <h4>Zipcode</h4>
+              <input type="text" required autocomplete="off" />
+            </div>
+            
+             <div class="field-wrap">
+            <h4>Card Number</h4>
+              <input type="text" required autocomplete="off" />
+            </div>
+            
+             <div class="field-wrap">
+            <h4>Expiration date</h4>
+              <input type="text" required autocomplete="off" />
+            </div>
+            
+            <div class="field-wrap">
+            <h4>Card CVC</h4>
+              <input type="text" required autocomplete="off" />
+            </div>
 
-	<footer id="-footer">
-		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
-	</footer>
+			 <div class="field-wrap">
+            
+              <button class="button button-block"/>Stay premium stay foolish</button>
+            </div>
+            </div>
 
+            
 
-	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Main JS -->
-	<script src="js/main.js"></script>
-
-	</body>
-</html>
+          </div>
+		
