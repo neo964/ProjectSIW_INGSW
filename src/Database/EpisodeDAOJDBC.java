@@ -101,6 +101,7 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void update(Episode episode) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update = "update \"Episode\" SET \"Path\" = ?, \"TVSerie\" = ?, \"episode\" = ?, \"season\" = ? WHERE \"TVSerie\" = ? AND \"episode\" = ? AND \"season\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, episode.getPath());
@@ -111,6 +112,8 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 			statement.setInt(6, episode.getEpisode());
 			statement.setInt(7, episode.getSeason());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -126,12 +129,15 @@ public class EpisodeDAOJDBC implements EpisodeDAO{
 	public void delete(Episode episode) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Episode\" WHERE \"TVSerie\" = ? AND \"episode\" = ? AND \"season\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, episode.getTVSerieID());
 			statement.setInt(2, episode.getEpisode());
 			statement.setInt(3, episode.getSeason());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

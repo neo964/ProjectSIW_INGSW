@@ -7,15 +7,13 @@ import java.util.List;
 public class TVSerie extends Multimedia{
 	List<LinkedList<Episode>> episodes;
 	TVSeriePoster tvPoster;
-	double price;
 	
 	public TVSerie() {}
 	
 	public TVSerie(int id, Poster poster, Trailer trailer, double price) {
-		super(poster, trailer);
+		super(poster, trailer, price);
 		tvPoster = (TVSeriePoster) poster;
 		episodes = new LinkedList<LinkedList<Episode>>();
-		this.price = price;
 		this.setId(id);
 		
 		for (int i = 0; i < this.tvPoster.getSeasons(); i++) {
@@ -106,14 +104,6 @@ public class TVSerie extends Multimedia{
 
 	public void setTvPoster(TVSeriePoster tvPoster) {
 		this.tvPoster = tvPoster;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 }

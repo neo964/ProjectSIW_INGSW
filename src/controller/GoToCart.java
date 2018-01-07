@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,15 +24,23 @@ public class GoToCart extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String idstr = (String) req.getParameter("multimedia"); 
+		User user = (User) req.getSession().getAttribute("user");
 		if (idstr == null) {
-			String username = (String) req.getSession().getAttribute("user");
+			String action = (String) req.getParameter("fremove");
+			String action2 = (String) req.getParameter("tremove");
 			CartDAO cartdao = DatabaseManager.getInstance().getDaoFactory().getCartDao();
-			Cart cart = cartdao.findByPrimaryKey(username);
 			
+			if (action != null) {
+				int id = Integer.parseInt(action);
+				cartdao.delete(user.getEmail(), id, true);
+			} else if (action2 != null) {
+				int id = Integer.parseInt(action2);
+				cartdao.delete(user.getEmail(), id, false);
+			}
+			LinkedList<MultimediaInCart> cart = (LinkedList<MultimediaInCart>) cartdao.findByPrimaryKey(user.getEmail()).getCart();
 			req.setAttribute("cart", cart);
-			RequestDispatcher dispacher = req.getRequestDispatcher("checkout.jsp");
+			RequestDispatcher dispacher = req.getRequestDispatcher("cart.jsp");
 			dispacher.forward(req, resp);
-			return;
 		}
 		
 		int id = Integer.parseInt(idstr);
@@ -52,9 +61,6 @@ public class GoToCart extends HttpServlet{
 			multimedia = tvseriedao.findByPrimaryKey(id);
 		}
 		CartDAO cartDAO = DatabaseManager.getInstance().getDaoFactory().getCartDao();
-		String username = (String)req.getSession().getAttribute("user");
-		UserDAO userdao = DatabaseManager.getInstance().getDaoFactory().getUserDAO();
-		User user = userdao.findByPrimaryKey(username);
 		Cart cart = new Cart(user);
 		cart.addToCart(new MultimediaInCart(multimedia, 1));
 		cartDAO.save(cart);

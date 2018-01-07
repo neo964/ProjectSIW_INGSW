@@ -152,6 +152,7 @@ private DataSource dataSource;
 	public void update(Actor actor) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update;
 			if (actor.isFilm())
 				update = "update \"ActorInFilm\" SET \"Actor\" = ?, \"FilmID\" = ? WHERE \"Actor\" = ? AND \"FilmID\" = ?";
@@ -162,6 +163,8 @@ private DataSource dataSource;
 			statement.setString(1, actor.getActor());
 			statement.setInt(2, actor.getIdmultimedia());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -177,6 +180,7 @@ private DataSource dataSource;
 	public void delete(Actor actor) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete;
 			if (actor.isFilm())
 				delete = "delete FROM \"ActorInFilm\" WHERE \"Actor\" = ? AND \"FilmID\" = ?";
@@ -186,6 +190,8 @@ private DataSource dataSource;
 			statement.setString(1, actor.getActor());
 			statement.setInt(2, actor.getIdmultimedia());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -201,6 +207,7 @@ private DataSource dataSource;
 	public void deleteAllOfMultimedia(int idmultimedia, boolean film) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete;
 			if (film)
 				delete = "delete FROM \"ActorInFilm\" WHERE \"FilmID\" = ?";
@@ -209,6 +216,8 @@ private DataSource dataSource;
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, idmultimedia);
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

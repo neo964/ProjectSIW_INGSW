@@ -3,23 +3,25 @@ package Model;
 import java.util.Date;
 
 public class PaymentMethod {
-	private String CardNumber;
+	private String cardNumber;
 	private String user;
 	private int code;
 	private Date expirationDate;
 	
+	public PaymentMethod() {}
+	
 	public PaymentMethod(String CardNumber, String user, int code, Date expirationDate) {
-		this.CardNumber = CardNumber;
+		this.cardNumber = CardNumber;
 		this.user = user;
 		this.code = code;
 		this.expirationDate = expirationDate;
 	}
 	
 	public String getCardNumber() {
-		return CardNumber;
+		return cardNumber;
 	}
 	public void setCardNumber(String cardNumber) {
-		CardNumber = cardNumber;
+		this.cardNumber = cardNumber;
 	}
 	public String getUser() {
 		return user;

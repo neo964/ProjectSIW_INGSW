@@ -263,6 +263,7 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 	public void update(TVSerie tvSerie) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update = "update \"TVSerie\" SET \"ID\" = ?, \"Title\" = ?, \"Category\" = ?, \"Director\" = ?, \"Year\" = ?, \"Completed\" = ?, \"Seasons\" = ?, \"Trailer\" = ?, \"Plot\" = ?, \"Price\" = ?, \"Image\" = ? WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setInt(1, tvSerie.getId());
@@ -284,7 +285,8 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 			for (Episode episode : tvSerie.getAllEpisode()) {
 				episodes.update(episode);
 			}
-			
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -300,12 +302,15 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 	public void delete(TVSerie tvSerie) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"TVSerie\" WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, tvSerie.getId());
 			statement.executeUpdate();
 			actors.deleteAllOfMultimedia(tvSerie.getId(), false);
 			episodes.deleteAllOfTVSerie(tvSerie.getId());;
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

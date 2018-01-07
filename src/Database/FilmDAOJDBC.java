@@ -219,6 +219,7 @@ public class FilmDAOJDBC implements FilmDAO {
 	public void update(Film film) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update = "update \"Film\" SET \"ID\" = ?, \"Title\" = ?, \"Category\" = ?, \"Year\" = ?, \"Director\" = ?, \"Trailer\" = ?, \"VideoOnDemand\" = ?, \"Image\" = ? WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setInt(1, film.getId());
@@ -236,6 +237,8 @@ public class FilmDAOJDBC implements FilmDAO {
 			for (String actor : film.getPoster().getActors()) {
 				actors.update(new Actor(actor, film.getId(), true));
 			}
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -251,11 +254,14 @@ public class FilmDAOJDBC implements FilmDAO {
 	public void delete(Film film) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Film\" WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, film.getId());
 			statement.executeUpdate();
 			actors.deleteAllOfMultimedia(film.getId(), true);
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

@@ -4,6 +4,7 @@ public class PreviewMultimedia {
 	int id;
 	String image;
 	String title;
+	double price;
 	boolean film;
 	
 	public PreviewMultimedia() {}
@@ -40,4 +41,12 @@ public class PreviewMultimedia {
 		this.film = film;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
 }

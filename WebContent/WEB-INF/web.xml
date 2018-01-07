@@ -158,4 +158,31 @@
         <url-pattern>/ActionProfile</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>CheckOutServlet</servlet-name>
+        <servlet-class>controller.Checkout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckOutServlet</servlet-name>
+        <url-pattern>/Check-Out</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>BuyItServlet</servlet-name>
+        <servlet-class>controller.BuyIt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BuyItServlet</servlet-name>
+        <url-pattern>/buy</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>UpdateInfoServlet</servlet-name>
+        <servlet-class>controller.UpdateInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateInfoServlet</servlet-name>
+        <url-pattern>/UpdateInformation</url-pattern>
+    </servlet-mapping> 
+
 </web-app>

@@ -96,6 +96,7 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 	public void update(Friendship friendship) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update = "update \"Friendship\" SET \"User1\" = ?, \"User2\" = ? WHERE \"User1\" = ? AND \"User2\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, friendship.getUser1());
@@ -103,6 +104,8 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 			statement.setString(3, friendship.getUser1());
 			statement.setString(4, friendship.getUser2());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -119,10 +122,14 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 	public void delete(Friendship friendship) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM  \"Friendship\" WHERE \"User1\" = ? AND \"User2\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, friendship.getUser1());
 			statement.setString(2, friendship.getUser2());
+			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

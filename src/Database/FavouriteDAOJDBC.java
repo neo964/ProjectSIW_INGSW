@@ -177,6 +177,7 @@ public class FavouriteDAOJDBC implements FavouriteDAO{
 	public void delete(Favourite favourite) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Favourite\" WHERE \"User\" = ? AND (\"IDMultimedia\" = ? OR \"IDSerie\" = ?)";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, favourite.getUser());
@@ -188,6 +189,8 @@ public class FavouriteDAOJDBC implements FavouriteDAO{
 				statement.setInt(2, -1);
 			}
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -203,10 +206,13 @@ public class FavouriteDAOJDBC implements FavouriteDAO{
 	public void deleteAllOfUser(String user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Favourite\" WHERE \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, user);
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

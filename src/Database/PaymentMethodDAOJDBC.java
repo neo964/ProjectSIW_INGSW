@@ -128,6 +128,7 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 	public void update(PaymentMethod paymentMethod) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			PreparedStatement statement;
 			String update = "update \"PaymentMethod\" SET \"CardNumber\" = ?, \"User\" = ?, \"Code\" = ?, \"ExpirationDate\" = ? WHERE \"CardNumber\" = ? AND \"User\" = ?";
 			statement = connection.prepareStatement(update);
@@ -140,6 +141,8 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 			statement.setString(6, paymentMethod.getUser());
 			
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -155,11 +158,14 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 	public void delete(PaymentMethod paymentMethod) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"PaymentMethod\" WHERE \"CardNumber\" = ? AND \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, paymentMethod.getCardNumber());
 			statement.setString(2, paymentMethod.getUser());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -175,10 +181,13 @@ public class PaymentMethodDAOJDBC implements PaymentMethodDAO {
 	public void deleteAllOfUser(String user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"PaymentMethod\" WHERE \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, user);
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

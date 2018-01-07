@@ -120,6 +120,7 @@ public class CartDAOJDBC implements CartDAO {
 	public void delete(String name, int id, boolean film) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete;
 			if (film)
 				delete = "delete FROM \"Cart\" WHERE \"User\" = ? AND \"FilmID\" = ?";
@@ -129,6 +130,8 @@ public class CartDAOJDBC implements CartDAO {
 			statement.setString(1, name);
 			statement.setInt(2, id);
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -141,13 +144,16 @@ public class CartDAOJDBC implements CartDAO {
 	}
 
 	@Override
-	public void deleteAll(Cart cart) {
+	public void deleteAll(String user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Cart\" WHERE \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setString(1, cart.getUser().getEmail());
+			statement.setString(1, user);
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

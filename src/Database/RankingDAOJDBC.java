@@ -173,6 +173,7 @@ public class RankingDAOJDBC implements RankingDAO {
 	public void update(Ranking ranking) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update = null;
 			if (ranking.getMultimedia() instanceof Film)
 				update = "update \"RankingFilm\" SET \"Rank\" = ?, \"User\" = ?, \"Film\" = ? WHERE \"User\" = ?, \"Film\" = ?";
@@ -186,6 +187,8 @@ public class RankingDAOJDBC implements RankingDAO {
 			statement.setString(4, ranking.getUser());
 			statement.setInt(5, ranking.getMultimedia().getId());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -201,6 +204,7 @@ public class RankingDAOJDBC implements RankingDAO {
 	public void delete(Ranking ranking) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = null;
 			if (ranking.getMultimedia() instanceof Film)
 				delete = "delete FROM \"RankingFilm\" WHERE \"User\" = ?, \"Film\" = ?";
@@ -210,6 +214,8 @@ public class RankingDAOJDBC implements RankingDAO {
 			statement.setString(1, ranking.getUser());
 			statement.setInt(2, ranking.getMultimedia().getId());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

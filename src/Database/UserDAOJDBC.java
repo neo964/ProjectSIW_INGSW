@@ -106,6 +106,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void update(User user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update = "update \"User\" SET \"E-Mail\" = ?, \"Premium\" = ?, \"Admin\" = ?, \"Date\" = ?, \"FirstName\" = ?, \"LastName\" = ?, \"Image\" = ? WHERE \"E-Mail\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, user.getEmail());
@@ -122,6 +123,8 @@ public class UserDAOJDBC implements UserDAO {
 			address.update(user.getAddress());
 			PaymentMethodDAOJDBC payment = new PaymentMethodDAOJDBC(dataSource);
 			payment.update(user.getPaymentMethod());
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -137,6 +140,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void delete(User user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"User\" WHERE \"E-Mail\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, user.getEmail());
@@ -145,6 +149,8 @@ public class UserDAOJDBC implements UserDAO {
 			address.delete(user.getAddress());
 			PaymentMethodDAOJDBC payment = new PaymentMethodDAOJDBC(dataSource);
 			payment.delete(user.getPaymentMethod());
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -160,6 +166,7 @@ public class UserDAOJDBC implements UserDAO {
 	public void setPassword(User user, String password) {
 		Connection connection = this.dataSource.getConnection();
 		try { 
+			connection.setAutoCommit(false);
 			String update = "update \"User\" SET \"Password\" = ?, \"E-Mail\" = ?, \"Premium\" = ?, \"Admin\" = ?, \"Date\" = ?, \"FirstName\" = ?, \"LastName\" = ? WHERE \"E-Mail\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, user.getPassword ());
@@ -172,6 +179,8 @@ public class UserDAOJDBC implements UserDAO {
 			statement.setString(7, user.getLastName());
 			statement.setString(8, user.getEmail());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

@@ -1,10 +1,19 @@
-<%@page import="java.util.LinkedList"%>
 <%@page import="Model.User"%>
+<%@page import="Model.Cart"%>
+<%@page import="Model.MultimediaInCart"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="Model.Multimedia"%>
+<%@page import="Model.Film"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
+<head>
+	
+<jsp:useBean id="film" class="Model.Film" scope="page"/>
+<jsp:useBean id="preview" class="Model.PreviewMultimedia" scope="page"/>
 <jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
-
+<jsp:useBean id="poster" class="Model.FilmPoster" scope="page"/>
+<jsp:useBean id="tmp" class="Model.PreviewMultimedia" scope="page"/>
 <%
 User user = (User) session.getAttribute("user");
 if (user == null)
@@ -24,20 +33,19 @@ else{
 }
 %>
 
-<head>
-	<meta charset="utf-8">
+ 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PANDAFLIX &mdash; News</title>
+	<title>PANDAFLIX &mdash; Pastore-Perri</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Pastore-Perri">
-	
+
 	<link rel="shortcut icon" href="favicon.ico">
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
-
+	
 	<script src="js/modernizr-2.6.2.min.js"></script>
 
 	</head>
@@ -48,7 +56,7 @@ else{
 			<figure>
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
+			<h3 class="heading"><a href="myprofile.jsp">MyProfile</a></h3>
 			<p>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</p>
 			<p> I'm in. </p>
 			
@@ -90,46 +98,72 @@ else{
 			</div>
 		</div>
 	</div>
-
-	<!-- END #-offcanvas -->
-	<header id="-header">
-		
-		<div class="container-fluid">
-
-			<div class="row">
-				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
-				<!-- logo -->
-				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.html">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2 id="-logo"><a href="index.html">Become Premium</a></h2>
-					<figure>
-					<a><img src="images/offerte.jpg" alt="Image"></a>
+<div class="container-fluid">
+<% LinkedList<MultimediaInCart> cart = (LinkedList<MultimediaInCart>) request.getAttribute ("cart");
+for (MultimediaInCart multimedia: cart) {
+			
+			Multimedia filmtmp = multimedia.getMultimedia();
+			preview.setTitle(filmtmp.getPoster().getTitle());
+			preview.setImage(filmtmp.getPoster().getImage());
+			preview.setId(filmtmp.getId());
+			preview.setPrice(filmtmp.getPrice());
+			tmp.setPrice(tmp.getPrice()+filmtmp.getPrice());
+			boolean isFilm;
+			if (filmtmp instanceof Film)
+				preview.setFilm(true);
+			else
+				preview.setFilm(false);
+			
+			if (preview.isFilm())
+				isFilm = true;
+			else
+				isFilm = false;
+			System.out.println (isFilm);
+				session.setAttribute("isFilm", isFilm);
+				%>
+	<form action="/Project/goToCart">
+		<div class="row -post-entry">
+			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+				<figure>	<!-- qui è il tag di cambio pagina -->
+					<a><img src=<jsp:getProperty name="preview" property="image"/> alt="Image" class="img-responsive"></a>
 				</figure>
-				</div>
-
-			</div>
+				<span class="-meta"><a> <jsp:getProperty name="preview" property="title"/> </a></span>
+				<span class="-meta -date"><jsp:getProperty name="preview" property="price"/></span>
+				<%if (isFilm) {%>
+				<button class="button" name="fremove" value=<jsp:getProperty name="preview" property="id"/>> Remove </button>
+				<%}else{ %>
+				<button class="button" name="tremove" value=<jsp:getProperty name="preview" property="id"/>> Remove </button>
+				<%} %>
+			</article>
+			</form>
+			<%} %>
+			
 		
-		</div>
-
-	</header>
-	<!-- END #-header -->
-
-			 <div class="field-wrap">
-            <form action = "/Project/Check-Out" method="get">
-              <button class="button button-block" name="buy" value="premium">Stay premium stay foolish</button>
-            </form>
-            </div>
-            </div>
-
-            
-
-          </div>
+			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+								
+				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+					<div class="row">
 		
-		
-         </form>
-          
+						<div class="col-lg-4 animate-box">
+							<div class="-highlight right">
+								<h4>Total Price</h4>
+								<p><jsp:getProperty name="tmp" property="price"/></p>
+							</div>
+						</div>
+						</div>
+						</div>
+						<form action="/Project/Check-Out">
+							<button class="button" name="iscart" value="true">Buy It!</button>
+						</form>
+						</article>	
+			</div>		
+				
+			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+			
+	</div>
+
 	<footer id="-footer">
-		<p><small>&copy;2017 ingegneria del software e siw project <br><a>Designed by Andrea Pastore & Mario Perri</a> </small></p>
+		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
 	</footer>
 
 
@@ -147,4 +181,3 @@ else{
 
 	</body>
 </html>
-

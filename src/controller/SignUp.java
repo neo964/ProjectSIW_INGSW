@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
@@ -41,8 +43,23 @@ public class SignUp extends HttpServlet {
 		String expiration = req.getParameter("expiration");
 		String cvc = req.getParameter("cvc");
 		
-		Date birthdate = new Date(Date.parse(birth));
-		Date expirationdate = new Date(Date.parse(expiration));
+		DateFormat format = new SimpleDateFormat(expiration);
+		Date expirationdate = null;
+		try {
+			expirationdate = format.parse(expiration);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		format = new SimpleDateFormat(birth);
+		Date birthdate = null;
+		try {
+			birthdate = format.parse(birth);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("Fname = " + fname);
 		System.out.println("Lname = " + lname);

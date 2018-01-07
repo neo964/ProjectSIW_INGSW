@@ -125,6 +125,7 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void update(Address address) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String update = "update \"Address\" SET \"Street\" = ?, \"Country\" = ?, \"ZipCode\" = ?, \"District\" = ?, \"User\" = ? WHERE \"Street\" = ? AND \"ZipCode\" = ? AND \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, address.getStreet());
@@ -136,6 +137,8 @@ public class AddressDAOJDBC implements AddressDAO {
 			statement.setInt(7, address.getZipcode());
 			statement.setString(8, address.getUser());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -151,12 +154,15 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void delete(Address address) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Address\" WHERE \"Street\" = ? AND \"ZipCode\" = ? AND \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, address.getStreet());
 			statement.setInt(2, address.getZipcode());
 			statement.setString(3, address.getUser());
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -172,10 +178,13 @@ public class AddressDAOJDBC implements AddressDAO {
 	public void deleteAllOfUser(String user) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Address\" WHERE \"User\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, user);
 			statement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

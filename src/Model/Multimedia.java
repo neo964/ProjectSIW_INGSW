@@ -4,12 +4,14 @@ public abstract class Multimedia {
 	private int id;
 	Poster poster;
 	Trailer trailer;
+	double price;
 	
 	public Multimedia() {}
 	
-	Multimedia (Poster poster, Trailer trailer){
+	Multimedia (Poster poster, Trailer trailer, double price){
 		this.poster = poster;
 		this.trailer = trailer;
+		this.price = price;
 	}
 	
 	public int getId() {
@@ -32,7 +34,13 @@ public abstract class Multimedia {
 	public void setTrailer(Trailer trailer) {
 		this.trailer = trailer;
 	}
-	
-	
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 	
 }
