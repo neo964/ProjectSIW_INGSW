@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Database.DatabaseManager;
+import Model.Advice;
+import Model.Friendship;
 import Model.MultimediaInCart;
 import Model.User;
 import persistenceDAO.CartDAO;
@@ -46,6 +49,18 @@ public class ActionProfile extends HttpServlet {
 			dispacher.forward(req, resp);
 		} else if (action.equals("friends")) {
 			RequestDispatcher dispacher = req.getRequestDispatcher("friend");
+			dispacher.forward(req, resp);
+		} else if (action.equals("notification")) {
+			LinkedList<Friendship> requests = (LinkedList<Friendship>) DatabaseManager.getInstance().getDaoFactory().getFriendsip().findAllMyRequest(user.getEmail());
+			LinkedList<User> friendshiprequests = new LinkedList<>();
+			for (Iterator iterator = requests.iterator(); iterator.hasNext();) {
+				Friendship friendship = (Friendship) iterator.next();
+				friendshiprequests.add(DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByPrimaryKey(friendship.getUser2()));
+			}
+			LinkedList<Advice> advices = (LinkedList<Advice>) DatabaseManager.getInstance().getDaoFactory().getAdviceDAO().findAllMyAdvice(user.getEmail());
+			req.setAttribute("requests", friendshiprequests);
+			req.setAttribute("advices", advices);
+			RequestDispatcher dispacher = req.getRequestDispatcher("notifications.jsp");
 			dispacher.forward(req, resp);
 		}
 		

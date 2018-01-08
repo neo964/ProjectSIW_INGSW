@@ -103,7 +103,7 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 		List<Friendship> friendships = new LinkedList<>();
 		try {
 			PreparedStatement statement;
-			String query = "select * from \"Friendship\" where \"User1\" = ? And \"accepted = ?\"";
+			String query = "select * from \"Friendship\" where \"User1\" = ? And \"accepted\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString (1, user);
 			statement.setBoolean(2, false);

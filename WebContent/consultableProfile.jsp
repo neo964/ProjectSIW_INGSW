@@ -1,15 +1,23 @@
+<%@page import="Model.TVSerie"%>
+<%@page import="java.util.LinkedList"%>
 <%@page import="Model.User"%>
+<%@page import="Model.Favourite"%>
+<%@page import="Model.Film"%>
+<%@page import="Model.TVSerie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
 <head>
 	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+	<jsp:useBean id="tmpSession" class="Model.UserSession" scope="page"/>
+	<jsp:useBean id="preview" class="Model.PreviewMultimedia" scope="page"/>
 <%
 User user = (User) session.getAttribute("user");
-System.out.println (user);
+LinkedList<Favourite> fav = new LinkedList ();
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
+	System.out.println(user);
 	curSession.setUser(user.getEmail());
 	curSession.setFirstName(user.getFirstName());
 	curSession.setLastName(user.getLastName());
@@ -20,6 +28,12 @@ else{
 	
 	control = (user.isPremium());
 	curSession.setPremium(control);
+	User usertmp = (User) request.getAttribute("usertmp");
+	tmpSession.setUser(usertmp.getEmail());
+	tmpSession.setImage(usertmp.getPathToImage());
+	tmpSession.setFirstName(usertmp.getFirstName());
+	tmpSession.setLastName(usertmp.getLastName());
+	fav = (LinkedList<Favourite>) request.getAttribute("fav");
 }
 %>
 
@@ -86,7 +100,7 @@ else{
 		</div>
 	</div>
 	<!-- END #-offcanvas -->
-<header id="-header">
+	<header id="-header">
 		
 		<div class="container-fluid">
 
@@ -95,7 +109,10 @@ else{
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2 id="-logo"><a href="#"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
+                    <h2 id="-logo"><jsp:getProperty name="tmpSession" property="firstName"/> <jsp:getProperty name="tmpSession" property="lastName"/></h2>
+					<figure>
+					<a><img src=<jsp:getProperty name="tmpSession" property="image"/> alt="Image"></a>
+					<h3 id="-logo"><a>Favourite</a></h3>
 				</div>
 
 			</div>
@@ -103,56 +120,27 @@ else{
 		</div>
 
 	</header>
-	<!-- END #-header -->
-	<div class="container-fluid">
-	<form action="/Project/ActionProfile" method="get">
+
+<div class="container-fluid">
 		<div class="row -post-entry">
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-			<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="actionprofile" type="image" value="subscribe" class="img-responsive" alt="Image" src="images/news.png">
-			</figure>
-				<h2 class="-article-title">Subscribe</h2>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="cart" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Cart</h2>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
+		<%for (Favourite favourite: fav) {
+			preview.setId(favourite.getMultimedia().getId());
+			preview.setImage(favourite.getMultimedia().getPoster().getImage());
+			preview.setPrice(favourite.getMultimedia().getPrice());
+			preview.setTitle(favourite.getMultimedia().getPoster().getTitle());
+		%>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="actionprofile" type="image" value="settings" class="img-responsive" alt="Image" src="images/film.jpg">
+					<a><img src=<jsp:getProperty name="preview" property="image"/> alt="Image" class="img-responsive"></a>
 				</figure>
-				<h2 class="-article-title">Settings</h2>
+				<span class="-meta"><jsp:getProperty name="preview" property="title"/></span>
 			</article>
-		
-		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="friends" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Friends</h2>
-			</article>
-			
-			
-		
-		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="favourite" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">My Favourite</h2>
-			</article>
-			
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="notification" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Notification</h2>
-			</article>
+		<%} %>
+			</div>
 		
 			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-			</form>
-	</div>
+		
+		</div>
 
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br><a>Designed by Andrea Pastore & Mario Perri</a> </small></p>
@@ -174,3 +162,4 @@ else{
 	</body>
 </html>
 
+</html>

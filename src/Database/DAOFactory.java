@@ -3,6 +3,7 @@ package Database;
 import Model.User;
 import persistenceDAO.ActorInMultimediaDAO;
 import persistenceDAO.AddressDAO;
+import persistenceDAO.AdviceDAO;
 import persistenceDAO.CartDAO;
 import persistenceDAO.EpisodeDAO;
 import persistenceDAO.FavouriteDAO;
@@ -23,6 +24,8 @@ public abstract class DAOFactory {
 	public abstract ActorInMultimediaDAO getActorInMultimedia ();
 	
 	public abstract AddressDAO getAddressDAO();
+	
+	public abstract AdviceDAO getAdviceDAO();
 	
 	public abstract CartDAO getCartDao ();
 	

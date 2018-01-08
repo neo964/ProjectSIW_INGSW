@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Database.DatabaseManager;
+import Model.Favourite;
 import Model.Friendship;
 import Model.User;
 import persistenceDAO.FriendshipDAO;
+import persistenceDAO.UserDAO;
 
 public class Friends extends HttpServlet{
 	
@@ -35,21 +37,26 @@ public class Friends extends HttpServlet{
 		if (remove != null) {
 			friendshipdao.delete(new Friendship(user.getEmail(), remove, true));
 			profilebool = false;
-			//rimanere alla home/amici
+
 		} else if (decline != null){
 			friendshipdao.delete(new Friendship(user.getEmail(), decline, false));
 			profilebool = true;
-			//rimanere a profilo/amici
+			
 		} else if (profile != null) {
-			// andare al profilo dell ' utente
+			User usertmp = DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByPrimaryKey(profile);
+			LinkedList<Favourite> favusertmp = (LinkedList<Favourite>) DatabaseManager.getInstance().getDaoFactory().getFavouriteDAO().findFavouriteUser(usertmp.getEmail());
+			req.setAttribute("usertmp", usertmp);
+			req.setAttribute("fav", favusertmp);
+			req.getRequestDispatcher("consultableProfile.jsp").forward(req, resp);
+			return;
+			
 		} else if (add != null) {
 			friendshipdao.save(new Friendship(user.getEmail(), add, false));
 			profilebool = false;
-			//rimanere a home/amici
+
 		} else if (accept != null) {
 			friendshipdao.update(new Friendship(user.getEmail(), accept, true));
 			profilebool = true;
-			//rimanere a profilo/amici
 		} 
 		
 		if (keyword != null || !profilebool){ // per la ricerca alla home

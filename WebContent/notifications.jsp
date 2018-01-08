@@ -1,15 +1,22 @@
 <%@page import="Model.User"%>
+<%@page import="Model.Friendship"%>
+<%@page import="Model.Advice"%>
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
 <head>
 	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+	<jsp:useBean id="friend" class="Model.UserSession" scope="page"/>
+	<jsp:useBean id="previewadvice" class="Model.PreviewAdvice" scope="page"/>
 <%
 User user = (User) session.getAttribute("user");
-System.out.println (user);
+LinkedList <User> requests = (LinkedList<User>) request.getAttribute("requests");
+LinkedList <Advice> advices = (LinkedList<Advice>) request.getAttribute("advices");
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
+	System.out.println(user);
 	curSession.setUser(user.getEmail());
 	curSession.setFirstName(user.getFirstName());
 	curSession.setLastName(user.getLastName());
@@ -21,6 +28,7 @@ else{
 	control = (user.isPremium());
 	curSession.setPremium(control);
 }
+
 %>
 
  	<meta charset="utf-8">
@@ -86,7 +94,7 @@ else{
 		</div>
 	</div>
 	<!-- END #-offcanvas -->
-<header id="-header">
+	<header id="-header">
 		
 		<div class="container-fluid">
 
@@ -95,7 +103,7 @@ else{
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2 id="-logo"><a href="#"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
+``                  <h2>Notifications</h2>
 				</div>
 
 			</div>
@@ -103,59 +111,63 @@ else{
 		</div>
 
 	</header>
-	<!-- END #-header -->
-	<div class="container-fluid">
-	<form action="/Project/ActionProfile" method="get">
+
+<div class="container-fluid">
 		<div class="row -post-entry">
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-			<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="actionprofile" type="image" value="subscribe" class="img-responsive" alt="Image" src="images/news.png">
-			</figure>
-				<h2 class="-article-title">Subscribe</h2>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="cart" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Cart</h2>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="settings" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Settings</h2>
-			</article>
+			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+								
+				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+					<div class="row">
 		
-		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="friends" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Friends</h2>
+						<div class="col-lg-4 animate-box">
+							<div class="-highlight right">
+							<form action="Project/friend">
+								<h3>Friend Request</h3>
+								<%for(User userfriendtmp: requests){ 
+									friend.setFirstName(userfriendtmp.getFirstName());
+									friend.setLastName(userfriendtmp.getLastName());
+									friend.setImage(userfriendtmp.getPathToImage());
+									friend.setUser(userfriendtmp.getEmail());
+								%>
+								<p> <jsp:getProperty name="friend" property="firstName"/> <jsp:getProperty name="friend" property="lastName"/> </p>
+								<button class="button" name="accept" value=<jsp:getProperty name="friend" property="user"/>>Accept</button>
+								<%} %>
+							</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</article>
-			
-			
+			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+								
+				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+					<div class="row">
 		
-		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="favourite" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">My Favourite</h2>
-			</article>
-			
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="notification" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Notification</h2>
-			</article>
-		
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-			</form>
+						<div class="col-lg-4 animate-box">
+							<div class="-highlight right">
+								<h3>Advice Received</h3>
+								<%for (Advice advice: advices){
+									previewadvice.setAdviser(advice.getAdvicer().getEmail());
+									previewadvice.setAdvisor(advice.getAdvisor().getEmail());
+									previewadvice.setFname(advice.getAdvicer().getFirstName());
+									previewadvice.setLname(advice.getAdvicer().getLastName());
+									previewadvice.setIdmultiemdia(advice.getMultimedia().getId());
+									previewadvice.setTitle(advice.getMultimedia().getPoster().getTitle());
+									%>
+								<p><jsp:getProperty name="previewadvice" property="fname"/> <jsp:getProperty name="previewadvice" property="lname"/> advice you to watch <jsp:getProperty name="previewadvice" property="title"/> </p>
+								
+								<%} %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>	
+				
+		</div>	
 	</div>
 
 	<footer id="-footer">
-		<p><small>&copy;2017 ingegneria del software e siw project <br><a>Designed by Andrea Pastore & Mario Perri</a> </small></p>
+		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
 	</footer>
 
 
@@ -173,4 +185,3 @@ else{
 
 	</body>
 </html>
-

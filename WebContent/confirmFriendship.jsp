@@ -6,10 +6,10 @@ prefix="c" %>
 	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
 <%
 User user = (User) session.getAttribute("user");
-System.out.println (user);
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
+	System.out.println(user);
 	curSession.setUser(user.getEmail());
 	curSession.setFirstName(user.getFirstName());
 	curSession.setLastName(user.getLastName());
@@ -86,7 +86,7 @@ else{
 		</div>
 	</div>
 	<!-- END #-offcanvas -->
-<header id="-header">
+	<header id="-header">
 		
 		<div class="container-fluid">
 
@@ -95,7 +95,10 @@ else{
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2 id="-logo"><a href="#"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
+                    <h2 id="-logo"><a>Congratulations you have expanded your network of friendships!</a></h2>
+					<figure>
+					<a><img src="images/stretta.jpg" alt="Image"></a>
+				</figure>
 				</div>
 
 			</div>
@@ -103,56 +106,8 @@ else{
 		</div>
 
 	</header>
-	<!-- END #-header -->
-	<div class="container-fluid">
-	<form action="/Project/ActionProfile" method="get">
-		<div class="row -post-entry">
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-			<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="actionprofile" type="image" value="subscribe" class="img-responsive" alt="Image" src="images/news.png">
-			</figure>
-				<h2 class="-article-title">Subscribe</h2>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="cart" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Cart</h2>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="settings" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Settings</h2>
-			</article>
-		
-		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="friends" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Friends</h2>
-			</article>
-			
-			
-		
-		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="favourite" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">My Favourite</h2>
-			</article>
-			
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="actionprofile" type="image" value="notification" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-				<h2 class="-article-title">Notification</h2>
-			</article>
-		
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-			</form>
-	</div>
+
+
 
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br><a>Designed by Andrea Pastore & Mario Perri</a> </small></p>

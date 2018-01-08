@@ -3,6 +3,7 @@ package Database;
 import Model.User;
 import persistenceDAO.ActorInMultimediaDAO;
 import persistenceDAO.AddressDAO;
+import persistenceDAO.AdviceDAO;
 import persistenceDAO.CartDAO;
 import persistenceDAO.EpisodeDAO;
 import persistenceDAO.FavouriteDAO;
@@ -92,5 +93,10 @@ public class PostgresDAOFactory extends DAOFactory{
 	@Override
 	public FavouriteDAO getFavouriteDAO() {
 		return new FavouriteDAOJDBC (data);
+	}
+
+	@Override
+	public AdviceDAO getAdviceDAO() {
+		return new AdviceDAOJDBC(data);
 	}
 }
