@@ -42,6 +42,7 @@ public class SignUp extends HttpServlet {
 		String card = req.getParameter("card");
 		String expiration = req.getParameter("expiration");
 		String cvc = req.getParameter("cvc");
+		String image = "images/profile.jpg";
 		
 		DateFormat format = new SimpleDateFormat(expiration);
 		Date expirationdate = null;
@@ -80,7 +81,7 @@ public class SignUp extends HttpServlet {
 		}
 		
 		UserDAO userdao = DatabaseManager.getInstance().getDaoFactory().getUserDAO();
-		User user = new User(fname, lname, username, new Address(street, country, district, username, Integer.parseInt(cap)), new PaymentMethod(card, username, Integer.parseInt(cvc), expirationdate), false, false, birthdate, null, password);
+		User user = new User(fname, lname, username, new Address(street, country, district, username, Integer.parseInt(cap)), new PaymentMethod(card, username, Integer.parseInt(cvc), expirationdate), false, false, birthdate, image, password);
 		userdao.save(user);
 		System.out.println(user.getPassword());
 		

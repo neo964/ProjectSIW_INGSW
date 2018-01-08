@@ -44,6 +44,9 @@ public class ActionProfile extends HttpServlet {
 		} else if (action.equals("favourite")) {
 			RequestDispatcher dispacher = req.getRequestDispatcher("chooseFavourite.jsp");
 			dispacher.forward(req, resp);
+		} else if (action.equals("friends")) {
+			RequestDispatcher dispacher = req.getRequestDispatcher("friend");
+			dispacher.forward(req, resp);
 		}
 		
 		

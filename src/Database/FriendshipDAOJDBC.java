@@ -22,10 +22,15 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 		Connection connection = dataSource.getConnection();
 		try {
 			connection.setAutoCommit(false);
-			String insert = "insert into \"Friendship\"(\"User1\", \"User2\") values (?,?)";
+			String insert = "insert into \"Friendship\"(\"User1\", \"User2\", \"accepted\") values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, friendship.getUser1());
 			statement.setString(2, friendship.getUser2());
+			statement.setBoolean(3, friendship.isAccepted ());
+			statement.executeUpdate();
+			statement.setString(2, friendship.getUser1());
+			statement.setString(1, friendship.getUser2());
+			statement.setBoolean(3, friendship.isAccepted ());
 			statement.executeUpdate();
 			connection.commit();
 			connection.setAutoCommit(false);
@@ -52,7 +57,7 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 			statement.setString (2, friend2);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				friendship = new Friendship(result.getString("User1"), result.getString("User2"));
+				friendship = new Friendship(result.getString("User1"), result.getString("User2"), result.getBoolean("accepted"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -72,13 +77,39 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 		List<Friendship> friendships = new LinkedList<>();
 		try {
 			PreparedStatement statement;
-			String query = "select * from \"Friendship\" where \"User1\" = ? OR \"User2\" = ?";
+			String query = "select * from \"Friendship\" where \"User1\" = ? And \"accepted\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString (1, user);
-			statement.setString (2, user);
+			statement.setBoolean(2, true);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				friendships.add(new Friendship (result.getString("User1"), result.getString("User2")));
+				friendships.add(new Friendship (result.getString("User1"), result.getString("User2"), result.getBoolean("accepted")));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return friendships;
+	}
+	
+	@Override
+	public List<Friendship> findAllMyRequest(String user) {
+		Connection connection = this.dataSource.getConnection();
+		List<Friendship> friendships = new LinkedList<>();
+		try {
+			PreparedStatement statement;
+			String query = "select * from \"Friendship\" where \"User1\" = ? And \"accepted = ?\"";
+			statement = connection.prepareStatement(query);
+			statement.setString (1, user);
+			statement.setBoolean(2, false);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				friendships.add(new Friendship (result.getString("User1"), result.getString("User2"), result.getBoolean("accepted")));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -97,12 +128,17 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			connection.setAutoCommit(false);
-			String update = "update \"Friendship\" SET \"User1\" = ?, \"User2\" = ? WHERE \"User1\" = ? AND \"User2\" = ?";
+			String update = "update \"Friendship\" SET \"User1\" = ?, \"User2\" = ?, \"accepted\" = ? WHERE \"User1\" = ? AND \"User2\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, friendship.getUser1());
 			statement.setString(2, friendship.getUser2());
-			statement.setString(3, friendship.getUser1());
-			statement.setString(4, friendship.getUser2());
+			statement.setBoolean(3, friendship.isAccepted());
+			statement.setString(4, friendship.getUser1());
+			statement.setString(5, friendship.getUser2());
+			statement.executeUpdate();
+			statement.setString(2, friendship.getUser1());
+			statement.setString(1, friendship.getUser2());
+			statement.setBoolean(3, friendship.isAccepted());
 			statement.executeUpdate();
 			connection.commit();
 			connection.setAutoCommit(true);
@@ -127,6 +163,9 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, friendship.getUser1());
 			statement.setString(2, friendship.getUser2());
+			statement.executeUpdate();
+			statement.setString(2, friendship.getUser1());
+			statement.setString(1, friendship.getUser2());
 			statement.executeUpdate();
 			connection.commit();
 			connection.setAutoCommit(true);

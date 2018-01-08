@@ -194,4 +194,13 @@
         <url-pattern>/settings</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>FriendsServlet</servlet-name>
+        <servlet-class>controller.Friends</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FriendsServlet</servlet-name>
+        <url-pattern>/friend</url-pattern>
+    </servlet-mapping> 
+
 </web-app>

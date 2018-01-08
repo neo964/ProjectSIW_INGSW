@@ -101,6 +101,34 @@ public class UserDAOJDBC implements UserDAO {
 		}	
 		return users;
 	}
+	
+
+
+	@Override
+	public List<User> findByName(String keyword) {
+		Connection connection = this.dataSource.getConnection();
+		List<User> users = new java.util.LinkedList<>();
+		try {
+			User user;
+			PreparedStatement statement;
+			String query = "select * from \"User\" where (\"FirstName\" Like '%" + keyword + "%' Or \"LastName\" like '%" + keyword + "%')";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				user = new User(result.getString("FirstName"), result.getString("LastName"), result.getString("E-Mail"), null, null, result.getBoolean("Premium"), result.getBoolean("Admin"), result.getDate("Date"), result.getString("Image"));
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return users;
+	}
 
 	@Override
 	public void update(User user) {

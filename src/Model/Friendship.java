@@ -3,10 +3,14 @@ package Model;
 public class Friendship {
 	String user1;
 	String user2;
+	boolean accepted;
 	
-	public Friendship (String u1, String u2){
+	public Friendship () {}
+	
+	public Friendship (String u1, String u2, boolean acc){
 		user1 = u1;
 		user2 = u2;
+		accepted = acc;
 	}
 
 	public String getUser1() {
@@ -24,6 +28,12 @@ public class Friendship {
 	public void setUser2(String user2) {
 		this.user2 = user2;
 	}
-	
-	
+
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
+	}
 }
