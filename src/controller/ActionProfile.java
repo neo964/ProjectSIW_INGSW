@@ -38,7 +38,7 @@ public class ActionProfile extends HttpServlet {
 			dispacher.forward(req, resp);
 			
 		} else if (action.equals("settings")) {
-			RequestDispatcher dispacher = req.getRequestDispatcher("settings.jsp");
+			RequestDispatcher dispacher = req.getRequestDispatcher("settings.html");
 			dispacher.forward(req, resp);
 			
 		} else if (action.equals("favourite")) {

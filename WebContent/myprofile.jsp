@@ -46,7 +46,7 @@ else{
 			<figure>
 				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
 			</figure>
-			<h3 class="heading"><a href="/Project/myProfile">MyProfile</a></h3>
+			<h3 class="heading"><a href="myprofile.jsp">MyProfile</a></h3>
 			<p>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</p>
 			<p> I'm in. </p>
 			
@@ -58,13 +58,10 @@ else{
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="/Project/Subscribe">Subscribe</a></li>
-					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search">News</a></li></form>
+					<li><a href="/Project/search">News</a></li>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="/Project/myFavourite">My Favourite</a></li>
-					<li><a href="/Project/goToCart">Cart</a></li>
+					<li><a href="aboutUs.html">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
 					<li><a href="posterFilm.html">Add New Film</a></li>
 					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
@@ -88,7 +85,7 @@ else{
 			</div>
 		</div>
 	</div>
-
+	<!-- END #-offcanvas -->
 <header id="-header">
 		
 		<div class="container-fluid">
@@ -97,12 +94,8 @@ else{
 				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.html">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2 id="-logo"><a href="index.html"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
-					<figure>
-						<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
-					</figure>
-			
+					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
+					<h2 id="-logo"><a href="#"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
 				</div>
 
 			</div>
@@ -133,8 +126,8 @@ else{
 				<figure>
 					<input name="actionprofile" type="image" value="settings" class="img-responsive" alt="Image" src="images/film.jpg">
 				</figure>
-				<span class="-meta"><a href="/Project/settings"></a></span>
-				<h2 class="-article-title"><a href="Project/settings">Settings</a></h2>
+				<span class="-meta"><a href="/Project/settings.html"></a></span>
+				<h2 class="-article-title"><a href="Project/settings.html">Settings</a></h2>
 			</article>
 		
 		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">

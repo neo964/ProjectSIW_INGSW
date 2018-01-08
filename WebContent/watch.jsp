@@ -55,9 +55,58 @@ trailer.setPath(request.getParameter("path"));
 
 <header id="-header">
 		
+		<div id="-offcanvas">
+		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
+		<div class="-bio">
+			<figure>
+				<img src=<jsp:getProperty name="curSession" property="image"/> alt="Pandaflix" class="img-responsive">
+			</figure>
+			<h3 class="heading"><a href="myprofile.jsp">MyProfile</a></h3>
+			<p>Hi, <jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/>.</p>
+			<p> I'm in. </p>
+			
+			<a href="/Project/signOut">Log Out</a>
+			
+		</div>
+	<!-- Profilo utente -->
+		<div class="-menu">
+			<div class="-box">
+				<h3 class="heading">Categories</h3>
+				<ul>
+					<li><a href="/Project/search">News</a></li>
+					<li><a href="/Project/film">Film</a></li>
+					<li><a href="/Project/tvserie">TVSeries</a></li>
+					<li><a href="aboutUs.html">About Us</a></li>
+					<% if (curSession.isAdmin()) { %>
+					<li><a href="posterFilm.html">Add New Film</a></li>
+					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
+					<%} %>
+				</ul>
+			</div>
+			<div class="-box">
+				<h3 class="heading">Search Film</h3>
+				<form action="/Project/search" method="get">
+					<div class="form-group">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+					</div>
+				</form>
+				
+				<h3 class="heading">Search TVSerie</h3>
+				<form action="/Project/searchTV" method="get">
+					<div class="form-group">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- END #-offcanvas -->
+	<header id="-header">
+		
 		<div class="container-fluid">
 
 			<div class="row">
+				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
@@ -66,6 +115,7 @@ trailer.setPath(request.getParameter("path"));
 			</div>
 		
 		</div>
+
 
 	</header>
 <div class="container-fluid">

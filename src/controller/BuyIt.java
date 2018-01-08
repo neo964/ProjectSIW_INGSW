@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import Database.DatabaseManager;
 import Model.User;
 import persistenceDAO.UserDAO;
+import persistenceDAO.UserReference;
 
 public class BuyIt extends HttpServlet{
 	@Override
@@ -17,18 +18,21 @@ public class BuyIt extends HttpServlet{
 		String address = (String) req.getParameter("address");
 		String payment = (String) req.getParameter("paymentmethod");
 		String iscart = (String) req.getParameter("iscart");
-		
-		if (iscart != null && iscart.equals("true")) {
-			User user = (User)req.getSession().getAttribute("user");
+		User user = (User)req.getSession().getAttribute("user");
+		System.out.println(iscart);
+		if (iscart != null && iscart.equals("true")) { System.out.println("ISCART");
 			DatabaseManager.getInstance().getDaoFactory().getCartDao().deleteAll(user.getEmail());
+		} else {
+			String pass = DatabaseManager.getInstance().getDaoFactory().getUserRefernce(user).getPassword();
+			User newUser = new User(user.getFirstName(), user.getLastName(), user.getEmail(), null, null, true, user.isAdmin(), user.getDateOfBirth(), user.getPathToImage(), pass);
+			DatabaseManager.getInstance().getDaoFactory().getUserDAO().update(user);
+			System.out.println("Refresh");
+			req.getSession().setAttribute("user", newUser);
 		}
-		
-		System.out.println(address);
-		System.out.println(payment);
-		
 		if (address == null || payment == null) {
 			System.out.println("Not valid");
 		}
+		System.out.println("Siamoq ui");
 		req.getRequestDispatcher("myprofile.jsp").forward(req, resp);
 		
 		

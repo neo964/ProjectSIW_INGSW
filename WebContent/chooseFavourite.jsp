@@ -58,13 +58,10 @@ else{
 			<div class="-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="/Project/Subscribe">Subscribe</a></li>
-					<li><a href="aboutUs.html">About Us</a></li>
-					<li><a href="/Project/search">News</a></li></form>
+					<li><a href="/Project/search">News</a></li>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="/Project/myFavourite">My Favourite</a></li>
-					<li><a href="/Project/goToCart">Cart</a></li>
+					<li><a href="aboutUs.html">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
 					<li><a href="posterFilm.html">Add New Film</a></li>
 					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
@@ -88,8 +85,7 @@ else{
 			</div>
 		</div>
 	</div>
-
-<!-- END #-offcanvas -->
+	<!-- END #-offcanvas -->
 	<header id="-header">
 		
 		<div class="container-fluid">
@@ -98,12 +94,14 @@ else{
 				<a href="#" class="js--nav-toggle -nav-toggle"><i></i></a>
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="-logo"><a href="index.html">PANDAFLIX <sup>TM</sup></a></h1>
-					<h2 id="-logo"><a href="#">My Favourite</a></h2>
+					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
+					<h2>My Favourite</h2>
 				</div>
 
 			</div>
 		
+		</div>
+
 		</div>
 
 	</header>

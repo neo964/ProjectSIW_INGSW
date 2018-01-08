@@ -119,10 +119,14 @@ public class UserDAOJDBC implements UserDAO {
 			statement.setString(7, user.getPathToImage());
 			statement.setString(8, user.getEmail());
 			statement.executeUpdate();
-			AddressDAOJDBC address = new AddressDAOJDBC(dataSource);
-			address.update(user.getAddress());
-			PaymentMethodDAOJDBC payment = new PaymentMethodDAOJDBC(dataSource);
-			payment.update(user.getPaymentMethod());
+			if (user.getAddress() != null) {
+				AddressDAOJDBC address = new AddressDAOJDBC(dataSource);
+				address.update(user.getAddress());
+			}
+			if (user.getPaymentMethod() != null) {
+				PaymentMethodDAOJDBC payment = new PaymentMethodDAOJDBC(dataSource);
+				payment.update(user.getPaymentMethod());
+			}
 			connection.commit();
 			connection.setAutoCommit(true);
 		} catch (SQLException e) {

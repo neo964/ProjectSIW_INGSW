@@ -42,7 +42,6 @@ public class CheckLogin extends HttpServlet{
 	    }
 	    UserReference userref = DatabaseManager.getInstance().getDaoFactory().getUserRefernce(user);
 	    String realpass = userref.getPassword();
-	    System.out.println(realpass);
 
 	    if (realpass.equals(password)) {
 	    	req.getSession().setAttribute("user", user);

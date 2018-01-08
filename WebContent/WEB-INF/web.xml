@@ -185,4 +185,13 @@
         <url-pattern>/UpdateInformation</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>SettingsServlet</servlet-name>
+        <servlet-class>controller.Settings</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SettingsServlet</servlet-name>
+        <url-pattern>/settings</url-pattern>
+    </servlet-mapping> 
+
 </web-app>
