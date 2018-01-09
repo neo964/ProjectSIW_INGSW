@@ -83,14 +83,21 @@ else{
 					<h2 id="-logo"><a href="#"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
 					<img alt="Profile" src=<jsp:getProperty name="curSession" property="image"/>>
 					<div class="-box" id="searchBox" style=" float: right"> 
-						<h3 class="heading">Search</h3>
-							<form action="#">
+						<h3 class="heading">Search Film</h3>
+							<form action="/Project/search" method="get">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Type a keyword">
+									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
 								</div>
 							</form>
 					</div>
-
+					<div class="-box" id="searchBox" style=" float: left"> 
+						<h3 class="heading">Search TVSerie</h3>
+							<form action="/Project/searchTV" method="get">
+								<div class="form-group">
+									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+								</div>
+							</form>
+					</div>
 				</div>
 
 			</div>
