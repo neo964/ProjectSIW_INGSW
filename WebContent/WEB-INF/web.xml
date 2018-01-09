@@ -221,5 +221,13 @@
         <url-pattern>/vote</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>SuggestServlet</servlet-name>
+        <servlet-class>controller.SuggestTo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SuggestServlet</servlet-name>
+        <url-pattern>/suggestTo</url-pattern>
+    </servlet-mapping> 
 
 </web-app>
