@@ -75,7 +75,7 @@ else{
 			</div>
 		</div>
 	</div>
-	<!-- END #-offcanvas -->
+	<!-- END offcanvas -->
 	<header id="-header">
 		
 		<div class="container-fluid">
