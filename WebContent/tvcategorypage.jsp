@@ -113,65 +113,57 @@ else{
 				<figure>	<!-- qui è il tag di cambio pagina -->
 					<input name="giveCategory" type="image" value="Animation" class="img-responsive" alt="Image" src="images/animazione.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">Animation</a></span>
-					<h2 class="-article-title"><a href="afterfilmcategories.html"></a></h2>
+					<span class="-meta">Animation</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="/Project/search" method="get"><input name="giveCategory" type="image" value="Adventure" class="img-responsive" alt="Image" src="images/avventura.jpg"> </a>
+					<input name="giveCategory" type="image" value="Adventure" class="img-responsive" alt="Image" src="images/avventura.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">Adventure</a></span>
-					<h2 class="-article-title"><a href="afterfilmcategories.html"></a></h2>
+					<span class="-meta">Adventure</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<div class="clearfix visible-xs-block"></div>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="/Project/search" method="get"><input name="giveCategory" type="image" value="Commedy" class="img-responsive" alt="Image" src="images/commedia.jpg"> </a>
+					<input name="giveCategory" type="image" value="Commedy" class="img-responsive" alt="Image" src="images/commedia.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">Comedy</a></span>
-					<h2 class="-article-title"><a href="afterfilmcategories.html"></a></h2>
+					<span class="-meta">Comedy</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="/Project/search" method="get"><input name="giveCategory" type="image" value="Drama" class="img-responsive" alt="Image" src="images/dramma.jpg"> </a>
+					<input name="giveCategory" type="image" value="Drama" class="img-responsive" alt="Image" src="images/dramma.jpg">
 				</figure>
-				<span class="-meta"><a href="single.html">Dramatic</a></span>
-				<h2 class="-article-title"><a href="single.html"></a></h2>
+				<span class="-meta">Dramatic</span>
 				<span class="-meta -date">Last update, now</span>
 			</article>
 				<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="/Project/search" method="get"><input name="giveCategory" type="image" value="Sci-Fi" class="img-responsive" alt="Image" src="images/fantascienza.jpg"> </a>
+					<input name="giveCategory" type="image" value="Sci-Fi" class="img-responsive" alt="Image" src="images/fantascienza.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">Science fiction</a></span>
-					<h2 class="-article-title"><a href="single.html"></a></h2>
+					<span class="-meta">Science fiction</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="/Project/search" method="get"><input name="giveCategory" type="image" value="Fantasy" class="img-responsive" alt="Image" src="images/fantasy.jpg"> </a>
+					<input name="giveCategory" type="image" value="Fantasy" class="img-responsive" alt="Image" src="images/fantasy.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">Fantasy / Fantastic</a></span>
-					<h2 class="-article-title"><a href="single.html"></a></h2>
+					<span class="-meta">Fantasy / Fantastic</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="/Project/search" method="get"><input name="giveCategory" type="image" value="War" class="img-responsive" alt="Image" src="images/war.jpg"> </a>
+					<input name="giveCategory" type="image" value="War" class="img-responsive" alt="Image" src="images/war.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">War</a></span>
-					<h2 class="-article-title"><a href="single.html"></a></h2>
+					<span class="-meta">War</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="/Project/search" method="get"><input name="giveCategory" type="image" value="Horror" class="img-responsive" alt="Image" src="images/horror.jpg"> </a>
+					<input name="giveCategory" type="image" value="Horror" class="img-responsive" alt="Image" src="images/horror.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">Horror</a></span>
-					<h2 class="-article-title"><a href="single.html"></a></h2>
+					<span class="-meta">Horror</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>

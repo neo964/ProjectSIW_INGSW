@@ -110,16 +110,16 @@ else{
 				<figure>	<!-- qui è il tag di cambio pagina -->
 					<input name="giveNews" type="image" value="news" class="img-responsive" alt="Image" src="images/news.png">
 				</figure>
-					<span class="-meta"><a href="/Project/search" value = "news" name = "giveNews">News</a></span>
-					<h2 class="-article-title"><a href="single.html">Look at what we have chosen for you</a></h2>
+					<span class="-meta">News</span>
+					<h2 class="-article-title">Look at what we have chosen for you</h2>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
 					<input name="giveNews" type="image" value="film" class="img-responsive" alt="Image" src="images/film.jpg">
 				</figure>
-					<span class="-meta"><a href="single.html">Film</a></span>
-					<h2 class="-article-title"><a href="single.html">Do you want a movie?</a></h2>
+					<span class="-meta">Film</span>
+					<h2 class="-article-title">Do you want a movie?</h2>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<div class="clearfix visible-xs-block"></div>
@@ -127,16 +127,16 @@ else{
 				<figure>
 					<input name="giveNews" type="image" value="tvserie" class="img-responsive" alt="Image" src="images/serie.jpg">
 				</figure>
-				<span class="-meta"><a href="single.html">TVSeries</a></span>
-				<h2 class="-article-title"><a href="single.html">Or do you want a tv serie?</a></h2>
+				<span class="-meta">TVSeries</span>
+				<h2 class="-article-title">Or do you want a tv serie?</h2>
 				<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
 					<input name="giveNews" type="image" value="friend" class="img-responsive" alt="Image" src="images/amici.jpg">
 				</figure>
-				<span class="-meta"><a href="single.html">Friends</a></span>
-				<h2 class="-article-title"><a href="single.html">Expand and explore your network</a></h2>
+				<span class="-meta">Friends</span>
+				<h2 class="-article-title">Expand and explore your network</h2>
 				<span class="-meta -date">Last update, now</span>
 			</article>
 			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>

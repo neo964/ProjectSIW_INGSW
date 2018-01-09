@@ -145,8 +145,7 @@ else{
 						<figure>	<!-- qui è il tag di cambio pagina -->
 							<input name="giveMultimedia" type="image" value=<jsp:getProperty name="preview" property="id"/> class="img-responsive" alt="Image" src=<jsp:getProperty name="preview" property="image"/> >
 						</figure>
-							<span class="-meta"><a href="/Project/GiveMePage" method = "get" name = "giveMultimedia" id = <jsp:getProperty name="preview" property="id"/>><jsp:getProperty name="preview" property="title"/></a></span>
-							<h2 class="-article-title"><a href="/Project/GiveMePage" method = "get" name = "giveMultimedia" id = <jsp:getProperty name="preview" property="id"/>></a></h2>
+							<span class="-meta"><jsp:getProperty name="preview" property="title"/></span>
 					</article>
 				</form>
 			

@@ -96,6 +96,7 @@ else{
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
 					<h2 id="-logo"><a href="#"><jsp:getProperty name="curSession" property="firstName"/> <jsp:getProperty name="curSession" property="lastName"/></a></h2>
+					<img alt="Profile" src=<jsp:getProperty name="curSession" property="image"/>>
 				</div>
 
 			</div>
