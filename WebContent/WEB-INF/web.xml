@@ -203,4 +203,23 @@
         <url-pattern>/friend</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>EditServlet</servlet-name>
+        <servlet-class>controller.Edit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditServlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>VoteServlet</servlet-name>
+        <servlet-class>controller.Vote</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteServlet</servlet-name>
+        <url-pattern>/vote</url-pattern>
+    </servlet-mapping> 
+
+
 </web-app>

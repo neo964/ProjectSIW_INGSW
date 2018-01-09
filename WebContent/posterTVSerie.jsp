@@ -4,8 +4,10 @@
 prefix="c" %> 
 <head>
 	<jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
+	<jsp:useBean id="preview" class="Model.PreviewMultimedia" scope="session"/>
 <%
 User user = (User) session.getAttribute("user");
+boolean itsok = false;
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
@@ -20,6 +22,11 @@ else{
 	
 	control = (user.isPremium());
 	curSession.setPremium(control);
+	if (request.getAttribute("id") != null){
+		itsok = true;
+		int id = (int) request.getAttribute("id");
+		preview.setId(id);
+	}
 }
 %>
 
@@ -63,8 +70,8 @@ else{
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="posterFilm.jsp">Add New Film</a></li>
-					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>
+					<li><a href="posterFilm.html">Add New Film</a></li>
+					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
@@ -102,66 +109,90 @@ else{
 		</div>
 
 	</header>
-	<!-- END #-header -->
-	<div class="container-fluid">
-	<form action="/Project/search" method="get">
-		<div class="row -post-entry">
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="giveNews" type="image" value="news" class="img-responsive" alt="Image" src="images/news.png">
-				</figure>
-					<span class="-meta">News</span>
-					<h2 class="-article-title">Look at what we have chosen for you</h2>
-					<span class="-meta -date">Last update, now</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="giveNews" type="image" value="film" class="img-responsive" alt="Image" src="images/film.jpg">
-				</figure>
-					<span class="-meta">Film</span>
-					<h2 class="-article-title">Do you want a movie?</h2>
-					<span class="-meta -date">Last update, now</span>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="giveNews" type="image" value="tvserie" class="img-responsive" alt="Image" src="images/serie.jpg">
-				</figure>
-				<span class="-meta">TVSeries</span>
-				<h2 class="-article-title">Or do you want a tv serie?</h2>
-				<span class="-meta -date">Last update, now</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<input name="giveNews" type="image" value="friend" class="img-responsive" alt="Image" src="images/amici.jpg">
-				</figure>
-				<span class="-meta">Friends</span>
-				<h2 class="-article-title">Expand and explore your network</h2>
-				<span class="-meta -date">Last update, now</span>
-			</article>
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-		</form>
-	</div>
-
-	<footer id="-footer">
-		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
-	</footer>
 
 
+<body>
+<form action="/Project/addNewTVSerie" method = "post">
+  <div class="form">
+
+          <h1>Insert a new TVSerie</h1>
+
+           <div class="field-wrap">
+           	<h4>Title</h4>
+			<input name="title" type="text" value="" size="40" maxlength="200" />
+          </div>  
+          
+           <div class="field-wrap">
+           	<h4>Category</h4>
+			<input name="Category" type="text" value="" size="40" maxlength="200" />
+          </div>            
+          
+          <div class="field-wrap">
+          <h4>Season</h4>
+			<input name="season" type="text" value="" size="40" maxlength="200" />
+          </div>
+          
+          
+          <div class="field-wrap">
+          <h4>Completed</h4>
+			<input name="completed" type="text" value="" size="40" maxlength="200" />
+          </div>
+          
+           <div class="field-wrap">
+           <h4>Director</h4>
+			<input name="Director" type="text" value="" size="40" maxlength="200" />
+          </div>
+          
+		  <div class="field-wrap">
+		  <h4>Plot</h4>
+            <input name="plot" type="text" value="" size="40" maxlength="200" />
+          </div>
+          
+		 <div class="field-wrap">
+		 <h4>URL Image</h4>
+          <input name="url" type="text" value="" size="40" maxlength="200" />
+          </div>
+
+          
+        <div class="field-wrap">
+        <h4>Year</h4>
+          <input name="year" type="text" value="" size="40" maxlength="200" />
+          	</div>
+          	
+        <div class="field-wrap">
+        <h4>Price</h4>
+          <input name="price" type="text" value="" size="40" maxlength="200" />
+          	</div>
+          	
+          	<div class="field-wrap">
+        <h4>Actors</h4>
+         <textarea name="actors" rows="5" cols="40">
+ 			 
+		</textarea>
+          	</div>
 	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Main JS -->
-	<script src="js/main.js"></script>
+          <div class="field-wrap">
+          	<button type="submit" class="button "/>Post It!</button>
+          </div> 
 
-	</body>
+		<%if (itsok) {%>
+         <div class="field-wrap">
+        <h4>ID</h4>
+          <input name="id" type="text" value=<jsp:getProperty name="preview" property="id" />/>
+         </div>
+          	<%} %>
+           
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
+</form>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script  src="js/loginpage.js"></script>
+
+</body>
 </html>
-
-
-

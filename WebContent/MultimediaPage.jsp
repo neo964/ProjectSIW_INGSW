@@ -80,6 +80,7 @@ if (multimedia instanceof Film){
 }
 request.setAttribute("multimedia", multimedia.getId());
 trailer.setPath(multimedia.getTrailer().getPath());
+request.getSession().setAttribute("rankid", multimedia.getId());
 
 %>
 
@@ -155,7 +156,21 @@ trailer.setPath(multimedia.getTrailer().getPath());
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
+					
 				</div>
+				
+          			<!-- pulsante per admin -->
+          			<%if (curSession.isAdmin()) {%>
+          				<div class="field-wrap">
+          				<form action="edit">
+          				<%if (tvserietmp != null) {%>
+          					<h4><button class="button" name="edit" value=<jsp:getProperty name="tvserie" property="id"/>>Edit!</button> </h4>
+          				<% }else{ %>
+          					<h4><button class="button" name="edit" value=<jsp:getProperty name="film" property="id"/>>Edit!</button> </h4>
+          					<%} %>
+          				</form>
+          				</div> 
+          				<%} %>
 
 			</div>
 		
@@ -212,6 +227,45 @@ trailer.setPath(multimedia.getTrailer().getPath());
 							<p><jsp:getProperty name="film" property="price"/></p>
 						</div>
 					</div>
+					
+							
+					
+					<form action="/Project/vote" method ="get">
+					<div class="container-fluid">
+						<div class="row -post-entry">
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="1" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="2" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="3" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="4" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="5" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							</div>
+							</div>
+							</form>
 								
 					<div class="top-row">
 					<form action="/Project/goToCart" method = "get">
@@ -307,6 +361,47 @@ trailer.setPath(multimedia.getTrailer().getPath());
 						</div>
 					</div>
 					
+					
+							</div>
+						</div>
+					
+					<form action="/Project/vote" method ="get">
+					<div class="container-fluid">
+						<div class="row -post-entry">
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="1" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="2" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="3" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="4" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+								<figure>	<!-- qui è il tag di cambio pagina -->
+									<input name="rank" type="image" value="5" class="img-responsive" alt="Image" src="images/stella.png">
+								</figure>
+							</article>
+							
+							</div>
+							</div>
+							</form>
+								
 					<div class="top-row">
 					<form action="/Project/goToCart" method = "get">
 						 <div class="field-wrap">
@@ -322,7 +417,6 @@ trailer.setPath(multimedia.getTrailer().getPath());
           				</div> 
           			</form>
           			</div>
-          			
 					<div class="row rp-b">
 						<div class="col-md-12 animate-box">
 							<blockquote>

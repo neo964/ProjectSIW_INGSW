@@ -47,7 +47,9 @@ public class AddTVSerie extends HttpServlet{
 		else
 			completed = false;
 		String seasonstr = req.getParameter("seasons");
-		int id = Integer.parseInt(idstr);
+		int id = 0;
+		if (idstr != null)
+			id = Integer.parseInt(idstr);
 		int year = Integer.parseInt(yearstr);
 		double price = Double.parseDouble(pricestr);
 		int seasons = Integer.parseInt(seasonstr);
@@ -57,11 +59,16 @@ public class AddTVSerie extends HttpServlet{
 		}
 		try {
 			TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
-			TVSerie tvSerie = new TVSerie(id, new TVSeriePoster(title, category, director, year, actors, Plot, image, completed, seasons), new Trailer(trailer), price);
-			tvseriedao.save(tvSerie);
+			if (idstr == null) {
+				TVSerie tvSerie = new TVSerie(-1, new TVSeriePoster(title, category, director, year, actors, Plot, image, completed, seasons), new Trailer(trailer), price);
+				tvseriedao.save(tvSerie);
+			}
+			else {
+				TVSerie tvSerie = new TVSerie(id, new TVSeriePoster(title, category, director, year, actors, Plot, image, completed, seasons), new Trailer(trailer), price);
+				tvseriedao.update(tvSerie);
+			}
 			
-			req.setAttribute("TVSerie", tvSerie);
-			RequestDispatcher dispatcher = req.getRequestDispatcher("AddTVSerie.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("home");
 			dispatcher.forward(req, resp);
 			
 		}catch (Exception e) {

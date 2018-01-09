@@ -20,7 +20,7 @@ public class AddFilm extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//String idstr = req.getParameter("ID");
+		String idstr = req.getParameter("id");
 		String title = req.getParameter("Title");
 		String category = req.getParameter("Category");
 		String yearstr = req.getParameter("Year");
@@ -31,7 +31,9 @@ public class AddFilm extends HttpServlet {
 		String pricestr = req.getParameter("Price");
 		String image = req.getParameter("Image");
 		String[] actorstr = req.getParameterValues("Actors");
-		//int id = Integer.parseInt(idstr);
+		int id = 0;
+		if (idstr != null)
+			id = Integer.parseInt(idstr);
 		int year = Integer.parseInt(yearstr);
 		double price = Double.parseDouble(pricestr);
 		List<String> actors= new LinkedList<String> ();
@@ -39,12 +41,15 @@ public class AddFilm extends HttpServlet {
 			actors.add(string);
 		}
 		try {
-			Film film = new Film(-1, new FilmPoster(title, category, director, year, actors, Plot, image), new Trailer (trailer), price, videoOnDemand);
 			FilmDAO filmdao = DatabaseManager.getInstance().getDaoFactory().getFilmDAO();
-
-			System.out.println("Qui");
-			filmdao.save(film);
-			System.out.println("EnD");
+			
+			if (idstr == null) {
+				Film film = new Film(-1, new FilmPoster(title, category, director, year, actors, Plot, image), new Trailer (trailer), price, videoOnDemand);
+				filmdao.save(film);
+			} else {
+				Film film = new Film(id, new FilmPoster(title, category, director, year, actors, Plot, image), new Trailer (trailer), price, videoOnDemand);
+				filmdao.update(film);
+			}
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/Project/home");
 			dispatcher.forward(req, resp);
 			
