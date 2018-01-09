@@ -75,21 +75,22 @@ else{
 					<%} %>
 				</ul>
 			</div>
-			<div class="-box">
-				<h3 class="heading">Search Film</h3>
-				<form action="/Project/search" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+			<div class="-box" id="searchBox" style=" float: right"> 
+						<h3 class="heading">Search Film</h3>
+							<form action="/Project/search" method="get">
+								<div class="form-group">
+									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+								</div>
+							</form>
 					</div>
-				</form>
-				
-				<h3 class="heading">Search TVSerie</h3>
-				<form action="/Project/searchTV" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+					<div class="-box" id="searchBox" style=" float: left"> 
+						<h3 class="heading">Search TVSerie</h3>
+							<form action="/Project/searchTV" method="get">
+								<div class="form-group">
+									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+								</div>
+							</form>
 					</div>
-				</form>
-			</div>
 		</div>
 	</div>
 	<!-- END #-offcanvas -->
