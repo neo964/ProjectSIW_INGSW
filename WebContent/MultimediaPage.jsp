@@ -131,7 +131,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 			</div>
 		</div>
 	</div>
-	<!-- END #-offcanvas -->
+	<!-- END offcanvas -->
 	<header id="-header">
 		
 		<div class="container-fluid">
