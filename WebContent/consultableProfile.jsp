@@ -82,21 +82,6 @@ else{
 					<%} %>
 				</ul>
 			</div>
-			<div class="-box">
-				<h3 class="heading">Search Film</h3>
-				<form action="/Project/search" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-					</div>
-				</form>
-				
-				<h3 class="heading">Search TVSerie</h3>
-				<form action="/Project/searchTV" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-					</div>
-				</form>
-			</div>
 		</div>
 	</div>
 	<!-- END #-offcanvas -->
@@ -113,6 +98,15 @@ else{
 					<figure>
 					<a><img src=<jsp:getProperty name="tmpSession" property="image"/> alt="Image"></a>
 					<h3 id="-logo"><a>Favourite</a></h3>
+						<div class="-box" id="searchBox" style=" float: right"> 
+						<h3 class="heading">Search</h3>
+							<form action="#">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Type a keyword">
+								</div>
+							</form>
+					</div>
+
 				</div>
 
 			</div>
