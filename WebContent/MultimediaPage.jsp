@@ -129,21 +129,6 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					<%} %>
 				</ul>
 			</div>
-			<div class="-box">
-				<h3 class="heading">Search Film</h3>
-				<form action="/Project/search" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-					</div>
-				</form>
-				
-				<h3 class="heading">Search TVSerie</h3>
-				<form action="/Project/searchTV" method="get">
-					<div class="form-group">
-						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-					</div>
-				</form>
-			</div>
 		</div>
 	</div>
 	<!-- END #-offcanvas -->
@@ -156,6 +141,22 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
+				<div class="-box" id="searchBox" style=" float: right"> 
+				<h3 class="heading">Search Film</h3>
+				<form action="/Project/search" method="get">
+					<div class="form-group">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+					</div>
+				</form>
+			</div>
+			<div class="-box" id="searchBox" style=" float: left"> 
+				<h3 class="heading">Search TVSerie</h3>
+				<form action="/Project/searchTV" method="get">
+					<div class="form-group">
+						<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
+					</div>
+				</form>
+			</div>
 					
 				</div>
 				
