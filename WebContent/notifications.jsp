@@ -123,9 +123,10 @@ else{
 		
 						<div class="col-lg-4 animate-box">
 							<div class="-highlight right">
-							<form action="Project/friend">
+							<form action="/Project/friend">
 								<h3>Friend Request</h3>
 								<%for(User userfriendtmp: requests){ 
+									if (!curSession.getUser().equals(userfriendtmp.getEmail())){
 									friend.setFirstName(userfriendtmp.getFirstName());
 									friend.setLastName(userfriendtmp.getLastName());
 									friend.setImage(userfriendtmp.getPathToImage());
@@ -133,7 +134,8 @@ else{
 								%>
 								<p> <jsp:getProperty name="friend" property="firstName"/> <jsp:getProperty name="friend" property="lastName"/> </p>
 								<button class="button" name="accept" value=<jsp:getProperty name="friend" property="user"/>>Accept</button>
-								<%} %>
+								<button class="button" name="decline" value=<jsp:getProperty name="friend" property="user"/>>Refuse</button>
+								<%}} %>
 							</form>
 							</div>
 						</div>
@@ -149,16 +151,17 @@ else{
 							<div class="-highlight right">
 								<h3>Advice Received</h3>
 								<%for (Advice advice: advices){
-									previewadvice.setAdviser(advice.getAdvicer().getEmail());
-									previewadvice.setAdvisor(advice.getAdvisor().getEmail());
-									previewadvice.setFname(advice.getAdvicer().getFirstName());
-									previewadvice.setLname(advice.getAdvicer().getLastName());
-									previewadvice.setIdmultiemdia(advice.getMultimedia().getId());
-									previewadvice.setTitle(advice.getMultimedia().getPoster().getTitle());
+									if (curSession.getUser().equals(advice.getAdvisor().getEmail())){
+										previewadvice.setAdviser(advice.getAdvicer().getEmail());
+										previewadvice.setAdvisor(advice.getAdvisor().getEmail());
+										previewadvice.setFname(advice.getAdvicer().getFirstName());
+										previewadvice.setLname(advice.getAdvicer().getLastName());
+										previewadvice.setIdmultiemdia(advice.getMultimedia().getId());
+										previewadvice.setTitle(advice.getMultimedia().getPoster().getTitle());
 									%>
 								<p><jsp:getProperty name="previewadvice" property="fname"/> <jsp:getProperty name="previewadvice" property="lname"/> advice you to watch <jsp:getProperty name="previewadvice" property="title"/> </p>
 								
-								<%} %>
+								<%} }%>
 							</div>
 						</div>
 					</div>

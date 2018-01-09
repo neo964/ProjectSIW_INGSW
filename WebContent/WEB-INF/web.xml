@@ -230,4 +230,13 @@
         <url-pattern>/suggestTo</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <servlet-class>controller.SearchUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <url-pattern>/searchUser</url-pattern>
+    </servlet-mapping> 
+
 </web-app>

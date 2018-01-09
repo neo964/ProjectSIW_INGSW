@@ -15,7 +15,7 @@ prefix="c" %>
 <%
 User user = (User) session.getAttribute("user");
 LinkedList<Friendship> friends = (LinkedList<Friendship>) request.getAttribute("friends");
-LinkedList<Friendship> userfriends = (LinkedList<Friendship>) request.getAttribute("userfriends");
+LinkedList<User> userfriends = (LinkedList<User>) request.getAttribute("userfriends");
 if (user == null)
 	response.sendRedirect("loginpage.html");
 else{
@@ -127,12 +127,19 @@ else{
 			<% if (friends != null)
 				for (Iterator iterator = userfriends.iterator(), iteratorfriend = friends.iterator(); iterator.hasNext();) {
 					User userfriendtmp = (User) iterator.next();
-					Friendship friedshiptmp = (Friendship) iteratorfriend.next();
+					Friendship friedshiptmp = null;
+					if (iteratorfriend.hasNext())
+						friedshiptmp = (Friendship) iteratorfriend.next();
+					
 					friend.setFirstName(userfriendtmp.getFirstName());
 					friend.setLastName(userfriendtmp.getLastName());
 					friend.setImage(userfriendtmp.getPathToImage());
 					friend.setUser(userfriendtmp.getEmail());
-					friendhip.setAccepted(friedshiptmp.isAccepted());
+					if (friedshiptmp != null)
+						friendhip.setAccepted(friedshiptmp.isAccepted());
+					else
+						friendhip.setAccepted(false);
+						
 				%>
 			<form action="/Project/friend" method="get">
 				<figure>	<!-- qui è il tag di cambio pagina -->

@@ -77,7 +77,7 @@ public class GiveMeMultimedia extends HttpServlet {
 				req.getSession().setAttribute("isFilm", false);
 				req.getRequestDispatcher("tvcategorypage.jsp").forward(req, resp);
 			} else if (what.equals("friend")) {
-				req.getRequestDispatcher("friend.jsp").forward(req, resp);
+				req.getRequestDispatcher("searchFriend.html").forward(req, resp);
 			}
 			
 		}

@@ -28,10 +28,12 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 			statement.setString(2, friendship.getUser2());
 			statement.setBoolean(3, friendship.isAccepted ());
 			statement.executeUpdate();
-			statement.setString(2, friendship.getUser1());
-			statement.setString(1, friendship.getUser2());
-			statement.setBoolean(3, friendship.isAccepted ());
-			statement.executeUpdate();
+			if (friendship.isAccepted()) {
+				statement.setString(2, friendship.getUser1());
+				statement.setString(1, friendship.getUser2());
+				statement.setBoolean(3, friendship.isAccepted ());
+				statement.executeUpdate();
+			}
 			connection.commit();
 			connection.setAutoCommit(false);
 		} catch (SQLException e) {
@@ -77,7 +79,7 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 		List<Friendship> friendships = new LinkedList<>();
 		try {
 			PreparedStatement statement;
-			String query = "select * from \"Friendship\" where \"User1\" = ? And \"accepted\" = ?";
+			String query = "select * from \"Friendship\" where \"User2\" = ? And \"accepted\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString (1, user);
 			statement.setBoolean(2, true);
@@ -127,18 +129,22 @@ public class FriendshipDAOJDBC implements FriendshipDAO {
 	public void update(Friendship friendship) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			System.out.println("qui");
+			System.out.println(friendship.isAccepted());
+			System.out.println(friendship.getUser1());
+			System.out.println(friendship.getUser2());
 			connection.setAutoCommit(false);
-			String update = "update \"Friendship\" SET \"User1\" = ?, \"User2\" = ?, \"accepted\" = ? WHERE \"User1\" = ? AND \"User2\" = ?";
+			String update = "update \"Friendship\" SET \"accepted\" = ? WHERE \"User1\" = ? AND \"User2\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
-			statement.setString(1, friendship.getUser1());
-			statement.setString(2, friendship.getUser2());
-			statement.setBoolean(3, friendship.isAccepted());
-			statement.setString(4, friendship.getUser1());
-			statement.setString(5, friendship.getUser2());
-			statement.executeUpdate();
+			//statement.setString(1, friendship.getUser1());
+			///statement.setString(2, friendship.getUser2());
+			statement.setBoolean(1, friendship.isAccepted());
 			statement.setString(2, friendship.getUser1());
-			statement.setString(1, friendship.getUser2());
-			statement.setBoolean(3, friendship.isAccepted());
+			statement.setString(3, friendship.getUser2());
+			statement.executeUpdate();
+			statement.setString(3, friendship.getUser1());
+			statement.setString(2, friendship.getUser2());
+			statement.setBoolean(1, friendship.isAccepted());
 			statement.executeUpdate();
 			connection.commit();
 			connection.setAutoCommit(true);

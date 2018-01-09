@@ -56,21 +56,22 @@ public class Friends extends HttpServlet{
 
 		} else if (accept != null) {
 			friendshipdao.update(new Friendship(user.getEmail(), accept, true));
-			profilebool = true;
+			req.getRequestDispatcher("confirmFriendship.jsp").forward(req, resp);
+			return;
 		} 
 		
-		if (keyword != null || !profilebool){ // per la ricerca alla home
+		if (keyword != null){ // per la ricerca alla home
 			userfriend = (LinkedList<User>) DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByName(keyword);
+			friends = new LinkedList<>();
+			req.setAttribute("keyword", keyword);
 			for (Iterator iterator = userfriend.iterator(); iterator.hasNext();) {
 				User user2 = (User) iterator.next();
-				friends.add(DatabaseManager.getInstance().getDaoFactory().getFriendsip().findByPrimaryKey(user.getEmail(), user2.getEmail()));
+				friends.add(DatabaseManager.getInstance().getDaoFactory().getFriendsip().findByPrimaryKey(user.getEmail (), user2.getEmail()));
 			}
 		}else { // per gli amici nel profilo
 			friends.addAll(DatabaseManager.getInstance().getDaoFactory().getFriendsip().findAllMyFriend(user.getEmail()));
 			for (Iterator iterator = friends.iterator(); iterator.hasNext();) {
 				Friendship friendship = (Friendship) iterator.next();
-				System.out.println(friendship.getUser1());
-				System.out.println(friendship.getUser2());
 				userfriend.add(DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByPrimaryKey(friendship.getUser2()));
 			}
 		} 
