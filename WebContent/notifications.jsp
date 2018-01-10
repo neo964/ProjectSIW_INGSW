@@ -126,7 +126,6 @@ else{
 							<form action="/Project/friend">
 								<h3>Friend Request</h3>
 								<%for(User userfriendtmp: requests){ 
-									if (!curSession.getUser().equals(userfriendtmp.getEmail())){
 									friend.setFirstName(userfriendtmp.getFirstName());
 									friend.setLastName(userfriendtmp.getLastName());
 									friend.setImage(userfriendtmp.getPathToImage());
@@ -135,7 +134,7 @@ else{
 								<p> <jsp:getProperty name="friend" property="firstName"/> <jsp:getProperty name="friend" property="lastName"/> </p>
 								<button class="button" name="accept" value=<jsp:getProperty name="friend" property="user"/>>Accept</button>
 								<button class="button" name="decline" value=<jsp:getProperty name="friend" property="user"/>>Refuse</button>
-								<%}} %>
+								<%} %>
 							</form>
 							</div>
 						</div>

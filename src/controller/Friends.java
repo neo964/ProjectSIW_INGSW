@@ -55,7 +55,10 @@ public class Friends extends HttpServlet{
 			profilebool = false;
 
 		} else if (accept != null) {
-			friendshipdao.update(new Friendship(user.getEmail(), accept, true));
+			System.out.println(user.getEmail());
+			System.out.println(accept);
+			friendshipdao.save(new Friendship(user.getEmail(), accept, true));
+			friendshipdao.update(new Friendship(accept, user.getEmail(), true));
 			req.getRequestDispatcher("confirmFriendship.jsp").forward(req, resp);
 			return;
 		} 
@@ -69,6 +72,7 @@ public class Friends extends HttpServlet{
 				friends.add(DatabaseManager.getInstance().getDaoFactory().getFriendsip().findByPrimaryKey(user.getEmail (), user2.getEmail()));
 			}
 		}else { // per gli amici nel profilo
+			System.out.println("Ricerca");
 			friends.addAll(DatabaseManager.getInstance().getDaoFactory().getFriendsip().findAllMyFriend(user.getEmail()));
 			for (Iterator iterator = friends.iterator(); iterator.hasNext();) {
 				Friendship friendship = (Friendship) iterator.next();

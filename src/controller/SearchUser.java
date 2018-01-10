@@ -24,7 +24,12 @@ public class SearchUser extends HttpServlet {
 		LinkedList<Friendship> friendship = new LinkedList<>();
 		for (Iterator iterator = userfriend.iterator(); iterator.hasNext();) {
 			User user2 = (User) iterator.next();
-			friendship.add(DatabaseManager.getInstance().getDaoFactory().getFriendsip().findByPrimaryKey(user.getEmail (), user2.getEmail()));
+			if (user2.getEmail().equals(user.getEmail())) {
+				iterator.remove();
+			}
+			else {
+				friendship.add(DatabaseManager.getInstance().getDaoFactory().getFriendsip().findByPrimaryKey(user.getEmail (), user2.getEmail()));
+			}
 		}
 		req.setAttribute("friends", friendship);
 		req.setAttribute("userfriends", userfriend);

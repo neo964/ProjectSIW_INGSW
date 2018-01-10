@@ -139,29 +139,6 @@ else{
 		    		</form>
 		    		</div>
 		    		</div>
-	
-	
-
-<div class="container-fluid">
-		<div class="row -post-entry single-entry">
-			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-								
-				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-					<div class="row">
-		
-						<div class="col-lg-4 animate-box">
-							<div class="-highlight right">
-								<h4>Your Friends</h4>
-								<p>nome cognome mail</p>
-							</div>
-						</div>						
-						
-					</div>
-					</div>
-					</article>
-					</div>
-					
-	</div>
 
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>

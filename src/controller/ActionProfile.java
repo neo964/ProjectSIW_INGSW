@@ -55,7 +55,7 @@ public class ActionProfile extends HttpServlet {
 			LinkedList<User> friendshiprequests = new LinkedList<>();
 			for (Iterator iterator = requests.iterator(); iterator.hasNext();) {
 				Friendship friendship = (Friendship) iterator.next();
-				friendshiprequests.add(DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByPrimaryKey(friendship.getUser2()));
+				friendshiprequests.add(DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByPrimaryKey(friendship.getUser1()));
 			}
 			LinkedList<Advice> advices = (LinkedList<Advice>) DatabaseManager.getInstance().getDaoFactory().getAdviceDAO().findAllMyAdvice(user.getEmail());
 			req.setAttribute("requests", friendshiprequests);
