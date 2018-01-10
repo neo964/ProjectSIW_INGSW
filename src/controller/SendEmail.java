@@ -13,8 +13,8 @@ import javax.mail.internet.MimeMessage;
 public class SendEmail {
 
 	public boolean sendEmail (String to, String subject, String text) throws IOException {
-		final String username = "blackperrycs@gmail.com";
-		final String password = "Dobrowitz4";
+		final String username = "pandapmpa@gmail.com";
+		final String password = "pandaflix";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

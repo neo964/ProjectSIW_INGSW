@@ -89,7 +89,7 @@ public class SignUp extends HttpServlet {
 		SendEmail send = new SendEmail();
 		if (user != null) {
 			send.sendEmail(username, "Welcome", "Welcome to Our Comunity");
-			req.getSession().setAttribute("user", user.getEmail()); // Login user.
+			req.getSession().setAttribute("user", user); // Login user.
 	        resp.sendRedirect("index.jsp"); // Redirect to home page.
 		}
 		
