@@ -55,7 +55,8 @@ trailer.setPath(request.getParameter("path"));
 
 <header id="-header">
 		
-		<div id="-offcanvas">
+		<body>
+	<div id="-offcanvas">
 		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="-bio">
 			<figure>
@@ -78,27 +79,11 @@ trailer.setPath(request.getParameter("path"));
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="posterFilm.html">Add New Film</a></li>
-					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
+					<li><a href="posterFilm.jsp">Add New Film</a></li>
+					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
-			<div class="-box" id="searchBox" style=" float: right"> 
-						<h3 class="heading">Search Film</h3>
-							<form action="/Project/search" method="get">
-								<div class="form-group">
-									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-								</div>
-							</form>
-					</div>
-					<div class="-box" id="searchBox" style=" float: left"> 
-						<h3 class="heading">Search TVSerie</h3>
-							<form action="/Project/searchTV" method="get">
-								<div class="form-group">
-									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-								</div>
-							</form>
-					</div>
 		</div>
 	</div>
 	<!-- END #-offcanvas -->

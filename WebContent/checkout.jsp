@@ -50,7 +50,7 @@ else{
 
 	</head>
 	<body>
-<div id="-offcanvas">
+	<div id="-offcanvas">
 		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="-bio">
 			<figure>
@@ -73,8 +73,8 @@ else{
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="aboutUs.html">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="posterFilm.html">Add New Film</a></li>
-					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
+					<li><a href="posterFilm.jsp">Add New Film</a></li>
+					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
