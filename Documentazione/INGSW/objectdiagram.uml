@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_0jDmkNwaEeegLbKLhJhXVg" name="Object">
+  <packagedElement xmi:type="uml:Interface" xmi:id="_EJSUkNwbEeegLbKLhJhXVg" name="Multimedia" visibility="public">
+    <ownedAttribute xmi:id="_jWvGQOGFEeefCrCWMajeZw" name="poster" type="_mtBFkOGFEeefCrCWMajeZw"/>
+    <ownedAttribute xmi:id="_knhYsOGFEeefCrCWMajeZw" name="trailer" type="_nxTNEOGFEeefCrCWMajeZw"/>
+    <ownedAttribute xmi:id="_krLJoOGFEeefCrCWMajeZw" name="videoOnDemand" type="_q7q3UOGFEeefCrCWMajeZw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Gs0BQNwbEeegLbKLhJhXVg" name="TvSerie" visibility="public">
+    <interfaceRealization xmi:id="_Xu1X0NwbEeegLbKLhJhXVg" client="_Gs0BQNwbEeegLbKLhJhXVg" supplier="_EJSUkNwbEeegLbKLhJhXVg" contract="_EJSUkNwbEeegLbKLhJhXVg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IoaLQNwbEeegLbKLhJhXVg" name="Film" visibility="public">
+    <interfaceRealization xmi:id="_WV4n4NwbEeegLbKLhJhXVg" client="_IoaLQNwbEeegLbKLhJhXVg" supplier="_EJSUkNwbEeegLbKLhJhXVg" contract="_EJSUkNwbEeegLbKLhJhXVg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_ZmgrINwbEeegLbKLhJhXVg" name="User" visibility="public">
+    <ownedAttribute xmi:id="_lnYvsOGEEeefCrCWMajeZw" name="cart" type="_tErnsOGEEeefCrCWMajeZw"/>
+    <ownedAttribute xmi:id="_nnTZAOGEEeefCrCWMajeZw" name="myList" type="_180tEOGEEeefCrCWMajeZw"/>
+    <ownedAttribute xmi:id="_347NYOGEEeefCrCWMajeZw" name="personalInformation: PersonalInformation"/>
+    <ownedAttribute xmi:id="_E2rdQOGFEeefCrCWMajeZw" name="IsAdmin">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_E-_rwOGFEeefCrCWMajeZw" name="isPremium">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_g0AMkNwbEeegLbKLhJhXVg" name="Premium User" visibility="public">
+    <ownedAttribute xmi:id="_bVLqoOGFEeefCrCWMajeZw" name="subscription" type="_gUEmgOGFEeefCrCWMajeZw"/>
+    <interfaceRealization xmi:id="_krO80NwbEeegLbKLhJhXVg" client="_g0AMkNwbEeegLbKLhJhXVg" supplier="_ZmgrINwbEeegLbKLhJhXVg" contract="_ZmgrINwbEeegLbKLhJhXVg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_inb5ENwbEeegLbKLhJhXVg" name="Admin" visibility="public">
+    <interfaceRealization xmi:id="_la100NwbEeegLbKLhJhXVg" client="_inb5ENwbEeegLbKLhJhXVg" supplier="_ZmgrINwbEeegLbKLhJhXVg" contract="_ZmgrINwbEeegLbKLhJhXVg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_roBIwNwbEeegLbKLhJhXVg" name="HandleMultimedia" memberEnd="_roBIwdwbEeegLbKLhJhXVg _roBIxNwbEeegLbKLhJhXVg" navigableOwnedEnd="_roBIwdwbEeegLbKLhJhXVg _roBIxNwbEeegLbKLhJhXVg">
+    <ownedEnd xmi:id="_roBIwdwbEeegLbKLhJhXVg" name="users" type="_ZmgrINwbEeegLbKLhJhXVg" association="_roBIwNwbEeegLbKLhJhXVg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_roBIwtwbEeegLbKLhJhXVg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_roBIw9wbEeegLbKLhJhXVg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_roBIxNwbEeegLbKLhJhXVg" name="multimedias" type="_EJSUkNwbEeegLbKLhJhXVg" association="_roBIwNwbEeegLbKLhJhXVg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_roBIxdwbEeegLbKLhJhXVg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_roBIxtwbEeegLbKLhJhXVg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_yFcfMNwbEeegLbKLhJhXVg" name="Friendship" memberEnd="_yFcfMdwbEeegLbKLhJhXVg _yFcfNNwbEeegLbKLhJhXVg" navigableOwnedEnd="_yFcfMdwbEeegLbKLhJhXVg _yFcfNNwbEeegLbKLhJhXVg">
+    <ownedEnd xmi:id="_yFcfMdwbEeegLbKLhJhXVg" name="users" type="_ZmgrINwbEeegLbKLhJhXVg" association="_yFcfMNwbEeegLbKLhJhXVg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yFcfMtwbEeegLbKLhJhXVg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yFcfM9wbEeegLbKLhJhXVg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_yFcfNNwbEeegLbKLhJhXVg" name="users" type="_ZmgrINwbEeegLbKLhJhXVg" association="_yFcfMNwbEeegLbKLhJhXVg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yFcfNdwbEeegLbKLhJhXVg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yFcfNtwbEeegLbKLhJhXVg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iXzIIODdEeevTbmyjlOS4w" name="Ranking" visibility="public">
+    <ownedAttribute xmi:id="_-pd3oOGFEeefCrCWMajeZw" name="ranking">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_oKb1IODdEeevTbmyjlOS4w" name="Submit" memberEnd="_oKb1IeDdEeevTbmyjlOS4w _oKb1JODdEeevTbmyjlOS4w" navigableOwnedEnd="_oKb1IeDdEeevTbmyjlOS4w _oKb1JODdEeevTbmyjlOS4w">
+    <ownedEnd xmi:id="_oKb1IeDdEeevTbmyjlOS4w" name="users" type="_ZmgrINwbEeegLbKLhJhXVg" association="_oKb1IODdEeevTbmyjlOS4w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oKb1IuDdEeevTbmyjlOS4w"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oKb1I-DdEeevTbmyjlOS4w" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_oKb1JODdEeevTbmyjlOS4w" name="ranking" type="_iXzIIODdEeevTbmyjlOS4w" association="_oKb1IODdEeevTbmyjlOS4w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oKb1JeDdEeevTbmyjlOS4w"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oKb1JuDdEeevTbmyjlOS4w" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ppPVcODdEeevTbmyjlOS4w" name="Rank" memberEnd="_ppPVceDdEeevTbmyjlOS4w _ppPVdODdEeevTbmyjlOS4w" navigableOwnedEnd="_ppPVceDdEeevTbmyjlOS4w _ppPVdODdEeevTbmyjlOS4w">
+    <ownedEnd xmi:id="_ppPVceDdEeevTbmyjlOS4w" name="multimedias" type="_EJSUkNwbEeegLbKLhJhXVg" association="_ppPVcODdEeevTbmyjlOS4w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ppPVcuDdEeevTbmyjlOS4w"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ppPVc-DdEeevTbmyjlOS4w" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ppPVdODdEeevTbmyjlOS4w" name="rankin" type="_iXzIIODdEeevTbmyjlOS4w" association="_ppPVcODdEeevTbmyjlOS4w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ppPVdeDdEeevTbmyjlOS4w"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ppPVduDdEeevTbmyjlOS4w" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_tErnsOGEEeefCrCWMajeZw" name="Cart"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_180tEOGEEeefCrCWMajeZw" name="List&lt;Multimedia>"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gUEmgOGFEeefCrCWMajeZw" name="Subscription"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_mtBFkOGFEeefCrCWMajeZw" name="Poster"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nxTNEOGFEeefCrCWMajeZw" name="Trailer"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_q7q3UOGFEeefCrCWMajeZw" name="VideoOnDemand"/>
+</uml:Model>

@@ -1,0 +1,74 @@
+Comprare film o serie
+
+Guardare film o serie
+
+Recedere un ordine.
+
+Socializzare con amici, condividere informazioni, pareri, consigliare qualcosa
+
+Aggiungere o rimuovere film o serie visti, votarlo.
+
+
+
+
+
+
+
+
+schermata di login: 
+    normal user;
+    premium user;
+    admin;
+
+Funzione cerca:
+    film;
+    serie tv;
+
+Funzione cerca2;
+    amici, per aggiungerli, rimuoverli o guardare profilo (film e serie visti);
+
+Guarda lista Film;
+
+Guarda lista serie;
+
+Pagina film (o serie):
+    locandina (immagine, trama, cast);
+    link (trailer e film o acquisto, links per episodi);
+    numero di visualizzazioni;
+    commenti dagli utenti;
+    aggiungi ai preferiti;
+    aggiungi a film/serie visti;
+    compra film;
+    vedi film (trailer);
+    contenuti correlati;
+
+    Acquista o guarda film:
+        inserisci carta di credito;
+        paga con carta di credito registrata;
+        
+
+Sezione news:
+    ultimi film o serie aggiunte al database;
+    ultimi film visti dai tuoi amici;
+
+Profilo:
+    film visti;
+    film acquistati;
+    serie viste;
+    Contenuti in corso;
+    serie acquistate;
+    genere preferito in base a quelli visti;
+    consigli di amici;
+    consigli dal sito;
+    Immagine profilo;
+    Sezione preferiti (visti o da vedere);
+    Stato della spedizione;
+
+Impostazioni:
+    aggiungi o elimina carta di credito;
+    modifica password;
+    modifica email;
+    modifica profilo;
+    Abbonati o disdici abbonamento;
+    
+    

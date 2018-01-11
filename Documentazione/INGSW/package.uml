@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_cweugOGGEeefCrCWMajeZw" name="Techincal Services">
+  <packagedElement xmi:type="uml:Package" xmi:id="_Jd8UkOGLEeefCrCWMajeZw" name="Domain">
+    <packagedElement xmi:type="uml:Package" xmi:id="_N-kAEOGLEeefCrCWMajeZw" name="UI">
+      <packagedElement xmi:type="uml:Package" xmi:id="_xvS4gOGLEeefCrCWMajeZw" name="FX"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_fdBbAOGLEeefCrCWMajeZw" name="Sales"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_imQc0OGLEeefCrCWMajeZw" name="Payment"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_juWtUOGLEeefCrCWMajeZw" name="Friendship"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_XR3XcOGLEeefCrCWMajeZw" name="Persistence"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_XwraYOGLEeefCrCWMajeZw" name="Streaming">
+    <packagedElement xmi:type="uml:Package" xmi:id="_2grj4OGLEeefCrCWMajeZw" name="Web"/>
+  </packagedElement>
+</uml:Model>
