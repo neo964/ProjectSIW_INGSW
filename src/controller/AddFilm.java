@@ -50,12 +50,13 @@ public class AddFilm extends HttpServlet {
 				Film film = new Film(id, new FilmPoster(title, category, director, year, actors, Plot, image), new Trailer (trailer), price, videoOnDemand);
 				filmdao.update(film);
 			}
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/Project/home");
-			dispatcher.forward(req, resp);
 			
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("home");
+		dispatcher.forward(req, resp);
 	}
 	
 }

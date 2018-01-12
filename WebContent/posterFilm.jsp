@@ -136,7 +136,7 @@ else{
           
 		  <div class="field-wrap">
 		  <h4>Plot</h4>
-            <input name="Plot" type="text" value="" size="40" maxlength="200" />
+            <input name="Plot" type="text" value="" size="40" maxlength="2000" />
           </div>
           
 		 <div class="field-wrap">

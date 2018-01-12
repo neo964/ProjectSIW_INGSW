@@ -207,12 +207,11 @@ public class RankingDAOJDBC implements RankingDAO {
 			connection.setAutoCommit(false);
 			String delete = null;
 			if (ranking.getMultimedia() instanceof Film)
-				delete = "delete FROM \"RankingFilm\" WHERE \"User\" = ?, \"Film\" = ?";
+				delete = "delete FROM \"RankingFilm\" WHERE \"Film\" = ?";
 			else
-				delete = "delete FROM \"RankingTVSerie\" WHERE \"User\" = ?, \"TVSerie\" = ?";
+				delete = "delete FROM \"RankingTVSerie\" WHERE \"TVSerie\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setString(1, ranking.getUser());
-			statement.setInt(2, ranking.getMultimedia().getId());
+			statement.setInt(1, ranking.getMultimedia().getId());
 			statement.executeUpdate();
 			connection.commit();
 			connection.setAutoCommit(true);

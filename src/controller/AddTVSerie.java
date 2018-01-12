@@ -68,12 +68,11 @@ public class AddTVSerie extends HttpServlet{
 				tvseriedao.update(tvSerie);
 			}
 			
-			RequestDispatcher dispatcher = req.getRequestDispatcher("home");
-			dispatcher.forward(req, resp);
-			
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
+		RequestDispatcher dispatcher = req.getRequestDispatcher("home");
+		dispatcher.forward(req, resp);
 	}
 	
 }

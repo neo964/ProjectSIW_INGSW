@@ -9,6 +9,7 @@ import java.util.List;
 import Model.Actor;
 import Model.Film;
 import Model.FilmPoster;
+import Model.Ranking;
 import Model.Trailer;
 import persistenceDAO.FilmDAO;
 
@@ -254,6 +255,8 @@ public class FilmDAOJDBC implements FilmDAO {
 	public void delete(Film film) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			RankingDAOJDBC rank = new RankingDAOJDBC(dataSource);
+			rank.delete(new Ranking(film, null, 0));
 			connection.setAutoCommit(false);
 			String delete = "delete FROM \"Film\" WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);

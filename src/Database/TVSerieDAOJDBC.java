@@ -9,6 +9,7 @@ import java.util.List;
 
 import Model.Actor;
 import Model.Episode;
+import Model.Ranking;
 import Model.TVSerie;
 import Model.TVSeriePoster;
 import Model.Trailer;
@@ -302,6 +303,8 @@ public class TVSerieDAOJDBC implements TVSerieDAO {
 	public void delete(TVSerie tvSerie) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			RankingDAOJDBC rank = new RankingDAOJDBC(dataSource);
+			rank.delete(new Ranking(tvSerie, null, 0));
 			connection.setAutoCommit(false);
 			String delete = "delete FROM \"TVSerie\" WHERE \"ID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(delete);
