@@ -22,18 +22,20 @@ public class BuyIt extends HttpServlet{
 		System.out.println(iscart);
 		if (iscart != null && iscart.equals("true")) { System.out.println("ISCART");
 			DatabaseManager.getInstance().getDaoFactory().getCartDao().deleteAll(user.getEmail());
+			req.setAttribute("purchase", "valid");
 		} else {
 			String pass = DatabaseManager.getInstance().getDaoFactory().getUserRefernce(user).getPassword();
 			User newUser = new User(user.getFirstName(), user.getLastName(), user.getEmail(), null, null, true, user.isAdmin(), user.getDateOfBirth(), user.getPathToImage(), pass);
 			DatabaseManager.getInstance().getDaoFactory().getUserDAO().update(user);
 			System.out.println("Refresh");
 			req.getSession().setAttribute("user", newUser);
+			req.setAttribute("purchase", "refresh");
 		}
 		if (address == null || payment == null) {
 			System.out.println("Not valid");
+			req.setAttribute("purchase", "notvalid");
 		}
-		System.out.println("Siamoq ui");
-		req.getRequestDispatcher("myprofile.jsp").forward(req, resp);
+		req.getRequestDispatcher("confirmPurchase.jsp").forward(req, resp);
 		
 		
 	}

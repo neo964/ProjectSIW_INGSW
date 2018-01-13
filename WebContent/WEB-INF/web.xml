@@ -239,4 +239,13 @@
         <url-pattern>/searchUser</url-pattern>
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>SendMailServlet</servlet-name>
+        <servlet-class>controller.SendUs</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendMailServlet</servlet-name>
+        <url-pattern>/sendUs</url-pattern>
+    </servlet-mapping> 
+
 </web-app>

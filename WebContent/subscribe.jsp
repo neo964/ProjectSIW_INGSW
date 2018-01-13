@@ -63,7 +63,7 @@ else{
 					<li><a href="/Project/search">News</a></li>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="aboutUs.html">About Us</a></li>
+					<li><a href="aboutUs.jsp">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
 					<li><a href="posterFilm.jsp">Add New Film</a></li>
 					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>
@@ -83,9 +83,6 @@ else{
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
 					<h2 id="-logo"><a>Become Premium</a></h2>
-					<figure>
-					<a><img src="images/offerte.jpg" alt="Image"></a>
-					</figure>
 					<div class="-box" id="searchBox" style=" float: right"> 
 						<h3 class="heading">Search Film</h3>
 							<form action="/Project/search" method="get">
@@ -111,20 +108,23 @@ else{
 
 	</header>
 	<!-- END #-header -->
-
+	
+	<div class="col-lg-12 col-md-12 text-center">
+	<%if (curSession.isPremium()) {%>
+	 <h2>You already are a Premium Member!</h2>
+	
+	<%} else { %>
+	
+	<figure>
+		<img alt="offer" src="images/sale.jpg">
+	</figure>
 			 <div class="field-wrap">
             <form action = "/Project/Check-Out" method="get">
               <button class="button button-block" name="buy" value="premium">Stay premium stay foolish</button>
             </form>
             </div>
+            <%} %>
             </div>
-
-            
-
-          </div>
-		
-		
-         </form>
           
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br><a>Designed by Andrea Pastore & Mario Perri</a> </small></p>

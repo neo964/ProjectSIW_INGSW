@@ -62,7 +62,7 @@ else{
 					<li><a href="/Project/search">News</a></li>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="aboutUs.html">About Us</a></li>
+					<li><a href="aboutUs.jsp">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
 					<li><a href="posterFilm.jsp">Add New Film</a></li>
 					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>

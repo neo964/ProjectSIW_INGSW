@@ -72,7 +72,7 @@ else{
 					<li><a href="/Project/search">News</a></li>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="aboutUs.html">About Us</a></li>
+					<li><a href="aboutUs.jsp">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
 					<li><a href="posterFilm.jsp">Add New Film</a></li>
 					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>
@@ -120,6 +120,11 @@ else{
 		</div>
 
 	</header>
+	<% if (friends.isEmpty()){%> 
+				<div class="col-lg-12 col-md-12 text-center">
+			<h2 id="-logo">We are sorry but the searched people is not present, try with another search!</h2>
+			</div>
+		<% }%>
 
 	<div class="container-fluid">
 		<div class="row -post-entry">
