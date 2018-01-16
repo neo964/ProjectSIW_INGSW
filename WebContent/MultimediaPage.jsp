@@ -264,11 +264,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 								</figure>
 							</article>
 							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 								<figure>	<!-- qui è il tag di cambio pagina -->
 									<input name="rank" type="image" value="4" class="img-responsive" alt="Image" src="images/stella.png">
 								</figure>
-							</article>
 							
 							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 								<figure>	<!-- qui è il tag di cambio pagina -->
