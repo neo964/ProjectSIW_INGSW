@@ -111,27 +111,27 @@ else{
 		<div class="row -post-entry">
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 			<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="actionprofile" type="image" value="subscribe" class="img-responsive" alt="Image" src="images/news.png">
+					<input name="actionprofile" type="image" value="subscribe" class="img-responsive" alt="Image" src="images/subscribe.png">
 			</figure>
 				<h2 class="-article-title">Subscribe</h2>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="actionprofile" type="image" value="cart" class="img-responsive" alt="Image" src="images/film.jpg">
+					<input name="actionprofile" type="image" value="cart" class="img-responsive" alt="Image" src="images/cart.png">
 				</figure>
 				<h2 class="-article-title">Cart</h2>
 			</article>
 			<div class="clearfix visible-xs-block"></div>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="actionprofile" type="image" value="settings" class="img-responsive" alt="Image" src="images/film.jpg">
+					<input name="actionprofile" type="image" value="settings" class="img-responsive" alt="Image" src="images/settings.png">
 				</figure>
 				<h2 class="-article-title">Settings</h2>
 			</article>
 		
 		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="actionprofile" type="image" value="friends" class="img-responsive" alt="Image" src="images/film.jpg">
+					<input name="actionprofile" type="image" value="friends" class="img-responsive" alt="Image" src="images/amiciProfilo.png">
 				</figure>
 				<h2 class="-article-title">Friends</h2>
 			</article>
@@ -140,14 +140,14 @@ else{
 		
 		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="actionprofile" type="image" value="favourite" class="img-responsive" alt="Image" src="images/film.jpg">
+					<input name="actionprofile" type="image" value="favourite" class="img-responsive" alt="Image" src="images/myFavourite.png">
 				</figure>
 				<h2 class="-article-title">My Favourite</h2>
 			</article>
 			
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="actionprofile" type="image" value="notification" class="img-responsive" alt="Image" src="images/film.jpg">
+					<input name="actionprofile" type="image" value="notification" class="img-responsive" alt="Image" src="images/notifications.jpg">
 				</figure>
 				<h2 class="-article-title">Notification</h2>
 			</article>

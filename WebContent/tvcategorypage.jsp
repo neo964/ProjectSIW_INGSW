@@ -113,14 +113,14 @@ else{
 		<div class="row -post-entry">
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="giveCategory" type="image" value="Animation" class="img-responsive" alt="Image" src="images/animazione.jpg">
+					<input name="giveCategory" type="image" value="Animation" class="img-responsive" alt="Image" src="images/animationSerie.jpg">
 				</figure>
 					<span class="-meta">Animation</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveCategory" type="image" value="Adventure" class="img-responsive" alt="Image" src="images/avventura.jpg">
+					<input name="giveCategory" type="image" value="Adventure" class="img-responsive" alt="Image" src="images/adventureSerie.jpg">
 				</figure>
 					<span class="-meta">Adventure</span>
 					<span class="-meta -date">Last update, now</span>
@@ -128,42 +128,42 @@ else{
 			<div class="clearfix visible-xs-block"></div>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveCategory" type="image" value="Commedy" class="img-responsive" alt="Image" src="images/commedia.jpg">
+					<input name="giveCategory" type="image" value="Commedy" class="img-responsive" alt="Image" src="images/comedySerie.jpg">
 				</figure>
 					<span class="-meta">Comedy</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveCategory" type="image" value="Drama" class="img-responsive" alt="Image" src="images/dramma.jpg">
+					<input name="giveCategory" type="image" value="Drama" class="img-responsive" alt="Image" src="images/dramaticSerie.jpg">
 				</figure>
 				<span class="-meta">Dramatic</span>
 				<span class="-meta -date">Last update, now</span>
 			</article>
 				<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveCategory" type="image" value="Sci-Fi" class="img-responsive" alt="Image" src="images/fantascienza.jpg">
+					<input name="giveCategory" type="image" value="Sci-Fi" class="img-responsive" alt="Image" src="images/scienzeSerie.jpg">
 				</figure>
 					<span class="-meta">Science fiction</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveCategory" type="image" value="Fantasy" class="img-responsive" alt="Image" src="images/fantasy.jpg">
+					<input name="giveCategory" type="image" value="Fantasy" class="img-responsive" alt="Image" src="images/fantasySerie.jpg">
 				</figure>
 					<span class="-meta">Fantasy / Fantastic</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveCategory" type="image" value="War" class="img-responsive" alt="Image" src="images/war.jpg">
+					<input name="giveCategory" type="image" value="War" class="img-responsive" alt="Image" src="images/warSerie.jpg">
 				</figure>
 					<span class="-meta">War</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="giveCategory" type="image" value="Horror" class="img-responsive" alt="Image" src="images/horror.jpg">
+					<input name="giveCategory" type="image" value="Horror" class="img-responsive" alt="Image" src="images/horrorSerie.jpg">
 				</figure>
 					<span class="-meta">Horror</span>
 					<span class="-meta -date">Last update, now</span>
