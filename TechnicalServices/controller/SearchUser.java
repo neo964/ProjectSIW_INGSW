@@ -21,6 +21,12 @@ public class SearchUser extends HttpServlet {
 		User user = (User) req.getSession().getAttribute("user");
 		
 		LinkedList<User> userfriend = (LinkedList<User>) DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByName(keyword);
+		int space = keyword.indexOf(" ");
+		String keyword2 = keyword.substring(0, space);
+		userfriend.addAll(DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByName(keyword2));
+		keyword2 = keyword.substring(space, keyword.length());
+		userfriend.addAll(DatabaseManager.getInstance().getDaoFactory().getUserDAO().findByName(keyword2));
+		
 		LinkedList<Friendship> friendship = new LinkedList<>();
 		for (Iterator iterator = userfriend.iterator(); iterator.hasNext();) {
 			User user2 = (User) iterator.next();

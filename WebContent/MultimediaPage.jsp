@@ -222,18 +222,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 								</div>
 								</div>
 								
-								<div class="col-lg-4 animate-box">
-							<div class="-highlight right">
-								<h4>Trailer</h4>
-								<iframe width="560" height="315" 
-									src= <jsp:getProperty name="trailer" property="path"/>
-									frameborder="0" 
-									gesture="media" 
-									allow="encrypted-media" 
-									allowfullscreen>
-								</iframe>
-							</div>
-						</div>
+								
 					<div class="col-lg-4 animate-box">
 						<div class="-highlight right">
 							<h4>Price</h4>
@@ -243,40 +232,31 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					
 							
 					
-					<form action="/Project/vote" method ="get">
+					<form action="/Project/vote" method ="get" id="rate">
 					<div class="container-fluid">
 						<div class="row -post-entry">
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="1" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="2" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="3" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="4" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="5" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							</div>
-							</div>
-							</form>
+						
+						<div class="col-lg-4 animate-box">
+					<div class="-highlight right">
+					 <fieldset>
+				  <legend>Vote</legend>
+		   				<h4>Rate It!</h4>
+				 
+				  <select name="rank" >
+				   <option value="1" selected="selected"> 1 Star </option>
+				   <option value="2" selected="selected"> 2 Stars </option>
+				   <option value="3" selected="selected"> 3 Stars </option>
+				   <option value="4" selected="selected"> 4 Stars </option>
+				   <option value="5" selected="selected"> 5 Stars </option>
+				   </select>
+				 </fieldset>
+				 <br>
+					<button class="button" form="rate">Submit!</button> 
+		    		</div>
+    				</div>
+					</div>
+					</div>
+					</form>
 								
 					<div class="top-row">
 					<form action="/Project/goToCart" method = "get">
@@ -312,6 +292,17 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           			</div>
           			<%} %>
 					</div>
+					<div class="container-fluid">
+						<h4>Trailer</h4>
+						<iframe width="560" height="315" 
+							src= <jsp:getProperty name="trailer" property="path"/>
+							frameborder="0" 
+							gesture="media" 
+							allow="encrypted-media" 
+							allowfullscreen>
+						</iframe>
+					</div>
+						
 	
 	</div>
 	</article>
@@ -353,18 +344,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 							</div>
 						</div>
 						<!-- Spazio per il link -->
-						<div class="col-lg-4 animate-box">
-							<div class="-highlight right">
-								<h4>Trailer</h4>
-								<iframe width="560" height="315" 
-									src= <jsp:getProperty name="trailer" property="path"/>
-									frameborder="0" 
-									gesture="media" 
-									allow="encrypted-media" 
-									allowfullscreen>
-								</iframe>
-							</div>
-						</div>
+						
 					<div class="col-lg-4 animate-box">
 						<div class="-highlight right">
 							<h4>Price</h4>
@@ -375,43 +355,32 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					
 							</div>
 						</div>
-					
-					<form action="/Project/vote" method ="get">
+						
+						<form action="/Project/vote" method ="get" id="rate">
 					<div class="container-fluid">
 						<div class="row -post-entry">
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="1" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="2" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="3" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="4" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-								<figure>	<!-- qui è il tag di cambio pagina -->
-									<input name="rank" type="image" value="5" class="img-responsive" alt="Image" src="images/stella.png">
-								</figure>
-							</article>
-							
-							</div>
-							</div>
-							</form>
+						
+						<div class="col-lg-4 animate-box">
+					<div class="-highlight right">
+					 <fieldset>
+				  <legend>Vote</legend>
+		   				<h4>Rate It!</h4>
+				 
+				  <select name="rank" >
+				   <option value="1" selected="selected"> 1 Star </option>
+				   <option value="2" selected="selected"> 2 Stars </option>
+				   <option value="3" selected="selected"> 3 Stars </option>
+				   <option value="4" selected="selected"> 4 Stars </option>
+				   <option value="5" selected="selected"> 5 Stars </option>
+				   </select>
+				 </fieldset>
+				 <br>
+					<button class="button" form="rate">Submit!</button> 
+		    		</div>
+    				</div>
+					</div>
+					</div>
+					</form>
 								
 					<div class="top-row">
 					<form action="/Project/goToCart" method = "get">
@@ -430,9 +399,14 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           			</div>
 					<div class="row rp-b">
 						<div class="col-md-12 animate-box">
-							<blockquote>
-								<p></p>
-							</blockquote>
+								<h4>Trailer</h4>
+								<iframe width="560" height="315" 
+									src= <jsp:getProperty name="trailer" property="path"/>
+									frameborder="0" 
+									gesture="media" 
+									allow="encrypted-media" 
+									allowfullscreen>
+								</iframe>
 						</div>
 					</div>
 				
