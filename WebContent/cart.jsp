@@ -168,9 +168,11 @@ for (MultimediaInCart multimedia: cart) {
 						</div>
 						</div>
 						</div>
+						<%if (!cart.isEmpty()){ %>
 						<form action="/Project/Check-Out">
 							<button class="button" name="iscart" value="true">Buy It!</button>
 						</form>
+						<%} %>
 						</article>	
 			</div>		
 				
