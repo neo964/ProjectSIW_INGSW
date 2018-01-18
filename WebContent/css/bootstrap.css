@@ -1,15 +1,13 @@
 @charset "UTF-8";
-/*!
- * Bootstrap v3.3.5 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*bootstrap css*/
+
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
 
 body {
   margin: 0;
@@ -30,7 +28,7 @@ section,
 summary {
   display: block;
 }
-
+/*
 audio,
 canvas,
 progress,
@@ -38,7 +36,8 @@ video {
   display: inline-block;
   vertical-align: baseline;
 }
-
+*/
+/*
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -139,7 +138,8 @@ textarea {
   font: inherit;
   margin: 0;
 }
-
+*/
+/*
 button {
   overflow: visible;
 }
@@ -222,7 +222,7 @@ th {
   padding: 0;
 }
 
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
 @media print {
   *,
   *:before,
@@ -241,7 +241,8 @@ th {
   a[href]:after {
     content: " (" attr(href) ")";
   }
-
+*/
+/*
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
@@ -341,7 +342,8 @@ th {
 .glyphicon-minus:before {
   content: "\2212";
 }
-
+*/
+/*
 .glyphicon-cloud:before {
   content: "\2601";
 }
@@ -445,7 +447,8 @@ th {
 .glyphicon-road:before {
   content: "\e024";
 }
-
+*/
+/*
 .glyphicon-download-alt:before {
   content: "\e025";
 }
@@ -593,7 +596,8 @@ th {
 .glyphicon-map-marker:before {
   content: "\e062";
 }
-
+*/
+/*
 .glyphicon-adjust:before {
   content: "\e063";
 }
@@ -729,7 +733,8 @@ th {
 .glyphicon-resize-full:before {
   content: "\e096";
 }
-
+*/
+/*
 .glyphicon-resize-small:before {
   content: "\e097";
 }
@@ -897,7 +902,8 @@ th {
 .glyphicon-dashboard:before {
   content: "\e141";
 }
-
+*/
+/*
 .glyphicon-paperclip:before {
   content: "\e142";
 }
@@ -1041,7 +1047,8 @@ th {
 .glyphicon-transfer:before {
   content: "\e178";
 }
-
+*/
+/*
 .glyphicon-cutlery:before {
   content: "\e179";
 }
@@ -1373,7 +1380,8 @@ th {
 .glyphicon-menu-up:before {
   content: "\e260";
 }
-
+*/
+/*
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1386,12 +1394,12 @@ th {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+*/
+/* set html font size*/
 html {
   font-size: 10px;
-  -webkit-tap-highlight-color: transparent;
 }
-
+/* set caratteristiche body*/
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -1408,11 +1416,13 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
-
+/* setto proprieta logo*/
 a {
   color: #337ab7;
   text-decoration: none;
 }
+
+
 a:hover, a:focus {
   color: #23527c;
   text-decoration: underline;
@@ -1423,6 +1433,7 @@ a:focus {
   outline-offset: -2px;
 }
 
+/* setto proprieta immagini*/
 figure {
   margin: 0;
 }
@@ -1440,7 +1451,7 @@ img {
 .img-rounded {
   border-radius: 6px;
 }
-
+/*
 .img-thumbnail {
   padding: 4px;
   line-height: 1.42857;
@@ -1454,18 +1465,19 @@ img {
   max-width: 100%;
   height: auto;
 }
-
+*/
 .img-circle {
   border-radius: 50%;
 }
-
+/*
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #eeeeee;
 }
-
+*/
+/*
 .sr-only {
   position: absolute;
   width: 1px;
@@ -1489,7 +1501,8 @@ hr {
 [role="button"] {
   cursor: pointer;
 }
-
+*/
+/* set rporpieta h*/
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
@@ -1579,7 +1592,7 @@ h6, .h6 {
 p {
   margin: 0 0 10px;
 }
-
+/*
 .lead {
   margin-bottom: 20px;
   font-size: 16px;
@@ -1816,7 +1829,7 @@ abbr[data-original-title] {
 .initialism {
   font-size: 90%;
 }
-
+/* set proprieta blocco*/
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
@@ -1866,7 +1879,7 @@ blockquote.pull-right small:after,
 blockquote.pull-right .small:after {
   content: '\00A0 \2014';
 }
-
+/*
 address {
   margin-bottom: 20px;
   font-style: normal;
@@ -1958,7 +1971,8 @@ pre code {
     width: 1170px;
   }
 }
-
+*/
+/* setto proprieta container*/
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
@@ -1972,7 +1986,7 @@ pre code {
 .container-fluid:after {
   clear: both;
 }
-
+/* setto righe*/
 .row {
   margin-left: -15px;
   margin-right: -15px;
@@ -1984,7 +1998,7 @@ pre code {
 .row:after {
   clear: both;
 }
-
+/* setto colonne xs*/
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
@@ -2200,6 +2214,7 @@ pre code {
   margin-left: 100%;
 }
 
+/* setto proprieta col sm posizionamento immagini*/
 @media (min-width: 768px) {
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
@@ -2409,6 +2424,8 @@ pre code {
     margin-left: 100%;
   }
 }
+
+/*setto proprieta md livello ricerca*/
 @media (min-width: 992px) {
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
@@ -2618,6 +2635,9 @@ pre code {
     margin-left: 100%;
   }
 }
+
+
+/* setto proprieta col lg textarea*/
 @media (min-width: 1200px) {
   .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
     float: left;
@@ -2827,17 +2847,20 @@ pre code {
     margin-left: 100%;
   }
 }
+/*
 table {
   background-color: transparent;
 }
-
+*/
+/*
 caption {
   padding-top: 8px;
   padding-bottom: 8px;
   color: #777777;
   text-align: left;
 }
-
+*/
+/*
 th {
   text-align: left;
 }
@@ -2976,7 +2999,8 @@ table th[class*="col-"] {
 .table-hover > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, .table-hover > tbody > tr:hover > .info, .table-hover > tbody > tr.info:hover > th {
   background-color: #c4e3f3;
 }
-
+*/
+/*
 .table > thead > tr > td.warning,
 .table > thead > tr > th.warning, .table > thead > tr.warning > td, .table > thead > tr.warning > th,
 .table > tbody > tr > td.warning,
@@ -3017,6 +3041,8 @@ table th[class*="col-"] {
   overflow-x: auto;
   min-height: 0.01%;
 }
+*/
+/*
 @media screen and (max-width: 767px) {
   .table-responsive {
     width: 100%;
@@ -3062,7 +3088,8 @@ table th[class*="col-"] {
     border-bottom: 0;
   }
 }
-
+*/
+/*
 fieldset {
   padding: 0;
   margin: 0;
@@ -3081,7 +3108,8 @@ legend {
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
-
+*/
+/*
 label {
   display: inline-block;
   max-width: 100%;
@@ -3094,7 +3122,8 @@ input[type="search"] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+*/
+/*
 input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
@@ -3123,7 +3152,8 @@ input[type="checkbox"]:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-
+*/
+/*
 output {
   display: block;
   padding-top: 11px;
@@ -3131,7 +3161,8 @@ output {
   line-height: 1.42857;
   color: #555555;
 }
-
+*/
+/* responsive img*/
 .form-control {
   display: block;
   width: 100%;
@@ -3144,12 +3175,10 @@ output {
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
+/*
 .form-control:focus {
   border-color: #66afe9;
   outline: 0;
@@ -3173,7 +3202,8 @@ output {
 .form-control[disabled], fieldset[disabled] .form-control {
   cursor: not-allowed;
 }
-
+*/
+/*
 textarea.form-control {
   height: auto;
 }
@@ -3181,7 +3211,7 @@ textarea.form-control {
 input[type="search"] {
   -webkit-appearance: none;
 }
-
+*//*
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="date"].form-control,
   input[type="time"].form-control,
@@ -3230,6 +3260,8 @@ input[type="search"] {
     line-height: 46px;
   }
 }
+*/
+/*
 .form-group {
   margin-bottom: 15px;
 }
