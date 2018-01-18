@@ -75,22 +75,7 @@ else{
 					<%} %>
 				</ul>
 			</div>
-				<div class="-box" id="searchBox" style=" float: right"> 
-						<h3 class="heading">Search Film</h3>
-							<form action="/Project/search" method="get">
-								<div class="form-group">
-									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-								</div>
-							</form>
-					</div>
-					<div class="-box" id="searchBox" style=" float: left"> 
-						<h3 class="heading">Search TVSerie</h3>
-							<form action="/Project/searchTV" method="get">
-								<div class="form-group">
-									<input name="keyword" type="text" class="form-control" placeholder="Type a keyword">
-								</div>
-							</form>
-					</div>
+				
 			
 		</div>
 	</div>
@@ -193,6 +178,16 @@ else{
 </div> <!-- /form -->
 </form>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Main JS -->
+	<script src="js/main.js"></script>
 
 
 </body>

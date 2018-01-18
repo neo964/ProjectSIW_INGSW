@@ -107,10 +107,11 @@ else{
 
 	</header>
 	<!-- END #-header -->
+	
 	<div class="col-lg-12 col-md-12 text-center">
 		<h2>Who Are We?</h2>
 		<h4> Mario Perri, 176189.</h4>
-		<h4> Andrea Pastore, 1.. 	</h4>
+		<h4> Andrea Pastore, 176642.</h4>
 	
 	
 		<figure>
@@ -132,11 +133,12 @@ else{
 	
 		<div class="container-fluid" style=" float: left">
 			<div class="row -post-entry">
-				<button class="button"/>Send Us</button>
+				<button class="button">Send Us</button>
 			</div>
 		</div>
 	</div>
 	</form>
+	</div>
 	
 	<footer id="-footer">
 			<p><small>&copy;2017 ingegneria del software e siw project <br><a>Designed by Andrea Pastore & Mario Perri</a> </small></p>
