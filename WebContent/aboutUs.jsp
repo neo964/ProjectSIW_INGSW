@@ -62,10 +62,10 @@ else{
 					<li><a href="/Project/search">News</a></li>
 					<li><a href="/Project/film">Film</a></li>
 					<li><a href="/Project/tvserie">TVSeries</a></li>
-					<li><a href="aboutUs.html">About Us</a></li>
+					<li><a href="aboutUs.jsp">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="posterFilm.jsp">Add New Film</a></li>
-					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>
+					<li><a href="posterFilm.html">Add New Film</a></li>
+					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
@@ -119,26 +119,14 @@ else{
 		<img alt="logo" src="images/PandaFlix.png">
 		</figure>
 		
-	<form action="/Project/sendUs" method="post">
-	<div class="form">
-		<div class="field-wrap">
-           	<h4>Subject</h4>
-			<input name="subject" type="text" size="40" maxlength="30" />
-          </div>  
-          
-          <div class="field-wrap">
-           	<h4>Object</h4>
-			<input name="object" type="text" size="40" maxlength="1000" />
-          </div>  
-	
-	
-		<div class="container-fluid" style=" float: left">
+		<br>
+	<form action="mailform.html">
+		<div class="container-fluid" style=" float: center">
 			<div class="row -post-entry">
-				<button class="button">Send Us</button>
+				<button class="button">Write Us!</button>
 			</div>
 		</div>
-	</div>
-	</form>
+		</form>
 	</div>
 	
 	<footer id="-footer">

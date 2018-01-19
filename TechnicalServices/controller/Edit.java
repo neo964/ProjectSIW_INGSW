@@ -28,9 +28,9 @@ public class Edit extends HttpServlet {
 			int id = Integer.parseInt(idstr);
 			req.setAttribute("id", id);
 			if (isFilm) {
-				req.getRequestDispatcher("posterFilm.jsp").forward(req, resp);
+				req.getRequestDispatcher("modifyFilm.html").forward(req, resp);
 			} else {
-				req.getRequestDispatcher("posterTVSerie.jsp").forward(req, resp);
+				req.getRequestDispatcher("modifyTVSerie.html").forward(req, resp);
 			}
 		} else {
 			if (isFilm) {

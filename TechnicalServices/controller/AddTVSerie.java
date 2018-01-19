@@ -31,7 +31,7 @@ public class AddTVSerie extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idstr = req.getParameter("ID");
+		int id = (int) req.getSession().getAttribute("rankid");
 		String title = req.getParameter("Title");
 		String category = req.getParameter("Category");
 		String yearstr = req.getParameter("Year");
@@ -40,16 +40,14 @@ public class AddTVSerie extends HttpServlet{
 		String Plot = req.getParameter("Plot");
 		String pricestr = req.getParameter("Price");
 		String image = req.getParameter("Image");
-		String[] actorstr = req.getParameterValues("Actors");
+		String[] actorstr = req.getParameterValues("actors");
+		String action = req.getParameter("action");
 		boolean completed;
 		if(req.getParameter("completed").equals("true"))
 				completed = true;
 		else
 			completed = false;
 		String seasonstr = req.getParameter("seasons");
-		int id = 0;
-		if (idstr != null)
-			id = Integer.parseInt(idstr);
 		int year = Integer.parseInt(yearstr);
 		double price = Double.parseDouble(pricestr);
 		int seasons = Integer.parseInt(seasonstr);
@@ -59,11 +57,11 @@ public class AddTVSerie extends HttpServlet{
 		}
 		try {
 			TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
-			if (idstr == null) {
+			if (action.equals("add")) {
 				TVSerie tvSerie = new TVSerie(-1, new TVSeriePoster(title, category, director, year, actors, Plot, image, completed, seasons), new Trailer(trailer), price);
 				tvseriedao.save(tvSerie);
 			}
-			else {
+			else if (action.equals("edit")){
 				TVSerie tvSerie = new TVSerie(id, new TVSeriePoster(title, category, director, year, actors, Plot, image, completed, seasons), new Trailer(trailer), price);
 				tvseriedao.update(tvSerie);
 			}

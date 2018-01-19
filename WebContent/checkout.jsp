@@ -73,8 +73,8 @@ else{
 					<li><a href="/Project/tvserie">TVSeries</a></li>
 					<li><a href="aboutUs.jsp">About Us</a></li>
 					<% if (curSession.isAdmin()) { %>
-					<li><a href="posterFilm.jsp">Add New Film</a></li>
-					<li><a href="posterTVSerie.jsp">Add New TVSerie</a></li>
+					<li><a href="posterFilm.html">Add New Film</a></li>
+					<li><a href="posterTVSerie.html">Add New TVSerie</a></li>
 					<%} %>
 				</ul>
 			</div>
@@ -185,62 +185,33 @@ else{
 						</div>
 					</div>
 					
-          
-          
-          
-            <div class="field-wrap"> 
-            <form action="/Project/UpdateInformation" method="post"> 
-            
-            <h4>Street</h4>
-              <input name = "street" type="text" required autocomplete="off" />
-              
-        
-             <div class="field-wrap">
-            <h4>Country</h4>
-              <input name = "country" type="text" required autocomplete="off" />
-            </div>
-            
-             <div class="field-wrap">
-            <h4>District</h4>
-              <input name = "district" type="text" required autocomplete="off" />
-            </div>
-            
-             <div class="field-wrap">
-            <h4>Zipcode</h4>
-              <input name = "zipcode" type="text" required autocomplete="off" />
-            </div>
-            
-             <button class="button">Update Address</button>
-            </form>
-            </div>
-            
-           
-          
-             <div class="field-wrap">
-             <form action="/Project/UpdateInformation" method="post">
-            <h4>Card Number</h4>
-              <input name="cardnumber" type="text" required autocomplete="off" />
-            </div>
-           
-            
-             <div class="field-wrap">
-            <h4>Expiration date</h4>
-              <input name="expirationdate" type="date" required autocomplete="off" />
-            </div>
-            
-            <div class="field-wrap">
-            <h4>Card CVC</h4>
-              <input name="cvc" type="number" required autocomplete="off" />
-            </div>
-
-			 <div class="field-wrap">
-            
-            <button class="button">Update Payment method</button>
-			 </form>
+					<br>
+	<form action="addressform.html">
+		<div class="container-fluid" style=" float: center">
+			<div class="row -post-entry">
+				<button class="button">Change!</button>
+			</div>
+		</div>
+		</form>
+		
+					<div class="row rp-b">
+						<div class="col-md-12 animate-box">
+							<blockquote>
+								<p>If you want to change payment method</p>
+							</blockquote>
+						</div>
+					</div>
+					
+					<br>
+	<form action="paymentform.html">
+		<div class="container-fluid" style=" float: center">
+			<div class="row -post-entry">
+				<button class="button">Change!</button>
+			</div>
+		</div>
+		</form>
             </div>
             </div>
-	
-	</div>
 
 	<footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
