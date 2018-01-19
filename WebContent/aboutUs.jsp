@@ -22,6 +22,7 @@ else{
 	curSession.setPremium(control);
 }
 %>
+<script src="http://the-movies-i-love.webnode.it/rss/notizie.xml"></script>
 
  	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
