@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import = "Model.User" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
@@ -41,10 +42,8 @@ trailer.setPath(request.getParameter("path"));
 </script>
 <link rel="stylesheet" href="css/video-js.css" type="text/css">
 <link rel="stylesheet" href="css/video-js.min.css" type="text/css">
-<link rel="shortcut icon" href="favicon.ico">
 <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/icomoon.css">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">
 
@@ -54,8 +53,6 @@ trailer.setPath(request.getParameter("path"));
 
 
 <header id="-header">
-		
-		<body>
 	<div id="-offcanvas">
 		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="-bio">
@@ -87,7 +84,6 @@ trailer.setPath(request.getParameter("path"));
 		</div>
 	</div>
 	<!-- END #-offcanvas -->
-	<header id="-header">
 		
 		<div class="container-fluid">
 
@@ -104,6 +100,7 @@ trailer.setPath(request.getParameter("path"));
 
 
 	</header>
+	<body>
 <div class="container-fluid">
   <video id="my-video" class="video-js" controls preload="auto" width="1280" height="720"
   poster="" data-setup="{}">
@@ -122,7 +119,7 @@ trailer.setPath(request.getParameter("path"));
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/main.js"></script>
 </div>
-
+</body>
 
 <footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>

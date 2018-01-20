@@ -21,6 +21,7 @@ else{
 	
 	control = (user.isPremium());
 	curSession.setPremium(control);
+	request.getSession().setAttribute("isFilm", false);
 }
 %>
 
@@ -36,7 +37,7 @@ else{
 	<link rel="stylesheet" href="css/style.css">
 
 	<script src="js/modernizr-2.6.2.min.js"></script>
-
+ 
 	</head>
 	<body>
 	<div id="-offcanvas">
@@ -166,7 +167,7 @@ else{
 					<span class="-meta">Horror</span>
 					<span class="-meta -date">Last update, now</span>
 			</article>
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+		<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
 		</form>
 	</div>
 
@@ -176,15 +177,8 @@ else{
 
 
 	
-	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Main JS -->
 	<script src="js/main.js"></script>
 
 	</body>
