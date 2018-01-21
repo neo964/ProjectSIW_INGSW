@@ -187,7 +187,13 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 			</div>
 		
 		</div>
-
+<div class="popup">
+  <h1 id="message">
+  </h1>
+  <span class="close">
+ <button class="action-button shadow animate blue" >Quit!</button>
+  </span>
+</div>
 	</header>
 
 <% if (multimedia instanceof Film) {%>
