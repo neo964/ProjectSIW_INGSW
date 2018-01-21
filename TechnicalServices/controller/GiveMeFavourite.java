@@ -63,14 +63,21 @@ public class GiveMeFavourite extends HttpServlet {
 		}
 		System.out.println(isFilm);
 		System.out.println(id);
-		
-		FavouriteDAO favouritedao = DatabaseManager.getInstance().getDaoFactory().getFavouriteDAO();
-		Favourite favourite = new Favourite(user.getEmail(), multimedia, isFilm);
-		favouritedao.save(favourite);
-		
-		  String text = "aggiunto ai preferiti";
+		try {
+			FavouriteDAO favouritedao = DatabaseManager.getInstance().getDaoFactory().getFavouriteDAO();
+			Favourite favourite = new Favourite(user.getEmail(), multimedia, isFilm);
+			favouritedao.save(favourite);
+			
+			  String text = "Aggiunto ai preferiti!";
+			    resp.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+			    resp.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+			    resp.getWriter().write(text);
+			
+		} catch (Exception e) {
+			String text = "E' stato gia' aggiunto ai preferiti precedentemente";
 		    resp.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
 		    resp.setCharacterEncoding("UTF-8"); // You want world domination, huh?
 		    resp.getWriter().write(text);
-		   }
+		}
+		}
 }

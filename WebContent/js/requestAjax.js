@@ -1,25 +1,37 @@
- $(document).on("click", "#cart", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-            	$.get("goToCart", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+ $(document).on("click", "#cart", function() {
+            	$.get("goToCart", function(responseText) {  
             		alert (responseText);
             	});
             });
  
- $(document).on("click", "#favourite", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
- 	$.get("myFavourite", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+ $(document).on("click", "#favourite", function() {
+ 	$.get("myFavourite", function(responseText) { 
   	alert (responseText);
  	});
  });
  
- $(document).on("click", "#cart", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
- 	alert ("CIAO");
- 	$.get("goToCart", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-  	alert (responseText);
- 	});
+ $(document).on("click", "#submit", function() { 
+	 var rankvalue = $("#rank :selected").text();
+	 var rank = {
+			 rank: rankvalue
+	 };
+	 
+	 $.ajax({
+		    type: "POST",
+		    url: "vote",
+		    contentType: "application/json", // NOT dataType!
+		    data: JSON.stringify(rank),
+		    success: function(response) {
+		        alert (response);
+		    }
+		});
+	 
+ 	
  });
  
- $(document).on("click", "#cart", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+ $(document).on("click", "#cart", function() {
  	alert ("CIAO");
- 	$.get("goToCart", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+ 	$.get("goToCart", function(responseText) {
   	alert (responseText);
  	});
  });

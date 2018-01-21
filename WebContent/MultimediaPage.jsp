@@ -229,7 +229,6 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 						</div>
 					</div>
 							
-					<form action="/Project/vote" method ="get" id="rate">
 					<div class="container-fluid">
 						<div class="row -post-entry">
 						
@@ -239,7 +238,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				  <legend>Vote</legend>
 		   				<h4>Rate It!</h4>
 				 
-				  <select name="rank" >
+				  <select name="rank" id="rank" >
 				   <option value="1" selected="selected"> 1 Star </option>
 				   <option value="2" selected="selected"> 2 Stars </option>
 				   <option value="3" selected="selected"> 3 Stars </option>
@@ -248,12 +247,11 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				   </select>
 				 </fieldset>
 				 <br>
-					<button class="button" form="rate">Submit!</button> 
+					<button class="button" id="submit">Submit!</button> 
 		    		</div>
     				</div>
 					</div>
 					</div>
-					</form>
 								
 					<div class="top-row">
 						 <div class="field-wrap">
