@@ -1,5 +1,5 @@
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
-  
+  //controlli campi form
   var $this = $(this),
       label = $this.prev('label');
 
