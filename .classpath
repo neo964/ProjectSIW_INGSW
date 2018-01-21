@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="/home/mario/Downloads/postgresql-42.1.4.jar"/>
 	<classpathentry kind="lib" path="/var/lib/tomcat8/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/home/mario/Downloads/mysql-connector-java-5.1.45-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
