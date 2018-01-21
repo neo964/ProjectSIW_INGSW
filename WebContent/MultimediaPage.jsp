@@ -164,9 +164,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           				<div class="field-wrap">
           				<form action="edit">
           				<%if (tvserietmp != null) {%>
-          					<h4><button class="button" name="edit" value=<jsp:getProperty name="tvserie" property="id"/>>Edit!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="edit" value=<jsp:getProperty name="tvserie" property="id"/>>Edit!</button> </h4>
           				<% }else{ %>
-          					<h4><button class="button" name="edit" value=<jsp:getProperty name="film" property="id"/>>Edit!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="edit" value=<jsp:getProperty name="film" property="id"/>>Edit!</button> </h4>
           					<%} %>
           				</form>
           				</div> 
@@ -176,9 +176,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           				<div class="field-wrap">
           				<form action="edit">
           				<%if (tvserietmp != null) {%>
-          					<h4><button class="button" name="remove" value=<jsp:getProperty name="tvserie" property="id"/>>Remove!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="remove" value=<jsp:getProperty name="tvserie" property="id"/>>Remove!</button> </h4>
           				<% }else{ %>
-          					<h4><button class="button" name="remove" value=<jsp:getProperty name="film" property="id"/>>Remove!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="remove" value=<jsp:getProperty name="film" property="id"/>>Remove!</button> </h4>
           					<%} %>
           				</form>
           				</div> 
