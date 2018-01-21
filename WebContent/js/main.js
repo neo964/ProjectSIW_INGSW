@@ -2,7 +2,24 @@
 	
 	'use strict';
 
-	// se clicco fuori il canvas
+
+
+	// iPad and iPod detection	
+	var isiPad = function(){
+		return (navigator.platform.indexOf("iPad") != -1);
+	};
+
+	var isiPhone = function(){
+	    return (
+			(navigator.platform.indexOf("<i></i>Phone") != -1) || 
+			(navigator.platform.indexOf("iPod") != -1)
+	    );
+	};
+
+	
+	
+
+	// Click outside of offcanvass
 	var mobileMenuOutsideClick = function() {
 
 		$(document).click(function (e) {
@@ -16,6 +33,7 @@
 					$('#-offcanvas').css('display', 'none');	
 					$('#-offcanvas').removeClass('animated fadeOutLeft fadeInLeft');
 				}, 1000);
+				$('.js--nav-toggle').removeClass('active');
 				
 	    	}
 	    
@@ -31,6 +49,7 @@
 				$('#-offcanvas').css('display', 'none');	
 				$('#-offcanvas').removeClass('animated fadeOutLeft fadeInLeft');
 			}, 1000);
+			$('.js--nav-toggle').removeClass('active');
 
 	    	event.preventDefault();
 
@@ -42,7 +61,7 @@
 
 	
 
-	// avvia animazione article
+	// Burger Menu
 	var burgerMenu = function() {
 
 		$('body').on('click', '.js--nav-toggle', function(event){
@@ -54,6 +73,7 @@
 				$('#-offcanvas').addClass('animated fadeInLeft');
 			}, 100);
 			
+			// $('body').toggleClass('-overflow offcanvas-visible');
 			$this.toggleClass('active');
 			event.preventDefault();
 
@@ -75,6 +95,7 @@
 
 		   if ( $('body').hasClass('offcanvas-visible') ) {
 		   	$('body').removeClass('offcanvas-visible');
+		   	$('.js--nav-toggle').removeClass('active');
 		   }
 		 
 		});
@@ -82,6 +103,7 @@
 		$(window).resize(function() {
 			if ( $('body').hasClass('offcanvas-visible') ) {
 		   	$('body').removeClass('offcanvas-visible');
+		   	$('.js--nav-toggle').removeClass('active');
 		   }
 		});
 		
@@ -90,7 +112,7 @@
 
 	
 
-	// navigazione pagine
+	// Page Nav
 	var clickMenu = function() {
 		var topVal = ( $(window).width() < 769 ) ? 0 : 58;
 
@@ -150,14 +172,14 @@
 	};
 
 
-	// caricamento documenti
+	// Document on load.
 	$(function(){
 
 		mobileMenuOutsideClick();
 		burgerMenu();
 		scrolledWindow();
 		
-		// animazioni
+		// Animations
 		contentWayPoint();
 		
 		
