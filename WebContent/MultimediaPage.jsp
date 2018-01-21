@@ -96,15 +96,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 
 	<script src="js/modernizr-2.6.2.min.js"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script>
-            $(document).on("click", "#cart", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-            	alert ("CIAO");
-            	$.get("goToCart", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-                    $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-             	alert (responseText);
-            	});
-            });
-        </script>
+        <script src="js/requestAjax.js"></script>
         
 	</head>
 	<body>
@@ -236,12 +228,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 							<p><jsp:getProperty name="film" property="price"/></p>
 						</div>
 					</div>
-					
-					
-        <button id="somebutton">press here</button>
-        <div id="somediv">xsfsdfs</div>
 							
-					
 					<form action="/Project/vote" method ="get" id="rate">
 					<div class="container-fluid">
 						<div class="row -post-entry">
@@ -275,11 +262,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           			</div>
           			
           			<div class="top-row">
-					<form action="/Project/myFavourite" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
+          					<button class="button" id="favourite" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
           				</div> 
-          			</form>
           			</div>
           			
           			<div class="top-row">

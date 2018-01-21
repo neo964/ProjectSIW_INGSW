@@ -23,12 +23,8 @@ public class GoToCart extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(":CUIAOBNEh");
 		int id = -1;
-		
 		id = (int) req.getSession().getAttribute("rankid");
-		//String idstr = (String) req.getSession().getAttribute("rankid"); 
-		System.out.println(id);
 		User user = (User) req.getSession().getAttribute("user");
 		if (id < 0) {
 			String action = (String) req.getParameter("fremove");

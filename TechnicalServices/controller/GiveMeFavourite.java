@@ -24,9 +24,10 @@ public class GiveMeFavourite extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idstr = (String) req.getParameter("favourite"); 
+		int id = -1;
+		id = (int) req.getSession().getAttribute("rankid");
 		User user = (User) req.getSession().getAttribute("user");
-		if (idstr == null) {
+		if (id < 0) {
 			String isFilm = (String) req.getParameter("film");
 			FavouriteDAO favouritedao = DatabaseManager.getInstance().getDaoFactory().getFavouriteDAO ();
 			LinkedList <Favourite> favourites = (LinkedList<Favourite>) favouritedao.findFavouriteUser(user.getEmail());
@@ -51,7 +52,6 @@ public class GiveMeFavourite extends HttpServlet {
 				req.getRequestDispatcher("research.jsp").forward(req, resp);
 				return;
 			}
-		int id = Integer.parseInt(idstr);
 		boolean isFilm = (boolean) req.getSession().getAttribute("isFilm");
 		Multimedia multimedia = null;
 		if (isFilm) {
@@ -63,11 +63,14 @@ public class GiveMeFavourite extends HttpServlet {
 		}
 		System.out.println(isFilm);
 		System.out.println(id);
+		
 		FavouriteDAO favouritedao = DatabaseManager.getInstance().getDaoFactory().getFavouriteDAO();
 		Favourite favourite = new Favourite(user.getEmail(), multimedia, isFilm);
 		favouritedao.save(favourite);
 		
-		req.setAttribute("YourMultimedia", multimedia);
-		req.getRequestDispatcher("MultimediaPage.jsp").forward(req, resp);
-	}
+		  String text = "aggiunto ai preferiti";
+		    resp.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+		    resp.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+		    resp.getWriter().write(text);
+		   }
 }
