@@ -112,7 +112,6 @@ else{
 		</div>
 
 	<!-- END #-offcanvas -->
-	<header id="-header">
 		
 		<div class="container-fluid">
 
@@ -167,6 +166,7 @@ else{
 			</article>
 			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
 			
+	</div>
 	</div>
 
 	<footer id="-footer">

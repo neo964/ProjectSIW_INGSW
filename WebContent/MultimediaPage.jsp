@@ -347,7 +347,6 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 							</div>
 						</div>
 						
-						<form action="/Project/vote" method ="get" id="rate">
 					<div class="container-fluid">
 						<div class="row -post-entry">
 						
@@ -357,7 +356,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				  <legend>Vote</legend>
 		   				<h4>Rate It!</h4>
 				 
-				  <select name="rank" >
+				  <select name="rank" id="rank" >
 				   <option value="1" selected="selected"> 1 Star </option>
 				   <option value="2" selected="selected"> 2 Stars </option>
 				   <option value="3" selected="selected"> 3 Stars </option>
@@ -371,22 +370,17 @@ request.getSession().setAttribute("rankid", multimedia.getId());
     				</div>
 					</div>
 					</div>
-					</form>
 								
 					<div class="top-row">
-					<form action="/Project/goToCart" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
+          					<button class="button" id="cart" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
           				</div> 
-          			</form>
           			</div>
           			
           			<div class="top-row">
-					<form action="/Project/myFavourite" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "favourite" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Favourites!</button> 
+          					<button class="button" id="favourite" name = "favourite" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Favourites!</button> 
           				</div> 
-          			</form>
           			</div>
 					<div class="row rp-b">
 						<div class="col-md-12 animate-box">
