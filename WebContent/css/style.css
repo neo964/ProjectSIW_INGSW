@@ -11,9 +11,10 @@
   font-style: normal;
 }
 
+/*set tasti*/
 html {
   overflow-y: scroll;
-  background: #4682b4;
+  background: #FFFFFF;
    font-size: 18px;
   font-weight: 300;
   line-height: 1.8;
@@ -21,14 +22,14 @@ html {
 }
 
 body {
-  background: #4682b4;
+  background: #FFFFFF;
   font-family: 'Titillium Web', sans-serif;
 }
 
 body.-overflow {
   overflow-x: auto;
 }
-
+/* titoli*/
 h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display", times, serif;
   color: #82C0FF;
@@ -75,13 +76,13 @@ h1, h2, h3, h4, h5, h6 {
 /*quando il puntatore passa sui tasti*/
 .tab-group li a:hover {
   background: #179b77;
-  color: #4682b4;
+  color: #FFFFFF;
 }
 
 /*quando il tasto e' attivo*/
 .tab-group .active a {
   background: #001040;
-  color: #4682b4;
+  color: #FFFFFF;
 }
 /*mi divide il form in due*/
 .tab-content > div:last-child {
@@ -90,9 +91,9 @@ h1, h2, h3, h4, h5, h6 {
 /* set titolo*/
 h1 {
   text-align: center;
-  color: #4682b4;
+  color: #FFFFFF;
   font-weight: 300;
-  margin: 0 0 40px;
+  margin: 0 0 20px;
 }
 
 /* set titoli interni label*/
@@ -123,7 +124,7 @@ label.active .req {
 }
 
 label.highlight {
-  color: #4682b4;
+  color: #FFFFFF;
 }
 /*set area label*/
 input, textarea {
@@ -180,7 +181,7 @@ textarea {
   text-transform: uppercase;
   letter-spacing: .1em;
   background: #001040;
-  color: #4682b4;
+  color: #FFFFFF;
 
 }
 
@@ -238,6 +239,10 @@ p {
 #-header #-logo {
   text-align: center;
 }
+
+#pandaTitle {
+	
+}
 /*colore logo*/
 #-header #-logo a {
   color: #001040;
@@ -245,7 +250,7 @@ p {
 /*tm*/
 #-header #-logo a sup {
   font-size: 20px;
-  top: -20px;
+  top: -100px;
 }
 
 
@@ -285,7 +290,7 @@ p {
 
 /*rettangolo bianco -box- */
 .-post-entry article .-highlight {
-  border: 4px solid #f2f2f2;
+  border: 4px solid #4682b4;
   padding: 30px;
   width: 100%;
   margin-bottom: 30px;
@@ -355,32 +360,32 @@ p {
   float: left;
   margin-bottom: 30px;
   width: 100%;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .-menu,
 #-offcanvas .-bio {
   width: 50%;
   padding: 50px;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 @media screen and (max-width: 768px) {
   #-offcanvas .-menu,
   #-offcanvas .-bio {
     width: 100%;
     padding: 30px;
-    background: #82C0FF;
+    background: rgba(128,128,128,0.6);
   }
 }
 #-offcanvas .-bio {
   text-align: center;
   float: left;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .-bio figure {
   text-align: center;
   display: block;
   margin-bottom: 30px;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .-bio img {
   width: 280px;
@@ -389,38 +394,39 @@ p {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   border-radius: 50%;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .-bio p {
   font-size: 25px;
-  background: #82C0FF';
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .heading {
   font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #4682ba;
+  color: rgba(128,128,128,0.6);
   margin-bottom: 30px;
 }
 #-offcanvas .-menu {
   float: right;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .-menu ul {
   padding: 0;
   margin: 0;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .-menu ul li {
   padding: 0;
   margin: 0 0 10px 0;
   list-style: none;
   display: block;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
 }
 #-offcanvas .-menu ul li a {
   color: #001040;
-  background: #82C0FF;
+  background: rgba(128,128,128,0.6);
+  /*opacity: 1;*/
 }
 /*fine offcanvas*/
 /*inizio footer*/
@@ -445,7 +451,7 @@ p {
   width: 25px;
   height: 3px;
   color: #535659;
-  font: bold 14px/.4 Helvetica;
+  font: "Playfair Display", times, serif;
   text-transform: uppercase;
   text-indent: -55px;
   background: #82C0FF;
