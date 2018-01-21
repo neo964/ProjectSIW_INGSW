@@ -30,6 +30,7 @@ else{
 	
 	control = (user.isPremium());
 	curSession.setPremium(control);
+	request.getSession().setAttribute("rankid", -1);
 }
 %>
 

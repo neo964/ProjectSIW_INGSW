@@ -78,7 +78,6 @@ if (multimedia instanceof Film){
 	TVposter.setSeasons(tvserietmp.getTvPoster().getSeasons());
 	//session.setAttribute("isFilm", false);
 }
-request.setAttribute("multimedia", multimedia.getId());
 trailer.setPath(multimedia.getTrailer().getPath());
 request.getSession().setAttribute("rankid", multimedia.getId());
 
@@ -96,13 +95,14 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 	<link rel="stylesheet" href="css/style.css">
 
 	<script src="js/modernizr-2.6.2.min.js"></script>
-
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script>
-            $(document).on("click", "#somebutton", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-                window.alert("qui ci passo");
-            	$.get("someservlet", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+            $(document).on("click", "#cart", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+            	alert ("CIAO");
+            	$.get("goToCart", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
                     $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-                });
+             	alert (responseText);
+            	});
             });
         </script>
         
@@ -269,11 +269,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					</form>
 								
 					<div class="top-row">
-					<form action="/Project/goToCart" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
+          					<button class="button" name = "multimedia" id="cart" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
           				</div> 
-          			</form>
           			</div>
           			
           			<div class="top-row">

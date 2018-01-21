@@ -22,28 +22,33 @@ import persistenceDAO.UserDAO;
 public class GoToCart extends HttpServlet{
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idstr = (String) req.getParameter("multimedia"); 
+	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(":CUIAOBNEh");
+		int id = -1;
+		
+		id = (int) req.getSession().getAttribute("rankid");
+		//String idstr = (String) req.getSession().getAttribute("rankid"); 
+		System.out.println(id);
 		User user = (User) req.getSession().getAttribute("user");
-		if (idstr == null) {
+		if (id < 0) {
 			String action = (String) req.getParameter("fremove");
 			String action2 = (String) req.getParameter("tremove");
 			CartDAO cartdao = DatabaseManager.getInstance().getDaoFactory().getCartDao();
 			
 			if (action != null) {
-				int id = Integer.parseInt(action);
-				cartdao.delete(user.getEmail(), id, true);
+				int id2 = Integer.parseInt(action);
+				cartdao.delete(user.getEmail(), id2, true);
 			} else if (action2 != null) {
-				int id = Integer.parseInt(action2);
-				cartdao.delete(user.getEmail(), id, false);
+				int id2 = Integer.parseInt(action2);
+				cartdao.delete(user.getEmail(), id2, false);
 			}
 			LinkedList<MultimediaInCart> cart = (LinkedList<MultimediaInCart>) cartdao.findByPrimaryKey(user.getEmail()).getCart();
 			req.setAttribute("cart", cart);
 			RequestDispatcher dispacher = req.getRequestDispatcher("cart.jsp");
-			dispacher.forward(req, resp);
+			dispacher.forward(req, response);
 		}
 		
-		int id = Integer.parseInt(idstr);
+		//int id = Integer.parseInt(idstr);
 		/*System.out.println(req.getSession().getAttribute("isfilm") + "String");
 		String isFilmstr = (String) req.getSession().getAttribute("isfilm");
 		boolean isFilm = true;
@@ -65,7 +70,12 @@ public class GoToCart extends HttpServlet{
 		cart.addToCart(new MultimediaInCart(multimedia, 1));
 		cartDAO.save(cart);
 		
-		req.setAttribute("YourMultimedia", multimedia);
-		req.getRequestDispatcher("MultimediaPage.jsp").forward(req, resp);
+		  String text = "aggiunto al carrello";
+		    response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+		    response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+		    response.getWriter().write(text);
+		
+		//req.setAttribute("YourMultimedia", multimedia);
+		//req.getRequestDispatcher("MultimediaPage.jsp").forward(req, resp);
 	}
 }
