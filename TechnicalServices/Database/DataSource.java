@@ -19,7 +19,6 @@ public class DataSource {
 		Connection connection = null;
 		try {
 		    connection = DriverManager.getConnection(dbURI,username, password);
-		
 		} catch(SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		}

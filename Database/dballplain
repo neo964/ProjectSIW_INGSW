@@ -1,0 +1,703 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.5
+-- Dumped by pg_dump version 9.6.5
+
+-- Started on 2018-01-22 11:27:07 CET
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2280 (class 1262 OID 24597)
+-- Name: PandaFlix; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "PandaFlix" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
+
+
+ALTER DATABASE "PandaFlix" OWNER TO postgres;
+
+\connect "PandaFlix"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12427)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2282 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 194 (class 1259 OID 24788)
+-- Name: ActorInFilm; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "ActorInFilm" (
+    "Actor" text NOT NULL,
+    "FilmID" integer NOT NULL
+);
+
+
+ALTER TABLE "ActorInFilm" OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 24801)
+-- Name: ActorInTVSerie; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "ActorInTVSerie" (
+    "Actor" text NOT NULL,
+    "TVSerieID" integer NOT NULL
+);
+
+
+ALTER TABLE "ActorInTVSerie" OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 24631)
+-- Name: Address; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Address" (
+    "Street" text NOT NULL,
+    "Country" text NOT NULL,
+    "ZipCode" integer NOT NULL,
+    "District" text NOT NULL,
+    "User" text NOT NULL
+);
+
+
+ALTER TABLE "Address" OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 24864)
+-- Name: Advice; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Advice" (
+    "Adviser" text NOT NULL,
+    "Advisor" text NOT NULL,
+    "IDFilm" integer NOT NULL,
+    "IDTVSerie" integer NOT NULL,
+    "isFilm" boolean NOT NULL
+);
+
+
+ALTER TABLE "Advice" OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 24764)
+-- Name: Cart; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Cart" (
+    "User" text NOT NULL,
+    "FilmID" integer NOT NULL,
+    "Quantity" integer NOT NULL,
+    "TVSerieID" integer NOT NULL
+);
+
+
+ALTER TABLE "Cart" OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 24657)
+-- Name: Episode; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Episode" (
+    "Path" text NOT NULL,
+    "TVSerie" integer NOT NULL,
+    episode integer NOT NULL,
+    season integer NOT NULL
+);
+
+
+ALTER TABLE "Episode" OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 24832)
+-- Name: Favourite; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Favourite" (
+    "User" text NOT NULL,
+    "IDMultimedia" integer NOT NULL,
+    "isFilm" boolean NOT NULL,
+    "IDSerie" integer NOT NULL
+);
+
+
+ALTER TABLE "Favourite" OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 24607)
+-- Name: Film; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Film" (
+    "ID" integer NOT NULL,
+    "Title" text NOT NULL,
+    "Category" text NOT NULL,
+    "Year" integer,
+    "Director" text,
+    "Trailer" text NOT NULL,
+    "VideoOnDemand" text NOT NULL,
+    "Plot" text,
+    "Price" double precision NOT NULL,
+    "Image" text
+);
+
+
+ALTER TABLE "Film" OWNER TO postgres;
+
+--
+-- TOC entry 196 (class 1259 OID 24814)
+-- Name: Friendship; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Friendship" (
+    "User1" text NOT NULL,
+    "User2" text NOT NULL,
+    accepted boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE "Friendship" OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 24670)
+-- Name: PaymentMethod; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "PaymentMethod" (
+    "CardNumber" text NOT NULL,
+    "User" text NOT NULL,
+    "Code" integer NOT NULL,
+    "ExpirationDate" date NOT NULL
+);
+
+
+ALTER TABLE "PaymentMethod" OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 24683)
+-- Name: RankingFilm; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "RankingFilm" (
+    "Rank" integer NOT NULL,
+    "User" text NOT NULL,
+    "Film" integer NOT NULL
+);
+
+
+ALTER TABLE "RankingFilm" OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 24701)
+-- Name: RankingTVSerie; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "RankingTVSerie" (
+    "Rank" integer NOT NULL,
+    "User" text NOT NULL,
+    "TVSerie" integer NOT NULL
+);
+
+
+ALTER TABLE "RankingTVSerie" OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 24615)
+-- Name: TVSerie; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "TVSerie" (
+    "ID" integer NOT NULL,
+    "Title" text NOT NULL,
+    "Category" text NOT NULL,
+    "Director" text,
+    "Year" integer,
+    "Completed" boolean,
+    "Seasons" integer,
+    "Trailer" text NOT NULL,
+    "Plot" text,
+    "Price" double precision NOT NULL,
+    "Image" text
+);
+
+
+ALTER TABLE "TVSerie" OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 24623)
+-- Name: User; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "User" (
+    "Password" text NOT NULL,
+    "E-Mail" text NOT NULL,
+    "Premium" boolean NOT NULL,
+    "Admin" boolean NOT NULL,
+    "Date" date,
+    "FirstName" text NOT NULL,
+    "LastName" text NOT NULL,
+    "Image" text
+);
+
+
+ALTER TABLE "User" OWNER TO postgres;
+
+--
+-- TOC entry 2271 (class 0 OID 24788)
+-- Dependencies: 194
+-- Data for Name: ActorInFilm; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "ActorInFilm" ("Actor", "FilmID") VALUES ('Keanu Reeves', 1);
+
+
+--
+-- TOC entry 2272 (class 0 OID 24801)
+-- Dependencies: 195
+-- Data for Name: ActorInTVSerie; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2265 (class 0 OID 24631)
+-- Dependencies: 188
+-- Data for Name: Address; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via Renato Guttuso 21', 'Italy', 87100, 'Cosenza', 'blackperrycs@gmail.com');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via dei pazzi, 15', 'Italy', 87100, 'Cosenza', 'blackperrycs@gmail.com');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via Dei pazzi 15', 'Italy', 87100, 'Cosenza', 'blackperrycs@gmail.com');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('via dei pazzi 15', 'Italy', 87100, 'Cosenza', 'blackperrycs@gmail.com');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via degli enotri, 12', 'Italy', 87100, 'Cosenza', 'blackperrycs@gmail.com');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via dei pazzi 12', 'Italy', 87100, 'Cosenza', 'blackperry@hotmail.it');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via degli enotri 2', 'Italy', 87100, 'Cosenza', 'blackperry@hotmail.it');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via dei pazzi 3', 'Italy', 87100, 'Cosenza', 'andrea.pastore90@outlook.com');
+INSERT INTO "Address" ("Street", "Country", "ZipCode", "District", "User") VALUES ('Via degli enotri 343', 'USA', 87100, 'Florida', 'andreapastore1990@gmail.com');
+
+
+--
+-- TOC entry 2275 (class 0 OID 24864)
+-- Dependencies: 198
+-- Data for Name: Advice; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "Advice" ("Adviser", "Advisor", "IDFilm", "IDTVSerie", "isFilm") VALUES ('blackperry@hotmail.it', 'blackperrycs@gmail.com', 2, -1, true);
+INSERT INTO "Advice" ("Adviser", "Advisor", "IDFilm", "IDTVSerie", "isFilm") VALUES ('blackperry@hotmail.it', 'blackperrycs@gmail.com', 1, -1, true);
+INSERT INTO "Advice" ("Adviser", "Advisor", "IDFilm", "IDTVSerie", "isFilm") VALUES ('blackperry@hotmail.it', 'blackperrycs@gmail.com', 2, -1, true);
+
+
+--
+-- TOC entry 2270 (class 0 OID 24764)
+-- Dependencies: 193
+-- Data for Name: Cart; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "Cart" ("User", "FilmID", "Quantity", "TVSerieID") VALUES ('blackperry@hotmail.it', 2, 1, -1);
+INSERT INTO "Cart" ("User", "FilmID", "Quantity", "TVSerieID") VALUES ('blackperry@hotmail.it', 1, 1, -1);
+
+
+--
+-- TOC entry 2266 (class 0 OID 24657)
+-- Dependencies: 189
+-- Data for Name: Episode; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "Episode" ("Path", "TVSerie", episode, season) VALUES ('videoOnDemand/tv/the100/1/1x2.mp4', 1, 2, 1);
+INSERT INTO "Episode" ("Path", "TVSerie", episode, season) VALUES ('videoOnDemand/tv/the100/1/1x3.mp4', 1, 3, 1);
+INSERT INTO "Episode" ("Path", "TVSerie", episode, season) VALUES ('videoOnDemand/tv/the100/1/1x4.mp4', 1, 4, 1);
+INSERT INTO "Episode" ("Path", "TVSerie", episode, season) VALUES ('videoOnDemand/tv/the100/2/2x1.mp4', 1, 1, 2);
+INSERT INTO "Episode" ("Path", "TVSerie", episode, season) VALUES ('videoOnDemand/tv/the100/2/2x2.mp4', 1, 2, 2);
+INSERT INTO "Episode" ("Path", "TVSerie", episode, season) VALUES ('videoOnDemand/tv/the100/2/2x3.mp4', 1, 3, 2);
+INSERT INTO "Episode" ("Path", "TVSerie", episode, season) VALUES ('videoOnDemand/tv/the100/1/1x1.mp4', 1, 1, 1);
+
+
+--
+-- TOC entry 2274 (class 0 OID 24832)
+-- Dependencies: 197
+-- Data for Name: Favourite; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "Favourite" ("User", "IDMultimedia", "isFilm", "IDSerie") VALUES ('blackperry@hotmail.it', -1, false, 1);
+INSERT INTO "Favourite" ("User", "IDMultimedia", "isFilm", "IDSerie") VALUES ('blackperry@hotmail.it', 1, true, -1);
+INSERT INTO "Favourite" ("User", "IDMultimedia", "isFilm", "IDSerie") VALUES ('blackperry@hotmail.it', 2, true, -1);
+
+
+--
+-- TOC entry 2262 (class 0 OID 24607)
+-- Dependencies: 185
+-- Data for Name: Film; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "Film" ("ID", "Title", "Category", "Year", "Director", "Trailer", "VideoOnDemand", "Plot", "Price", "Image") VALUES (1, 'Matrix', 'Sci-Fi', 1999, 'Larry e Andy Wachowski', 'https://www.youtube.com/embed/vKQi3bBA1y8', 'videoOnDemand/film/TheMatrix/matrix.mp4', 'Trinity, an infamous hacker, is cornered by police in an abandoned hotel. She overpowers them with superhuman abilities, but a group of sinister superhuman black-suited Agents lead the police in a rooftop pursuit. She answers a ringing public telephone and vanishes.', 1.98999999999999999, 'images/film/TheMatrix.jpg');
+INSERT INTO "Film" ("ID", "Title", "Category", "Year", "Director", "Trailer", "VideoOnDemand", "Plot", "Price", "Image") VALUES (2, 'Matrix Reloaded', 'Sci-Fi', 2003, 'Larry and Andy Wachowski', 'https://www.youtube.com/embed/HVrGMnk5E_M', 'videoOnDemand/film/TheMatrix/matrixreloaded.mp4', 'Six months after the events of the first film, Neo (Keanu Reeves) and Trinity (Carrie-Anne Moss) are now romantically involved. Morpheus (Laurence Fishburne) receives a message from Captain Niobe...', 2.99000000000000021, 'images/film/TheMatrixReloaded.jpg');
+
+
+--
+-- TOC entry 2273 (class 0 OID 24814)
+-- Dependencies: 196
+-- Data for Name: Friendship; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "Friendship" ("User1", "User2", accepted) VALUES ('blackperry@hotmail.it', 'andrea.pastore90@outlook.com', false);
+INSERT INTO "Friendship" ("User1", "User2", accepted) VALUES ('blackperry@hotmail.it', 'andreapastore1990@gmail.com', false);
+INSERT INTO "Friendship" ("User1", "User2", accepted) VALUES ('blackperrycs@gmail.com', 'blackperry@hotmail.it', true);
+INSERT INTO "Friendship" ("User1", "User2", accepted) VALUES ('blackperry@hotmail.it', 'blackperrycs@gmail.com', true);
+
+
+--
+-- TOC entry 2267 (class 0 OID 24670)
+-- Dependencies: 190
+-- Data for Name: PaymentMethod; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "PaymentMethod" ("CardNumber", "User", "Code", "ExpirationDate") VALUES ('1665461651561', 'blackperrycs@gmail.com', 545, '2020-01-28');
+INSERT INTO "PaymentMethod" ("CardNumber", "User", "Code", "ExpirationDate") VALUES ('4645454646', 'blackperry@hotmail.it', 454, '1970-01-01');
+INSERT INTO "PaymentMethod" ("CardNumber", "User", "Code", "ExpirationDate") VALUES ('87100', 'andrea.pastore90@outlook.com', 252, '1970-01-01');
+INSERT INTO "PaymentMethod" ("CardNumber", "User", "Code", "ExpirationDate") VALUES ('1654465465', 'andreapastore1990@gmail.com', 252, '1970-01-01');
+
+
+--
+-- TOC entry 2268 (class 0 OID 24683)
+-- Dependencies: 191
+-- Data for Name: RankingFilm; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "RankingFilm" ("Rank", "User", "Film") VALUES (5, 'blackperry@hotmail.it', 2);
+INSERT INTO "RankingFilm" ("Rank", "User", "Film") VALUES (5, 'blackperry@hotmail.it', 1);
+
+
+--
+-- TOC entry 2269 (class 0 OID 24701)
+-- Dependencies: 192
+-- Data for Name: RankingTVSerie; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "RankingTVSerie" ("Rank", "User", "TVSerie") VALUES (5, 'blackperry@hotmail.it', 1);
+
+
+--
+-- TOC entry 2263 (class 0 OID 24615)
+-- Dependencies: 186
+-- Data for Name: TVSerie; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "TVSerie" ("ID", "Title", "Category", "Director", "Year", "Completed", "Seasons", "Trailer", "Plot", "Price", "Image") VALUES (1, 'The 100', 'Sci-Fi', 'Jason Rothenberg', 2014, false, 5, 'https://www.youtube.com/embed/ia1Fbg96vL0', 'The series is set 97 years after a devastating nuclear apocalypse wiped out almost all life on Earth. Over 2,400 survivors live on a single massive station in Earth is orbit called "The Ark". After the Ark is life-support systems are found to be failing, 100 juvenile prisoners are sent to the surface in a last attempt to determine whether Earth is habitable. They discover not all humanity was destroyed and some survived the apocalypse: the Grounders, who live in clans locked in a power struggle; the Reapers, another group of Grounders who have become cannibals; and Mountain Men, who live in Mount Weather and locked themselves away before the apocalypse.
+
+In the second season, the remaining 48 of the 100 are captured and taken to Mount Weather by the Mountain Men. It is eventually revealed that the Mountain Men are transfusing blood from imprisoned Grounders as an anti-radiation treatment. Medical tests of the 100 show an even more potent anti-radiation efficacy; their bone marrow will allow the mountain men to survive outside containment. Meanwhile, the inhabitants of the Ark have successfully crash-landed various stations on Earth and begun an alliance with the Grounders to save groups of people, naming the main settlement at Alpha Station "Camp Jaha".
+
+In the third season, Camp Jaha, now renamed "Arkadia", comes under new management when Pike, a former teacher and mentor, is elected as chancellor and begins a war with the Grounders. An artificial intelligence named A.L.I.E. was commanded to make life better for mankind and responded by solving the problem of human overpopulation by launching a nuclear apocalypse that devastated Earth. The AI takes over the minds of nearly everyone in Arkadia and Polis, the capital city of the Grounders. In the season three finale, Clarke manages to destroy A.L.I.E.
+
+In the fourth season, hundreds of nuclear reactors around the world are melting down due to decades of neglect that will result in 96% of the planet becoming uninhabitable. Clarke and the others investigate ways to survive the coming wave of radiation. When it is discovered that Nightbloods, descendants of first, original Nightbloods, including Becca, the first grounder Commander and creator of A.L.I.E., can metabolize radiation, Clarke and the others attempt to recreate the formula, but their attempts failed. An old bunker is discovered that can protect 1,200 people for over 5 years; each of the twelve clans select a hundred people to stay in the bunker. A small group decides to return to space and survive in the remnants of the original Ark.', 9.99000000000000021, 'images/tv/The100.jpg');
+
+
+--
+-- TOC entry 2264 (class 0 OID 24623)
+-- Dependencies: 187
+-- Data for Name: User; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "User" ("Password", "E-Mail", "Premium", "Admin", "Date", "FirstName", "LastName", "Image") VALUES ('mario', 'blackperry@hotmail.it', true, true, '1996-01-28', 'Andrea', 'Pastore', 'images/user/mario.jpg');
+INSERT INTO "User" ("Password", "E-Mail", "Premium", "Admin", "Date", "FirstName", "LastName", "Image") VALUES ('mario', 'blackperrycs@gmail.com', false, false, '1996-01-28', 'Mario', 'Perri', 'images/profile.jpg');
+INSERT INTO "User" ("Password", "E-Mail", "Premium", "Admin", "Date", "FirstName", "LastName", "Image") VALUES ('andrea', 'andrea.pastore90@outlook.com', false, false, '1970-01-01', 'Andrea', 'Pastore', 'images/profile.jpg');
+INSERT INTO "User" ("Password", "E-Mail", "Premium", "Admin", "Date", "FirstName", "LastName", "Image") VALUES ('andrea', 'andreapastore1990@gmail.com', false, false, '1970-01-01', 'Mario', 'Perri', 'images/profile.jpg');
+
+
+--
+-- TOC entry 2123 (class 2606 OID 24795)
+-- Name: ActorInFilm ActorInFilm_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ActorInFilm"
+    ADD CONSTRAINT "ActorInFilm_pkey" PRIMARY KEY ("Actor", "FilmID");
+
+
+--
+-- TOC entry 2125 (class 2606 OID 24808)
+-- Name: ActorInTVSerie ActorInTVSerie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ActorInTVSerie"
+    ADD CONSTRAINT "ActorInTVSerie_pkey" PRIMARY KEY ("TVSerieID", "Actor");
+
+
+--
+-- TOC entry 2111 (class 2606 OID 24643)
+-- Name: Address Address_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Address"
+    ADD CONSTRAINT "Address_pkey" PRIMARY KEY ("User", "Street", "ZipCode");
+
+
+--
+-- TOC entry 2121 (class 2606 OID 24771)
+-- Name: Cart Cart_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Cart"
+    ADD CONSTRAINT "Cart_pkey" PRIMARY KEY ("FilmID", "User", "TVSerieID");
+
+
+--
+-- TOC entry 2129 (class 2606 OID 24885)
+-- Name: Favourite Favourite_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Favourite"
+    ADD CONSTRAINT "Favourite_pkey" PRIMARY KEY ("User", "IDMultimedia", "IDSerie");
+
+
+--
+-- TOC entry 2105 (class 2606 OID 24614)
+-- Name: Film Film_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Film"
+    ADD CONSTRAINT "Film_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2127 (class 2606 OID 24887)
+-- Name: Friendship Friendship_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Friendship"
+    ADD CONSTRAINT "Friendship_pkey" PRIMARY KEY ("User1", "User2");
+
+
+--
+-- TOC entry 2113 (class 2606 OID 24725)
+-- Name: Episode ID; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Episode"
+    ADD CONSTRAINT "ID" PRIMARY KEY ("TVSerie", episode, season);
+
+
+--
+-- TOC entry 2115 (class 2606 OID 24677)
+-- Name: PaymentMethod PaymentMethod_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "PaymentMethod"
+    ADD CONSTRAINT "PaymentMethod_pkey" PRIMARY KEY ("CardNumber", "User");
+
+
+--
+-- TOC entry 2117 (class 2606 OID 24690)
+-- Name: RankingFilm RankingFilm_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RankingFilm"
+    ADD CONSTRAINT "RankingFilm_pkey" PRIMARY KEY ("User", "Film");
+
+
+--
+-- TOC entry 2119 (class 2606 OID 24708)
+-- Name: RankingTVSerie RankingTVSerie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RankingTVSerie"
+    ADD CONSTRAINT "RankingTVSerie_pkey" PRIMARY KEY ("User", "TVSerie");
+
+
+--
+-- TOC entry 2107 (class 2606 OID 24622)
+-- Name: TVSerie TvSerie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "TVSerie"
+    ADD CONSTRAINT "TvSerie_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2109 (class 2606 OID 24743)
+-- Name: User User_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "User"
+    ADD CONSTRAINT "User_pkey" PRIMARY KEY ("E-Mail");
+
+
+--
+-- TOC entry 2133 (class 2606 OID 24696)
+-- Name: RankingFilm Film; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RankingFilm"
+    ADD CONSTRAINT "Film" FOREIGN KEY ("Film") REFERENCES "Film"("ID");
+
+
+--
+-- TOC entry 2138 (class 2606 OID 24796)
+-- Name: ActorInFilm Film; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ActorInFilm"
+    ADD CONSTRAINT "Film" FOREIGN KEY ("FilmID") REFERENCES "Film"("ID");
+
+
+--
+-- TOC entry 2140 (class 2606 OID 24822)
+-- Name: Friendship Friend1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Friendship"
+    ADD CONSTRAINT "Friend1" FOREIGN KEY ("User1") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2141 (class 2606 OID 24827)
+-- Name: Friendship Friend2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Friendship"
+    ADD CONSTRAINT "Friend2" FOREIGN KEY ("User2") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2131 (class 2606 OID 24665)
+-- Name: Episode TVSerie; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Episode"
+    ADD CONSTRAINT "TVSerie" FOREIGN KEY ("TVSerie") REFERENCES "TVSerie"("ID");
+
+
+--
+-- TOC entry 2135 (class 2606 OID 24714)
+-- Name: RankingTVSerie TVSerie; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RankingTVSerie"
+    ADD CONSTRAINT "TVSerie" FOREIGN KEY ("TVSerie") REFERENCES "TVSerie"("ID");
+
+
+--
+-- TOC entry 2139 (class 2606 OID 24809)
+-- Name: ActorInTVSerie TVSerie; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ActorInTVSerie"
+    ADD CONSTRAINT "TVSerie" FOREIGN KEY ("TVSerieID") REFERENCES "TVSerie"("ID");
+
+
+--
+-- TOC entry 2130 (class 2606 OID 24744)
+-- Name: Address User; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Address"
+    ADD CONSTRAINT "User" FOREIGN KEY ("User") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2132 (class 2606 OID 24749)
+-- Name: PaymentMethod User; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "PaymentMethod"
+    ADD CONSTRAINT "User" FOREIGN KEY ("User") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2134 (class 2606 OID 24754)
+-- Name: RankingFilm User; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RankingFilm"
+    ADD CONSTRAINT "User" FOREIGN KEY ("User") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2136 (class 2606 OID 24759)
+-- Name: RankingTVSerie User; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RankingTVSerie"
+    ADD CONSTRAINT "User" FOREIGN KEY ("User") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2137 (class 2606 OID 24772)
+-- Name: Cart User; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Cart"
+    ADD CONSTRAINT "User" FOREIGN KEY ("User") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2142 (class 2606 OID 24840)
+-- Name: Favourite User; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Favourite"
+    ADD CONSTRAINT "User" FOREIGN KEY ("User") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2143 (class 2606 OID 24872)
+-- Name: Advice ader; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Advice"
+    ADD CONSTRAINT ader FOREIGN KEY ("Adviser") REFERENCES "User"("E-Mail");
+
+
+--
+-- TOC entry 2144 (class 2606 OID 24877)
+-- Name: Advice ador; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Advice"
+    ADD CONSTRAINT ador FOREIGN KEY ("Advisor") REFERENCES "User"("E-Mail");
+
+
+-- Completed on 2018-01-22 11:27:07 CET
+
+--
+-- PostgreSQL database dump complete
+--
+
