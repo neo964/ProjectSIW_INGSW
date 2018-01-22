@@ -1,12 +1,14 @@
  $(document).on("click", "#cart", function() {
             	$.get("goToCart", function(responseText) {  
             		showpopup (responseText);
+            		scroll(200,200);
             	});
             });
  
  $(document).on("click", "#favourite", function() {
  	$.get("myFavourite", function(responseText) { 
 		showpopup (responseText);
+		scroll(200,200);
  	});
  });
  
@@ -23,6 +25,7 @@
 		    data: JSON.stringify(rank),
 		    success: function(response) {
         		showpopup (response);
+        		scroll(200,200);
 		    }
 		});
 	 
@@ -42,6 +45,7 @@
 		    data: JSON.stringify(id),
 		    success: function(response) {
         		showpopup (response);
+        		scroll(200,200);
 		    }
 		});
  });
@@ -59,6 +63,7 @@
 		    data: JSON.stringify(id),
 		    success: function(response) {
         		showpopup (response);
+        		scroll(200,200);
 		    }
 		});
  });
@@ -76,6 +81,7 @@
 		    data: JSON.stringify(id),
 		    success: function(response) {
         		showpopup (response);
+        		scroll(200,200);
 		    }
 		});
  });
@@ -93,6 +99,7 @@
 		    data: JSON.stringify(id),
 		    success: function(response) {
         		showpopup (response);
+        		scroll(200,200);
 		    }
 		});
  });
