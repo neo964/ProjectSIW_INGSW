@@ -1,8 +1,10 @@
-
+<!DOCTYPE html>
+<html lang="en" >
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import = "Model.User" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> 
+<head>
 <jsp:useBean id="trailer" class="Model.Trailer" scope="page"/>
 <jsp:useBean id="curSession" class="Model.UserSession" scope="session"/>
 	<meta charset="utf-8">
@@ -11,6 +13,7 @@ prefix="c" %>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Pastore-Perri">
 <%
+
 User user = (User) session.getAttribute("user");
 if (user == null)
 	response.sendRedirect("loginpage.html");
@@ -49,7 +52,7 @@ trailer.setPath(request.getParameter("path"));
 
 <script src="js/modernizr-2.6.2.min.js"></script>
 
-
+</head>
 
 
 <header id="-header">
@@ -101,26 +104,31 @@ trailer.setPath(request.getParameter("path"));
 
 	</header>
 	<body>
-<div class="container-fluid">
-  <video id="my-video" class="video-js" controls preload="auto" width="1280" height="720"
-  poster="" data-setup="{}">
-    <source src=<jsp:getProperty name="trailer" property="path"/> type='video/mp4'>
-    <source src="MY_VIDEO.webm" type='video/webm'>
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-  </video>
+	<div>
+	<div>
+	<div class="container-fluid">
+	  <video id="my-video" class="video-js" controls preload="auto" width="1280" height="720"
+ 	 poster="" data-setup="{}">
+  	  <source src=<jsp:getProperty name="trailer" property="path"/> type='video/mp4'>
+   	 <source src="MY_VIDEO.webm" type='video/webm'>
+   	 <p class="vjs-no-js">
+   	   To view this video please enable JavaScript, and consider upgrading to a web browser that
+    	  <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    	</p>
+ 	 </video>
 
-  <script src="http://vjs.zencdn.net/6.4.0/video.js"></script>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/main.js"></script>
+ 	 <script src="http://vjs.zencdn.net/6.4.0/video.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.easing.1.3.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.waypoints.min.js"></script>
+		<script src="js/main.js"></script>
+</div>
+</div>
 </div>
 </body>
 
 <footer id="-footer">
 		<p><small>&copy;2017 ingegneria del software e siw project <br> Designed by Andrea Pastore & Mario Perri</a> </small></p>
 </footer>
+</html>

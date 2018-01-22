@@ -164,9 +164,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           				<div class="field-wrap">
           				<form action="edit">
           				<%if (tvserietmp != null) {%>
-          					<h4><button class="action-button shadow animate blue" name="edit" value=<jsp:getProperty name="tvserie" property="id"/>>Edit!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="edit" value=<jsp:getProperty name="tvserie" property="id"/>Edit!</button> </h4>
           				<% }else{ %>
-          					<h4><button class="action-button shadow animate blue" name="edit" value=<jsp:getProperty name="film" property="id"/>>Edit!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="edit" value=<jsp:getProperty name="film" property="id"/>Edit!</button> </h4>
           					<%} %>
           				</form>
           				</div> 
@@ -176,9 +176,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           				<div class="field-wrap">
           				<form action="edit">
           				<%if (tvserietmp != null) {%>
-          					<h4><button class="action-button shadow animate blue" name="remove" value=<jsp:getProperty name="tvserie" property="id"/>>Remove!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="remove" value=<jsp:getProperty name="tvserie" property="id"/>Remove!</button> </h4>
           				<% }else{ %>
-          					<h4><button class="action-button shadow animate blue" name="remove" value=<jsp:getProperty name="film" property="id"/>>Remove!</button> </h4>
+          					<h4><button class="action-button shadow animate blue" name="remove" value=<jsp:getProperty name="film" property="id"/>Remove!</button> </h4>
           					<%} %>
           				</form>
           				</div> 
@@ -253,28 +253,31 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				   </select>
 				 </fieldset>
 				 <br>
-					<button class="button" id="submit">Submit!</button> 
+				 
+					<button class="action-button shadow animate blue"id="submit" />Submit!</button> 
+				
 		    		</div>
     				</div>
 					</div>
 					</div>
-								
+					<form>			
 					<div class="top-row">
 						 <div class="field-wrap">
-          					<button class="button" name = "multimedia" id="cart" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
+						 <button class="action-button shadow animate blue" name="multimedia"id="cart" value=<jsp:getProperty name="film" property="id"/>Add To Cart!</button> 
           				</div> 
           			</div>
-          			
+          			</form>
+          			<form>
           			<div class="top-row">
 						 <div class="field-wrap">
-          					<button class="button" id="favourite" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
+						 	<button class="action-button shadow animate blue" name="favourite"id="favourite" value=<jsp:getProperty name="film" property="id"/>Add To Favourites!</button> 
           				</div> 
           			</div>
-          			
+          			</form>
           			<div class="top-row">
 					<form action="/Project/suggestTo" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Suggest It!</button> 
+							 <button class="action-button shadow animate blue" name="multimedia"value=<jsp:getProperty name="film" property="id"/>Suggest It!</button>
           				</div> 
           			</form>
           			</div>
@@ -283,7 +286,8 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					<div class="top-row">
 					<form action="watchIt" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "path" value = <jsp:getProperty name="film" property="videoOnDemand"/>>Watch It!</button> 
+							 <button class="action-button shadow animate blue" name="path"value=<jsp:getProperty name="film" property="videoOnDEmand"/>Watch It!</button>
+          
           				</div> 
           			</form>
           			</div>
