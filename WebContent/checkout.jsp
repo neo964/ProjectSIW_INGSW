@@ -165,11 +165,9 @@ else{
 						<div class="top-row">
 						 <div class="field-wrap">
 						 <%if (iscart != null && iscart.equals("true")) {%>
-						 <button class="action-button shadow animate blue" name="iscart" value="true" form="buyit"/>Confirm your information</button>
-          					
+          					<button class="button" name="iscart" value="true" form="buyit">Confirm your information</button> 
           				 <%}else{ %>
-          				 <button class="action-button shadow animate blue" name="iscart"value="false"form="buyit"/>Confirm your information</button>
-          					 
+          					 <button class="button" name="iscart" value="false" form="buyit">Confirm your information</button> 
            				 <% }%>
           				</div> 
           				
@@ -189,8 +187,7 @@ else{
 	<form action="addressform.html">
 		<div class="container-fluid" style=" float: center">
 			<div class="row -post-entry">
-			<button class="action-button shadow animate blue"/>Change!</button>
-				
+				<button class="button">Change!</button>
 			</div>
 		</div>
 		</form>
@@ -207,8 +204,7 @@ else{
 	<form action="paymentform.html">
 		<div class="container-fluid" style=" float: center">
 			<div class="row -post-entry">
-			<button class="action-button shadow animate blue" />Change!</button>
-				
+				<button class="button">Change!</button>
 			</div>
 		</div>
 		</form>

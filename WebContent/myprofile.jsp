@@ -126,15 +126,13 @@ else{
 				</figure>
 				<h2 class="-article-title">Settings</h2>
 			</article>
-		
-		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+			
+			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<input name="actionprofile" type="image" value="friends" class="img-responsive" alt="Image" src="images/amiciProfilo.png">
+					<input id="profile" type="image" name="actionprofile" value="friends" class="img-responsive" alt="Image" src="images/amiciProfilo.png">
 				</figure>
 				<h2 class="-article-title">Friends</h2>
 			</article>
-			
-			
 		
 		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
@@ -150,8 +148,11 @@ else{
 				<h2 class="-article-title">Notification</h2>
 			</article>
 		
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
 			</form>
+		
+			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+			
+			
 	</div>
 
 	<footer id="-footer">
@@ -163,7 +164,6 @@ else{
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/main.js"></script>
-
 	</body>
 </html>
 

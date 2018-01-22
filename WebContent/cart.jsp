@@ -145,11 +145,9 @@ for (MultimediaInCart multimedia: cart) {
 				<span class="-meta"><a> <jsp:getProperty name="preview" property="title"/> </a></span>
 				<span class="-meta -date"><jsp:getProperty name="preview" property="price"/></span>
 				<%if (isFilm) {%>
-				<button class="action-button shadow animate blue" name="fremove"value=<jsp:getProperty name="preview" property="id"/>Remove</button>
-				
+				<button class="button" name="fremove" value=<jsp:getProperty name="preview" property="id"/>> Remove </button>
 				<%}else{ %>
-				<button class="action-button shadow animate blue" name="tremove"value=<jsp:getProperty name="preview" property="id"/>Remove</button>
-				
+				<button class="button" name="tremove" value=<jsp:getProperty name="preview" property="id"/>> Remove </button>
 				<%} %>
 			</article>
 			</form>
@@ -171,8 +169,7 @@ for (MultimediaInCart multimedia: cart) {
 						</div>
 						<%if (!cart.isEmpty()){ %>
 						<form action="/Project/Check-Out">
-						<button class="action-button shadow animate blue" name="iscart"value="true"/>Buy It!</button>
-							
+							<button class="button" name="iscart" value="true">Buy It!</button>
 						</form>
 						<%} %>
 						</article>	

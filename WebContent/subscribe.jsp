@@ -118,7 +118,7 @@ else{
 	</figure>
 			 <div class="field-wrap">
             <form action = "/Project/Check-Out" method="get">
-              <button class="action-button shadow animate blue" name="buy" value="premium">Stay premium stay foolish</button>
+              <button class="button button-block" name="buy" value="premium">Stay premium stay foolish</button>
             </form>
             </div>
             <%} %>
