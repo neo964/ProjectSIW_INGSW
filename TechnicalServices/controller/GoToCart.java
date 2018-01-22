@@ -61,15 +61,22 @@ public class GoToCart extends HttpServlet{
 			TVSerieDAO tvseriedao = DatabaseManager.getInstance().getDaoFactory().getTVSerieDAO();
 			multimedia = tvseriedao.findByPrimaryKey(id);
 		}
-		CartDAO cartDAO = DatabaseManager.getInstance().getDaoFactory().getCartDao();
-		Cart cart = new Cart(user);
-		cart.addToCart(new MultimediaInCart(multimedia, 1));
-		cartDAO.save(cart);
-		
-		  String text = "aggiunto al carrello";
-		    response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
-		    response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
-		    response.getWriter().write(text);
+		try {
+			CartDAO cartDAO = DatabaseManager.getInstance().getDaoFactory().getCartDao();
+			Cart cart = new Cart(user);
+			cart.addToCart(new MultimediaInCart(multimedia, 1));
+			cartDAO.save(cart);
+			
+			String text = "Aggiunto al carrello";
+			response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+			response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+			response.getWriter().write(text);	
+		} catch (Exception e) {
+			String text = "Gia' presente nel carrelo";
+			response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+			response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+			response.getWriter().write(text);
+		}
 		
 		//req.setAttribute("YourMultimedia", multimedia);
 		//req.getRequestDispatcher("MultimediaPage.jsp").forward(req, resp);

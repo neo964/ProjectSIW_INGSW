@@ -109,7 +109,14 @@ else{
 			</div>
 		
 		</div>
-
+		
+<div class="popup">
+  <h1 id="message">
+  </h1>
+  <span class="close">
+ <button class="action-button shadow animate blue" >Quit!</button>
+  </span>
+</div>
 	</header>
 
 <div class="container-fluid">
@@ -121,7 +128,6 @@ else{
 		
 						<div class="col-lg-4 animate-box">
 							<div class="-highlight right">
-							<form action="/Project/friend">
 								<h3>Friend Request</h3>
 								<%for(User userfriendtmp: requests){ 
 									friend.setFirstName(userfriendtmp.getFirstName());
@@ -130,10 +136,9 @@ else{
 									friend.setUser(userfriendtmp.getEmail());
 								%>
 								<p> <jsp:getProperty name="friend" property="firstName"/> <jsp:getProperty name="friend" property="lastName"/> </p>
-								<button class="button" name="accept" value=<jsp:getProperty name="friend" property="user"/>>Accept</button>
-								<button class="button" name="decline" value=<jsp:getProperty name="friend" property="user"/>>Refuse</button>
+								<button class="button" id="accept" name="accept" value=<jsp:getProperty name="friend" property="user"/>>Accept</button>
+								<button class="button" id="decline" name="decline" value=<jsp:getProperty name="friend" property="user"/>>Refuse</button>
 								<%} %>
-							</form>
 							</div>
 						</div>
 					</div>
@@ -177,6 +182,7 @@ else{
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/requestAjax.js"></script>
 
 	</body>
 </html>

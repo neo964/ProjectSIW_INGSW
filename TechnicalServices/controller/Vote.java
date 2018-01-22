@@ -25,8 +25,6 @@ public class Vote extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("Ciao a tutti");
-
 		Gson gson = new Gson();
 		try {
 			StringBuilder sb = new StringBuilder();

@@ -116,7 +116,13 @@ else{
 
 		
 		</div>
-
+<div class="popup">
+  <h1 id="message">
+  </h1>
+  <span class="close">
+ <button class="action-button shadow animate blue" >Quit!</button>
+  </span>
+</div>
 	</header>
 	<% if (friends.isEmpty()){%> 
 				<div class="col-lg-12 col-md-12 text-center">
@@ -144,18 +150,19 @@ else{
 						friendhip.setAccepted(false);
 						
 				%>
-			<form action="/Project/friend" method="get">
+				<form action="friend" method="get">
 				<figure>	<!-- qui è il tag di cambio pagina -->
-					<input name="profile" type="image" value=<jsp:getProperty name="friend" property="user"/> class="img-responsive" alt="Image" src=<jsp:getProperty name="friend" property="image"/> >
-				</figure> 			<!-- da vedere se vogliamo mettere il link del profilo dell utente trovato o meno -->
+					<input name="profile" id="profile" type="image" value=<jsp:getProperty name="friend" property="user"/> class="img-responsive" alt="Image" src=<jsp:getProperty name="friend" property="image"/> >
+				</figure> 			
+				</form>
+				<!-- da vedere se vogliamo mettere il link del profilo dell utente trovato o meno -->
 				<span class="-meta"><jsp:getProperty name="friend" property="firstName"/> <jsp:getProperty name="friend" property="lastName"/></span>
 				<%if (friendhip.isAccepted()) { %>
-					<button class="button" name="remove" value=<jsp:getProperty name="friend" property="user"/>>Remove</button>
+					<button class="button" id="remove" name="remove" value=<jsp:getProperty name="friend" property="user"/>>Remove</button>
 					<%} else { %>
-					<button class="button" name="add" value=<jsp:getProperty name="friend" property="user"/>>Invite</button>
+					<button class="button" id="add" name="add" value=<jsp:getProperty name="friend" property="user"/>>Invite</button>
 					<%} %>
 				<span class="-meta -date"></span>
-			</form>
 			<%} %>
 			</article>
 			</div>
@@ -170,6 +177,7 @@ else{
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/requestAjax.js"></script>
 
 	</body>
 </html>

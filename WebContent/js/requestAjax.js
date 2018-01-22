@@ -1,12 +1,12 @@
  $(document).on("click", "#cart", function() {
             	$.get("goToCart", function(responseText) {  
-            		showpopup ();
+            		showpopup (responseText);
             	});
             });
  
  $(document).on("click", "#favourite", function() {
  	$.get("myFavourite", function(responseText) { 
-		showpopup ();
+		showpopup (responseText);
  	});
  });
  
@@ -29,11 +29,72 @@
  	
  });
  
- $(document).on("click", "#cart", function() {
- 	alert ("CIAO");
- 	$.get("goToCart", function(responseText) {
-  	alert (responseText);
- 	});
+ $("#add").click(function() {
+	 var idvalue = $(this).val();
+	 var id = {
+			 user: idvalue,
+			 action: "add"
+	 }
+	 $.ajax({
+		    type: "POST",
+		    url: "friend",
+		    contentType: "application/json", // NOT dataType!
+		    data: JSON.stringify(id),
+		    success: function(response) {
+        		showpopup (response);
+		    }
+		});
+ });
+ 
+ $("#remove").click(function() {
+	 var idvalue = $(this).val();
+	 var id = {
+			 user: idvalue,
+			 action: "remove"
+	 }
+	 $.ajax({
+		    type: "POST",
+		    url: "friend",
+		    contentType: "application/json", // NOT dataType!
+		    data: JSON.stringify(id),
+		    success: function(response) {
+        		showpopup (response);
+		    }
+		});
+ });
+ 
+ $("#decline").click(function() {
+	 var idvalue = $(this).val();
+	 var id = {
+			 user: idvalue,
+			 action: "decline"
+	 }
+	 $.ajax({
+		    type: "POST",
+		    url: "friend",
+		    contentType: "application/json", // NOT dataType!
+		    data: JSON.stringify(id),
+		    success: function(response) {
+        		showpopup (response);
+		    }
+		});
+ });
+ 
+ $("#accept").click(function() { 
+	 var idvalue = $(this).val();
+	 var id = {
+			 user: idvalue,
+			 action: "accept"
+	 }
+	 $.ajax({
+		    type: "POST",
+		    url: "friend",
+		    contentType: "application/json", // NOT dataType!
+		    data: JSON.stringify(id),
+		    success: function(response) {
+        		showpopup (response);
+		    }
+		});
  });
  
  function showpopup(message){
