@@ -14,11 +14,8 @@ import com.google.gson.Gson;
 import Database.DatabaseManager;
 import Model.Favourite;
 import Model.Friendship;
-import Model.Multimedia;
-import Model.Ranking;
 import Model.User;
 import persistenceDAO.FriendshipDAO;
-import persistenceDAO.UserDAO;
 
 public class Friends extends HttpServlet{
 	

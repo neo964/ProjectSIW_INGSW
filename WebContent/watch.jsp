@@ -50,9 +50,8 @@ trailer.setPath(request.getParameter("path"));
 <script src="js/modernizr-2.6.2.min.js"></script>
 
 
+	<body>
 
-
-<header id="-header">
 	<div id="-offcanvas">
 		<a href="#" class="-close-offcanvas js--close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="-bio">
@@ -85,6 +84,7 @@ trailer.setPath(request.getParameter("path"));
 	</div>
 	<!-- END #-offcanvas -->
 		
+<header id="-header">
 		<div class="container-fluid">
 
 			<div class="row">
@@ -100,7 +100,8 @@ trailer.setPath(request.getParameter("path"));
 
 
 	</header>
-	<body>
+	
+	<br><br><br><br><br><br><br><br><br><br><br>
 <div class="container-fluid">
   <video id="my-video" class="video-js" controls preload="auto" width="1280" height="720"
   poster="" data-setup="{}">
@@ -114,8 +115,6 @@ trailer.setPath(request.getParameter("path"));
 
   <script src="http://vjs.zencdn.net/6.4.0/video.js"></script>
 	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/main.js"></script>
 </div>

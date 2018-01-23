@@ -1,0 +1,5 @@
+ - Scaricare il progetto dalla repository di git.
+ - Importare il Progetto da Eclipse.
+ - Importare nel build path le due librerie include nella cartella "./lib".
+ - Runnare il progetto sul server.
+

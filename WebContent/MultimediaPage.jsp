@@ -161,7 +161,10 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				
           			<!-- pulsante per admin -->
           			<%if (curSession.isAdmin()) {%>
-          				<div class="field-wrap">
+          			
+		
+			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+          				<div class="top-row" align="center">
           				<form action="edit">
           				<%if (tvserietmp != null) {%>
           					<h4><button class="action-button shadow animate blue" name="edit" value=<jsp:getProperty name="tvserie" property="id"/>>Edit!</button> </h4>
@@ -173,7 +176,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           				<%} %>
           				
           				<%if (curSession.isAdmin()) {%>
-          				<div class="field-wrap">
+          				<div class="top-row" align="center">
           				<form action="edit">
           				<%if (tvserietmp != null) {%>
           					<h4><button class="action-button shadow animate blue" name="remove" value=<jsp:getProperty name="tvserie" property="id"/>>Remove!</button> </h4>
@@ -183,11 +186,14 @@ request.getSession().setAttribute("rankid", multimedia.getId());
           				</form>
           				</div> 
           				<%} %>
+          				
+          				
+          				</article>
 
 			</div>
 		
 		</div>
-<div class="popup">
+<div class="popup" align="center">
   <h1 id="message">
   </h1>
   <span class="close">
@@ -262,31 +268,24 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					</div>
 								
 					<div class="top-row">
-						 <div class="field-wrap">
           					<button class="action-button shadow animate blue" name = "multimedia" id="cart" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
-          				</div> 
           			</div>
-          			<br><br>
-          			<div class="top-row">
-						 <div class="field-wrap">
-          					<button class="action-button shadow animate blue" id="favourite" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
-          				</div> 
-          			</div>
+          			<br>
           			
           			<div class="top-row">
+          					<button class="action-button shadow animate blue" id="favourite" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
+          			</div>
+          			<br>
+          			<div class="top-row">
 					<form action="/Project/suggestTo" method = "get">
-						 <div class="field-wrap">
           					<button class="action-button shadow animate blue" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Suggest It!</button> 
-          				</div> 
           			</form>
           			</div>
           			
           			<%if (curSession.isPremium()){ %>
 					<div class="top-row">
 					<form action="watchIt" method = "get">
-						 <div class="field-wrap">
           					<button class="action-button shadow animate blue" name = "path" value = <jsp:getProperty name="film" property="videoOnDemand"/>>Watch It!</button> 
-          				</div> 
           			</form>
           			</div>
           			<%} %>
@@ -380,16 +379,13 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					</div>
 								
 					<div class="top-row">
-						 <div class="field-wrap">
           					<button class="action-button shadow animate blue" id="cart" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
-          				</div> 
           			</div>
           			
           			<div class="top-row">
-						 <div class="field-wrap">
           					<button class="action-button shadow animate blue" id="favourite" name = "favourite" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Favourites!</button> 
-          				</div> 
           			</div>
+          			
 					<div class="row rp-b">
 						<div class="col-md-12 animate-box">
 								<h4>Trailer</h4>
@@ -422,7 +418,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
  			System.out.println (index.getIndex());
 	       %>
         <div id=<jsp:getProperty property="index" name="index"/>>   
-			<h2><jsp:getProperty name="index" property="index"/></h2>
+			<h2> <jsp:getProperty name="index" property="index"/> Season </h2>
           <div class="top-row">
             <div class="field-wrap">
      			<div class="container-fluid">
@@ -443,9 +439,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 			
 			<div class="top-row">
 				<form action="watchIt" method = "get">
-					 <div class="field-wrap">
-          				<button name = "path" value = <jsp:getProperty name="episode" property="path"/>> <jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </button> 
-          			</div> 
+          				<button class="action-button shadow animate blue" name = "path" value = <jsp:getProperty name="episode" property="path"/>> <jsp:getProperty name="episode" property="season"/>x<jsp:getProperty name="episode" property="episode"/> </button> 
           		</form>
           	</div>
 			
