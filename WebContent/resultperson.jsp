@@ -133,7 +133,7 @@ else{
 	<div class="container-fluid">
 		<div class="row -post-entry">
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-			<% if (friends != null)
+			<% if (!friends.isEmpty())
 				for (Iterator iterator = userfriends.iterator(), iteratorfriend = friends.iterator(); iterator.hasNext();) {
 					User userfriendtmp = (User) iterator.next();
 					Friendship friedshiptmp = null;
