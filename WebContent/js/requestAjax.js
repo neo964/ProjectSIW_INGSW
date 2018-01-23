@@ -109,7 +109,8 @@
 	 $('.popup').css({
 	      'transform':'translateY(0)',
 	      'z-index':'999',
-	      'height':'250px'
+	      'height':'100px',
+	      'margin':'80px'
 	    });
 	    
 	    $('body').addClass('overlay');

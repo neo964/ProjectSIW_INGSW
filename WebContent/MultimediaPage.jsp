@@ -371,7 +371,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				   </select>
 				 </fieldset>
 				 <br>
-					<button class="button" form="rate">Submit!</button> 
+					<button class="button" id ="submit">Submit!</button> 
 		    		</div>
     				</div>
 					</div>
