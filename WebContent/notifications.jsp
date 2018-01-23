@@ -86,7 +86,7 @@ else{
 				<!-- logo -->
 				<div class="col-lg-12 col-md-12 text-center">
 					<h1 id="-logo"><a href="index.jsp">PANDAFLIX <sup>TM</sup></a></h1>
-``                 			<h2>Notifications</h2>
+                 			<h2>Notifications</h2>
 					<div class="-box" id="searchBox" style=" float: right"> 
 						<h3 class="heading">Search Film</h3>
 							<form action="/Project/search" method="get">
