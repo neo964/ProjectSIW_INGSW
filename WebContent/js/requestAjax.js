@@ -126,7 +126,8 @@
 	    $('.popup > .close').on('click',function(){
 	      $(this).parent().css({
 	      'transform':'translateY(-300%)',
-	      'height':'0px'
+	      'height':'0px',
+	      'margin':'0px'
 	     });
 	     
 	      $('body').removeClass('overlay');

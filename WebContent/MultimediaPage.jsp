@@ -253,7 +253,9 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				   </select>
 				 </fieldset>
 				 <br>
-					<button class="button" id="submit">Submit!</button> 
+					<button class="action-button shadow animate blue" id="submit">Submit!</button> 
+		    		<br>
+		    		<br>
 		    		</div>
     				</div>
 					</div>
@@ -261,20 +263,20 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 								
 					<div class="top-row">
 						 <div class="field-wrap">
-          					<button class="button" name = "multimedia" id="cart" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
+          					<button class="action-button shadow animate blue" name = "multimedia" id="cart" value = <jsp:getProperty name="film" property="id"/>>Add To Cart!</button> 
           				</div> 
           			</div>
-          			
+          			<br><br>
           			<div class="top-row">
 						 <div class="field-wrap">
-          					<button class="button" id="favourite" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
+          					<button class="action-button shadow animate blue" id="favourite" name = "favourite" value = <jsp:getProperty name="film" property="id"/>>Add To Favourites!</button> 
           				</div> 
           			</div>
           			
           			<div class="top-row">
 					<form action="/Project/suggestTo" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Suggest It!</button> 
+          					<button class="action-button shadow animate blue" name = "multimedia" value = <jsp:getProperty name="film" property="id"/>>Suggest It!</button> 
           				</div> 
           			</form>
           			</div>
@@ -283,7 +285,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 					<div class="top-row">
 					<form action="watchIt" method = "get">
 						 <div class="field-wrap">
-          					<button class="button" name = "path" value = <jsp:getProperty name="film" property="videoOnDemand"/>>Watch It!</button> 
+          					<button class="action-button shadow animate blue" name = "path" value = <jsp:getProperty name="film" property="videoOnDemand"/>>Watch It!</button> 
           				</div> 
           			</form>
           			</div>
@@ -371,7 +373,7 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 				   </select>
 				 </fieldset>
 				 <br>
-					<button class="button" id ="submit">Submit!</button> 
+					<button class="action-button shadow animate blue" id ="submit">Submit!</button> 
 		    		</div>
     				</div>
 					</div>
@@ -379,13 +381,13 @@ request.getSession().setAttribute("rankid", multimedia.getId());
 								
 					<div class="top-row">
 						 <div class="field-wrap">
-          					<button class="button" id="cart" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
+          					<button class="action-button shadow animate blue" id="cart" name = "multimedia" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Cart!</button> 
           				</div> 
           			</div>
           			
           			<div class="top-row">
 						 <div class="field-wrap">
-          					<button class="button" id="favourite" name = "favourite" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Favourites!</button> 
+          					<button class="action-button shadow animate blue" id="favourite" name = "favourite" value = <jsp:getProperty name="tvserie" property="id"/>>Add To Favourites!</button> 
           				</div> 
           			</div>
 					<div class="row rp-b">

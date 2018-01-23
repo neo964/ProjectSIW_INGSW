@@ -133,7 +133,7 @@ else{
 				 </fieldset>
 		    		</div>
 		    		</div>
-		    		<button class="button" type="submit">Confirm</button> 
+		    		<button class="action-button shadow animate blue" type="submit">Confirm</button> 
 		    		</form>
 		    		</div>
 		    		</div>

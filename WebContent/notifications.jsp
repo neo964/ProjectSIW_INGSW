@@ -136,8 +136,8 @@ else{
 									friend.setUser(userfriendtmp.getEmail());
 								%>
 								<p> <jsp:getProperty name="friend" property="firstName"/> <jsp:getProperty name="friend" property="lastName"/> </p>
-								<button class="button" id="accept" name="accept" value=<jsp:getProperty name="friend" property="user"/>>Accept</button>
-								<button class="button" id="decline" name="decline" value=<jsp:getProperty name="friend" property="user"/>>Refuse</button>
+								<button class="action-button shadow animate blue" id="accept" name="accept" value=<jsp:getProperty name="friend" property="user"/>>Accept</button>
+								<button class="action-button shadow animate blue" id="decline" name="decline" value=<jsp:getProperty name="friend" property="user"/>>Refuse</button>
 								<%} %>
 							</div>
 						</div>

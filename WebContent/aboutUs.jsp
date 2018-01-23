@@ -121,7 +121,7 @@ else{
 	<form action="mailform.html">
 		<div class="container-fluid" style=" float: center">
 			<div class="row -post-entry">
-				<button class="button">Write Us!</button>
+				<button class="action-button shadow animate blue">Write Us!</button>
 			</div>
 		</div>
 		</form>

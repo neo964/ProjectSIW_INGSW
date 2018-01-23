@@ -1393,7 +1393,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857;
-  color: #333333;
+  color: #82C0FF;
   background-color: #fff;
 }
 
@@ -1407,7 +1407,7 @@ textarea {
 }
 
 a {
-  color: #337ab7;
+  color: #82C0FF;
   text-decoration: none;
 }
 a:hover, a:focus {

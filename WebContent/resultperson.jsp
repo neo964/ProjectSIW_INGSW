@@ -158,9 +158,9 @@ else{
 				<!-- da vedere se vogliamo mettere il link del profilo dell utente trovato o meno -->
 				<span class="-meta"><jsp:getProperty name="friend" property="firstName"/> <jsp:getProperty name="friend" property="lastName"/></span>
 				<%if (friendhip.isAccepted()) { %>
-					<button class="button" id="remove" name="remove" value=<jsp:getProperty name="friend" property="user"/>>Remove</button>
+					<button class="action-button shadow animate blue" id="remove" name="remove" value=<jsp:getProperty name="friend" property="user"/>>Remove</button>
 					<%} else { %>
-					<button class="button" id="add" name="add" value=<jsp:getProperty name="friend" property="user"/>>Invite</button>
+					<button class="action-button shadow animate blue" id="add" name="add" value=<jsp:getProperty name="friend" property="user"/>>Invite</button>
 					<%} %>
 				<span class="-meta -date"></span>
 			<%} %>

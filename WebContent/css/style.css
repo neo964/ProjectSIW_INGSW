@@ -384,7 +384,7 @@ p {
   font-size: 30px;
   width: 30px;
   overflow: hidden;
-  color: #001040;
+  color: #82C0FF;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -415,13 +415,13 @@ p {
   float: left;
   margin-bottom: 30px;
   width: 100%;
-  background: rgba(128,128,128,0.6);
+  background: rgba(80,80,80,0);
 }
 #-offcanvas .-menu,
 #-offcanvas .-bio {
   width: 50%;
   padding: 50px;
-  background: rgba(128,128,128,0.6);
+  background: rgba(80,80,80,0.95);
 }
 @media screen and (max-width: 768px) {
   #-offcanvas .-menu,
@@ -434,7 +434,7 @@ p {
 #-offcanvas .-bio {
   text-align: center;
   float: left;
-  background: rgba(128,128,128,0.6);
+  background: rgba(80,80,80,0.95);
 }
 #-offcanvas .-bio figure {
   text-align: center;
@@ -453,23 +453,23 @@ p {
 }
 #-offcanvas .-bio p {
   font-size: 25px;
-  background: rgba(128,128,128,0.6);
+  background: rgba(80,80,80,0);
 }
 #-offcanvas .heading {
   font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(128,128,128,0.6);
+  color: #82C0FF;
   margin-bottom: 30px;
 }
 #-offcanvas .-menu {
   float: right;
-  background: rgba(128,128,128,0.6);
+  background: rgba(80,80,80,0.95);
 }
 #-offcanvas .-menu ul {
   padding: 0;
   margin: 0;
-  background: rgba(128,128,128,0.6);
+  background: rgba(80,80,80,0);
   font: "Playfair Display", times, serif;
 }
 
@@ -481,11 +481,11 @@ p {
   margin: 0 0 10px 0;
   list-style: none;
   display: block;
-  background: rgba(128,128,128,0.6);
+  background: rgba(80,80,80,0);
 }
 #-offcanvas .-menu ul li a {
-  color: #001040;
-  background: rgba(128,128,128,0.6);
+  color: #82C0FF;
+  background: rgba(80,80,80,0);
   /*opacity: 1;*/
 }
 /*fine offcanvas*/
